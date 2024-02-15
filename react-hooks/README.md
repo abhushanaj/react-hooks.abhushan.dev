@@ -36,6 +36,31 @@ You can also import multiple hooks at once.
 import { useDocumentTitle, useToggle } from '@abhushanaj/react-hooks;
 ```
 
+## Example
+
+Now that you’ve installed and imported the hooks, you can use them in your components.
+
+```jsx
+import React from 'react';
+import { useDocumentTitle } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, setCount] = React.useState(0);
+	useDocumentTitle(`Current count is: ${count}`, { resetOnUnmount: true });
+
+	return (
+		<section>
+			<h1>Update document title to show the latest count</h1>
+			<button onClick={() => setCount((prev) => prev + 1)}>Increment Count: {count}</button>
+		</section>
+	);
+}
+```
+
 ## Documentation
 
 Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more information about the package.
+
+## Issues & Improvements
+
+Visit [Github](https://github.com/abhushanaj/react-hooks.abhushan.dev) and feel free to raise an issue.

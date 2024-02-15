@@ -13,3 +13,10 @@ Find useful reusable abstractions for browser API's, custom utilities to manage 
 ## Overview
 
 The project is created from the official turborepo starter using the `create-turbo@latest` CLI.
+
+## Versoning and Publishing using changesets
+
+To create a changeset : `pnpm changeset`
+To merge all changest and version into one: `pnpm changeset version` and publish with `pnpm changeset publish`
+
+Reference: https://github.com/changesets/changesets

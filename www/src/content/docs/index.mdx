@@ -1,36 +1,45 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: 'React Hooks'
+description: A collection of modern and server-safe custom React hooks to supercharge your React application development.
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: A collection of modern and server-safe custom React hooks to supercharge your React application development.
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/hero-image.png
   actions:
-    - text: Example Guide
-      link: /guides/example/
-      icon: right-arrow
+    - text: Get Started
+      link: /overview/installation/
+      icon: rocket
       variant: primary
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: View all hooks
+      link: /overview/installation/
+      icon: right-arrow
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Key Features
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Card title="Typesafe" icon="star">
+    All hooks are purely written in Typescript, harnessing the power of
+    generics. This results in strongly typed APIs, contributing to a better
+    Developer Experience (DX) when using the package.
+  </Card>
+
+<Card title="Tree Shakeable" icon="open-book">
+  All hooks are are packaged as ES modules, offering the advantage of minimal
+  import cost for individual functions.
+</Card>
+
+<Card title="Server safe" icon="approve-check-circle">
+  Hooks are designed to be server-safe, supporting Server-Side Rendering (SSR)
+  seamlessly. Whether you are working with frameworks like
+  [Next.js](https://nextjs.org/) or [Remix](https://remix.run/), it ensures a
+  smooth integration.
+</Card>
+
+<Card title="Interactive Demos" icon="laptop">
+    All hooks comes with an interactive demo example. These demos serve as effective illustrations, helping users understand how to integrate and leverage the hooks in their projects.
+</Card>
 </CardGrid>

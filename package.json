@@ -1,21 +1,26 @@
 {
-  "name": "react-hooks.abhushan.dev",
-  "private": true,
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "dev:www": "turbo dev --filter=www",
-    "build:www": "turbo build --filter=www"
-  },
-  "devDependencies": {
-    "prettier": "^3.1.1",
-    "rimraf": "^5.0.5",
-    "turbo": "latest"
-  },
-  "packageManager": "pnpm@8.9.0",
-  "engines": {
-    "node": ">=18"
-  }
+	"name": "react-hooks.abhushan.dev",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"lint": "turbo lint",
+		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
+		"dev:www": "turbo dev --filter=www",
+		"build:www": "turbo build --filter=www",
+		"prettier:format": "pnpm exec prettier . --write --plugin=prettier-plugin-astro",
+		"prettier:check": "pnpm exec prettier . --check --plugin=prettier-plugin-astro"
+	},
+	"devDependencies": {
+		"@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+		"prettier": "^3.1.1",
+		"prettier-plugin-astro": "^0.13.0",
+		"rimraf": "^5.0.5",
+		"turbo": "latest"
+	},
+	"packageManager": "pnpm@8.9.0",
+	"engines": {
+		"node": ">=18"
+	}
 }

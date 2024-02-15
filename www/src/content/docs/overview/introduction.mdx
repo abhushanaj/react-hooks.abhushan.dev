@@ -1,0 +1,70 @@
+---
+title: Introduction
+description: A guide in my new Starlight docs site.
+---
+
+React Hooks by [@abhushanaj](https://abhushan.dev) is a set of modern, server-safe custom React hooks focusing on super charging your development speeds while working with React.
+
+Find useful reusable abstractions for browser API's, custom utilities to manage states, create and cleanup subscription to external stores or in general encapsulate often repeated business logic.
+
+## Motivation
+
+Creating another hooks library in a sea of existing options on the npm registry may seem redundant at first glance.
+
+However, the motivation behind this project stems from a personal journey of continuous learning and a desire to build something both practical and enduring for myself.
+
+### Learning and Growth
+
+While projects like ecommerce websites or visualizer dashboards are undoubtedly exciting to create, they often fade into the background once completed.
+
+The motivation here is to build something that serves a dual purpose - a tool for daily work and a source of ongoing learning. By diving into the creation of a custom React hooks library, I aim to deepen my understanding of various aspects of creating and maintaining a full fledged libray which I plan to use for my other projects.
+
+### Practical Application
+
+The decision to create a hooks library is rooted in the need for a tool that can be seamlessly integrated into daily work and across different projects. Rather than creating yet another project that might eventually be forgotten, I wanted to craft something that remains relevant and beneficial in the long run.
+
+### Keeping Pace with Change
+
+React, like any technology, evolves over time.
+
+This project is an opportunity to stay current with the changing specifications of React, ensuring that the library is not only functional but also up-to-date with the latest best practices and features.
+
+### Upskilling
+
+This project serves as a platform to enhance skills in various areas.
+
+Leveraging [TypeScript generics](https://www.typescriptlang.org/docs/handbook/2/generics.html) for a more robust API, mastering testing with [Vitest](https://vitest.dev/) and [Testing Library](https://testing-library.com/) for maintaining reliable and well-tested code, and the intricacies of publishing to the npm registry are all aspects that will be explored and honed.
+
+### Documentation Excellence
+
+Creating a full documentation site is not just about showcasing the project but also about cultivating the ability to communicate effectively.
+
+Learning to write comprehensive and clear documentation, coupled with illustrative demos, ensures that the library is not only useful but also accessible to others.
+
+### Growing with Open Source
+
+Beyond personal development, creating and contributing a open source project is a powerful means of growth.
+
+Learning to handle diverse opinions, addressing issues raised by users, and continuously refining the library based on community input all contribute to a richer and more mature skill set.
+
+## Key Features
+
+### Server safe
+
+Hooks are designed to be server-safe, supporting Server-Side Rendering (SSR) seamlessly. Whether you are working with frameworks like [Next.js](https://nextjs.org/) or [Remix](https://remix.run/), it ensures a smooth integration.
+
+For hooks relying on top browser APIs such as `usePreferredLanguage` or `useLocalStorage`, simply provide a default value during SSR mode, or they gracefully return null as a default.
+
+### Typesafe
+
+All hooks are purely written in Typescript, harnessing the power of generics. This results in strongly typed APIs, contributing to a better Developer Experience (DX) when using the package.
+
+### Tree Shakeable
+
+All hooks are are packaged as ES modules, offering the advantage of minimal import cost for individual functions.
+
+This tree shakeable nature ensures that only the necessary parts of the library are bundled, optimizing the overall performance of your application.
+
+### Interactive Demos
+
+All hooks comes with an interactive demo example. These demos serve as effective illustrations, helping users understand how to integrate and leverage the hooks in their projects.

@@ -11,32 +11,33 @@ hero:
       link: /overview/installation/
       icon: rocket
       variant: primary
-    - text: View all hooks
-      link: /overview/installation/
-      icon: right-arrow
+    - text: Key Features
+      link: /#key-features
+      icon: down-caret
+      variant: secondary
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
+<section id="key-features">
 ## Key Features
 
 <CardGrid stagger>
-  <Card title="Typesafe" icon="star">
-    All hooks are purely written in Typescript, harnessing the power of
-    generics. This results in strongly typed APIs, contributing to a better
-    Developer Experience (DX) when using the package.
-  </Card>
-
-<Card title="Tree Shakeable" icon="open-book">
-	All hooks are are packaged as ES modules, offering the advantage of minimal import cost for individual functions.
-</Card>
-
-<Card title="Server safe" icon="approve-check-circle">
-	Hooks are designed to be server-safe, supporting Server-Side Rendering (SSR) seamlessly. Whether you are working with
-	frameworks like [Next.js](https://nextjs.org/) or [Remix](https://remix.run/), it ensures a smooth integration.
-</Card>
-
-<Card title="Interactive Demos" icon="laptop">
-    All hooks comes with an interactive demo example. These demos serve as effective illustrations, helping users understand how to integrate and leverage the hooks in their projects.
-</Card>
+	<Card title="Typesafe" icon="star">
+		All hooks are purely written in Typescript, harnessing the power of generics. This results in strongly typed APIs,
+		contributing to a better Developer Experience (DX) when using the package.
+	</Card>
+	<Card title="Tree Shakeable" icon="open-book">
+		All hooks are are packaged as ES modules, offering the advantage of minimal import cost for individual functions.
+	</Card>
+	<Card title="Server safe" icon="approve-check-circle">
+		Hooks are designed to be server-safe, supporting Server-Side Rendering (SSR) seamlessly. Whether you are working
+		with frameworks like [Next.js](https://nextjs.org/) or [Remix](https://remix.run/), it ensures a smooth integration.
+	</Card>
+	<Card title="Interactive Demos" icon="laptop">
+		All hooks comes with an interactive demo example. These demos serve as effective illustrations, helping users
+		understand how to integrate and leverage the hooks in their projects.
+	</Card>
 </CardGrid>
+
+</section>

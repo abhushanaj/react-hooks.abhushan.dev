@@ -1,6 +1,77 @@
 ---
-title: Installation
-description: Get started with React hooks
+title: Getting Started
+description: 'A quick tutorial on getting up and running with @abhushanaj/react-hooks'
 ---
 
-TODO
+import { Code, TabItem, Tabs } from '@astrojs/starlight/components';
+
+## Overview
+
+This tutorial provides a quick guide on installing and using the `@abhushanaj/react-hooks` package.
+
+### Installation
+
+To get started, you need to install the package. Use one of the following commands based on your package manager:
+
+<Tabs>
+	<TabItem label="npm">
+		<Code code="npm install @abhushanaj/react-hooks@latest" lang="bash" />
+	</TabItem>
+	<TabItem label="pnpm">
+		<Code code="pnpm add @abhushanaj/react-hooks@latest" lang="bash" />
+	</TabItem>
+	<TabItem label="yarn">
+		<Code code="yarn add @abhushanaj/react-hooks@latest" lang="bash" />
+	</TabItem>
+</Tabs>
+
+### Importing the hook
+
+All hooks are named exports, so importing them is straightforward.
+
+### Import a single hook
+
+<Code
+	lang="tsx"
+	title="./src/App.tsx"
+	mark={['useDocumentTitle']}
+	code="import { useDocumentTitle } from '@abhushanaj/react-hooks;"
+/>
+
+### Import multiple hooks.
+
+You can also import multiple hooks at once.
+
+<Code
+	lang="tsx"
+	title="./src/App.tsx"
+	mark={['useDocumentTitle', 'useToggle']}
+	code="import { useDocumentTitle, useToggle } from '@abhushanaj/react-hooks;"
+/>
+
+## Example Usage
+
+Now that you've installed and imported the hooks, you can use them in your components.
+
+```tsx title="./src/App.tsx" ins={2,6}
+import React from 'react';
+import { useDocumentTitle } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, setCount] = React.useState(0);
+	useDocumentTitle(`Current count is: ${count}`, { resetOnUnmount: true });
+
+	return (
+		<section>
+			<h1>Update document title to show the latest count</h1>
+			<button onClick={() => setCount((prev) => prev + 1)}>Increment Count: {count}</button>
+		</section>
+	);
+}
+```
+
+## Conclusion
+
+You're now set up with `@abhushanaj/react-hooks` and ready to enhance your React components with these convenient hooks.
+
+Explore the documentation for each hook to unleash their full potential in your projects.

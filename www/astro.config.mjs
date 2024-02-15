@@ -38,18 +38,13 @@ export default defineConfig({
 				baseUrl: 'https://github.com/abhushanaj/react-hooks.abhushan.dev/edit/main/'
 			},
 			sidebar: [
-				// {
-				//   label: 'Overview',
-				//   items: [
-				//     // Each item here is one entry in the navigation menu.
-				//     { label: 'Example Guide', link: '/guides/example/' },
-				//   ],
-				// },
 				{
 					label: 'Overview',
-					autogenerate: {
-						directory: 'overview'
-					}
+					items: [
+						// Each item here is one entry in the navigation menu.
+						{ label: 'Introduction', link: '/overview/introduction/' },
+						{ label: 'Installation', link: '/overview/installation/' }
+					]
 				}
 			]
 		})

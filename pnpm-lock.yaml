@@ -14,7 +14,7 @@ importers:
         specifier: latest
         version: 1.12.4
 
-  apps/www:
+  www:
     dependencies:
       '@astrojs/check':
         specifier: ^0.5.4

@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
+import react from '@astrojs/react';
+
 // https://astro.build/config
 export default defineConfig({
   // just personal preference
@@ -8,6 +10,8 @@ export default defineConfig({
     port: 3000,
   },
   integrations: [
+    react(),
+    // for starlight
     starlight({
       title: 'React Hooks',
       social: {
@@ -43,7 +47,9 @@ export default defineConfig({
         // },
         {
           label: 'Overview',
-          autogenerate: { directory: 'overview' },
+          autogenerate: {
+            directory: 'overview',
+          },
         },
       ],
     }),

@@ -1,0 +1,48 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"name": "tsconfig:react-hooks",
+	"compilerOptions": {
+		// ==== Project ============
+		"incremental": true, // Save .tsbuildinfo files to allow for incremental compilation of projects.
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+
+		// ===== Interop Constraints =====
+		"esModuleInterop": true,
+		"verbatimModuleSyntax": true,
+		"forceConsistentCasingInFileNames": true,
+
+		// =========== Completeness =========
+		"skipLibCheck": true, // Skip type checking all .d.ts files
+
+		// ===== Emit =========
+		"isolatedModules": true,
+		"noEmit": true,
+		"emitDeclarationOnly": false,
+		"declaration": false,
+		"allowImportingTsExtensions": true,
+		"jsx": "react-jsx",
+
+		// ==== Modules
+		"moduleResolution": "Bundler", // for bundler usage
+		"module": "ESNext", // to support moduleResolution bundler
+		"target": "ES6",
+
+		// ===== JS Support ===========
+		"allowJs": false, // Allow JavaScript files to be a part of your program
+
+		// ======== Typings =======
+		"strict": true, // enables a bunch of rules by default when set to true
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"exactOptionalPropertyTypes": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true
+	},
+	"include": ["src/**/*.ts", "src/**/*.tsx"],
+	"exclude": ["node_modules/", "dist"]
+}

@@ -1,1 +1,2 @@
 pnpm run prettier:format
+git add .

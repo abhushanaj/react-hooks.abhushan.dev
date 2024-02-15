@@ -1,32 +1,32 @@
 {
-  "name": "www",
-  "type": "module",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "astro sync && astro dev",
-    "start": "astro dev",
-    "build": "astro sync && astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "sync": "astro sync",
-    "typecheck": "astro check",
-    "clean": "rimraf .astro",
-    "clean:modules": "rimraf node_modules"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.5.4",
-    "@astrojs/react": "^3.0.10",
-    "@astrojs/starlight": "^0.18.1",
-    "astro": "^4.3.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sharp": "^0.33.2",
-    "typescript": "^5.3.3"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
-    "rimraf": "^5.0.5"
-  }
+	"name": "www",
+	"type": "module",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "astro sync && astro dev",
+		"start": "astro dev",
+		"build": "astro sync && astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"sync": "astro sync",
+		"typecheck": "astro check",
+		"clean": "rimraf .astro",
+		"clean:modules": "rimraf node_modules"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.5.4",
+		"@astrojs/react": "^3.0.10",
+		"@astrojs/starlight": "^0.18.1",
+		"astro": "^4.3.4",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"sharp": "^0.33.2",
+		"typescript": "^5.3.3"
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.55",
+		"@types/react-dom": "^18.2.19",
+		"rimraf": "^5.0.5"
+	}
 }

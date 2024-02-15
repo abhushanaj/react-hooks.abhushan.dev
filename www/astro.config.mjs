@@ -9,6 +9,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  site: 'https://react-hooks.abhushan.dev',
   integrations: [
     react(),
     // for starlight

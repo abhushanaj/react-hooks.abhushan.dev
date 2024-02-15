@@ -10,10 +10,12 @@
 		"dev:www": "turbo dev --filter=www",
 		"build:www": "turbo build --filter=www",
 		"prettier:format": "pnpm exec prettier . --write --plugin=prettier-plugin-astro",
-		"prettier:check": "pnpm exec prettier . --check --plugin=prettier-plugin-astro"
+		"prettier:check": "pnpm exec prettier . --check --plugin=prettier-plugin-astro",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+		"husky": "^9.0.11",
 		"prettier": "^3.1.1",
 		"prettier-plugin-astro": "^0.13.0",
 		"rimraf": "^5.0.5",

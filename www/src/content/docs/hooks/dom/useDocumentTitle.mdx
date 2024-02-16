@@ -6,13 +6,23 @@ subtitle: 'Dynamically update the document title of a webpage.'
 
 import { DemoWrapper } from '@/components/demo/wrapper';
 
+import { Code, TabItem, Tabs } from '@astrojs/starlight/components';
+
 import Example from '@/components/demo/useDocumentTitle';
+import importedCode from '@/components/demo/useDocumentTitle?raw';
 
 The `useDocumentTitle` hook is helpful when you want to dynamically update the document title based on a state.
 
-<DemoWrapper>
-	<Example client:load />
-</DemoWrapper>
+<Tabs>
+	<TabItem label="Example">
+		<DemoWrapper>
+			<Example client:load />
+		</DemoWrapper>
+	</TabItem>
+	<TabItem label="Code">
+		<Code code={importedCode} lang="tsx" title="./src/App.tsx" />
+	</TabItem>
+</Tabs>
 
 ## Usage
 

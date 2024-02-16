@@ -15,6 +15,7 @@
 		"clean:modules": "rimraf node_modules"
 	},
 	"dependencies": {
+		"@abhushanaj/react-hooks": "workspace:*",
 		"@astrojs/check": "^0.5.4",
 		"@astrojs/react": "^3.0.10",
 		"@astrojs/starlight": "^0.18.1",

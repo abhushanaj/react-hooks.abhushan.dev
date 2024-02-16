@@ -37,8 +37,8 @@ const config = {
 
 	// sort import plugin options
 	importOrder: [
-		'<BUILTIN_MODULES>',
 		'^(react/(.*)$)|^(react$)',
+		'<BUILTIN_MODULES>',
 		'<THIRD_PARTY_MODULES>',
 		'',
 		'<TYPES>',

@@ -41,7 +41,7 @@ export default defineConfig({
 			},
 			sidebar: [
 				{
-					label: 'Overview',
+					label: 'Getting Started',
 					items: [
 						// Each item here is one entry in the navigation menu.
 						{

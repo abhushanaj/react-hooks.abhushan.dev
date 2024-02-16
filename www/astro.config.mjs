@@ -53,6 +53,10 @@ export default defineConfig({
 							link: '/overview/installation/'
 						}
 					]
+				},
+				{
+					label: 'DOM',
+					autogenerate: { directory: '/hooks/dom' }
 				}
 			]
 		})

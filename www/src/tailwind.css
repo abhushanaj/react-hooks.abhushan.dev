@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--colors-purple: #8e4ec6;
+	--colors-indigo: #3e63dd;
+}

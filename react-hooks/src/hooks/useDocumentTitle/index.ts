@@ -1,5 +1,7 @@
 import React from 'react';
 
+export type DocumentTitleOptions = { resetOnUnmount: boolean };
+
 /**
  * @param title - title to set for the document
  * @param  options - options to reset to original title or not. Defaults to false
@@ -7,11 +9,11 @@ import React from 'react';
  * function App(){
  *   useDocumentTitle('Welcome');
  *   // usage with the reset option
- *   useDocumentTitle('Welcome', {resetOnUnMount : true });
+ *   useDocumentTitle('Welcome', {resetOnUnmount : true });
  * }
  */
-export function useDocumentTitle(title: string, options?: { resetOnUnMount: boolean }) {
-	const { resetOnUnMount } = options || { resetOnUnMount: false };
+export function useDocumentTitle(title: string, options?: DocumentTitleOptions) {
+	const { resetOnUnmount } = options || { resetOnUnmount: false };
 
 	React.useEffect(() => {
 		const ogTitle = document.title;
@@ -20,8 +22,8 @@ export function useDocumentTitle(title: string, options?: { resetOnUnMount: bool
 			document.title = title;
 		}
 
-		if (resetOnUnMount) {
+		if (resetOnUnmount) {
 			document.title = ogTitle;
 		}
-	}, [title, resetOnUnMount]);
+	}, [title, resetOnUnmount]);
 }

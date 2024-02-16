@@ -3,7 +3,7 @@
 	"name": "tsconfig:react-hooks",
 	"compilerOptions": {
 		// ==== Project ============
-		"incremental": true, // Save .tsbuildinfo files to allow for incremental compilation of projects.
+		// "incremental": true, // Save .tsbuildinfo files to allow for incremental compilation of projects.
 		"lib": ["ESNext", "DOM", "DOM.Iterable"],
 
 		// ===== Interop Constraints =====

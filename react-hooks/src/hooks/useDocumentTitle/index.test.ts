@@ -62,7 +62,7 @@ describe('useDocumentTitle() hook', () => {
 				initialProps: {
 					title: updatedTitle,
 					options: {
-						resetOnUnMount: true
+						resetOnUnmount: true
 					}
 				}
 			});
@@ -81,7 +81,7 @@ describe('useDocumentTitle() hook', () => {
 				initialProps: {
 					title: updatedTitle,
 					options: {
-						resetOnUnMount: false
+						resetOnUnmount: false
 					}
 				}
 			});

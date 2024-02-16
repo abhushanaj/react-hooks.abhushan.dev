@@ -2,6 +2,7 @@ import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
+import { dts } from 'rollup-plugin-dts';
 
 import pkgJson from './package.json' assert { type: 'json' };
 
@@ -54,17 +55,11 @@ const config = [
 		external: externalDeps,
 		output: [
 			{
-				file: 'dist/types/index.d.ts'
+				file: 'dist/types/index.d.ts',
+				format: 'esm'
 			}
 		],
-		plugins: [
-			typescript({
-				tsconfig: './tsconfig.json',
-				declaration: true,
-				declarationMap: true,
-				declarationDir: 'dist/types'
-			})
-		]
+		plugins: [dts()]
 	}
 ];
 

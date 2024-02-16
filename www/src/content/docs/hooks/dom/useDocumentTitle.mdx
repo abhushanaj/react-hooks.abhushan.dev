@@ -4,31 +4,47 @@ description: 'Dynamically update the document title of a webpage.'
 subtitle: 'Dynamically update the document title of a webpage.'
 ---
 
+import Example from '@/components/demo/useDocumentTitle';
 import { DemoWrapper } from '@/components/demo/wrapper';
 
-import { Code, TabItem, Tabs } from '@astrojs/starlight/components';
+The `useDocumentTitle` hook is helpful when you want to dynamically update the document title based on a current state or data.
 
-import Example from '@/components/demo/useDocumentTitle';
-import importedCode from '@/components/demo/useDocumentTitle?raw';
-
-The `useDocumentTitle` hook is helpful when you want to dynamically update the document title based on a state.
-
-<Tabs>
-	<TabItem label="Example">
-		<DemoWrapper>
-			<Example client:load />
-		</DemoWrapper>
-	</TabItem>
-	<TabItem label="Code">
-		<Code code={importedCode} lang="tsx" title="./src/App.tsx" />
-	</TabItem>
-</Tabs>
+<DemoWrapper>
+	<Example client:load />
+</DemoWrapper>
 
 ## Usage
 
-```tsx title="./src/App.tsx"
+When no options argument is passed the `resetOnUnmount` is set to false by default.
+
+```tsx title="./src/App.tsx" ins={2,6}
+import React from 'react';
+import { useDocumentTitle } from '@abhushanaj/react-hooks';
+
 function App() {
 	const [count, setCount] = React.useState(0);
+	useDocumentTitle(`Count: ${count}`);
+
+	return (
+		<div>
+			<p>Count is : {count}</p>
+			<button onClick={() => setCount((prev) => prev + 1)}>Increment by 1</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+To enable resetting of the title to the original title which was present before the hook was mounted, set the `resetOnUnmount` as `true`
+
+```tsx title="./src/App.tsx" ins={6}
+import React from 'react';
+import { useDocumentTitle } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, setCount] = React.useState(0);
+	useDocumentTitle(`Count: ${count}`, { resetOnUnmount: true });
 
 	return (
 		<div>
@@ -45,15 +61,15 @@ export default App;
 
 ### Parameters
 
-| Parameter | Type           | Description                       | Default     |
-| --------- | -------------- | --------------------------------- | ----------- |
-| title     | `string`       | The title to set for the document | N/A         |
-| options   | `T` (optional) | The configuration options         | `undefined` |
+| Parameter | Type                              | Description                       | Default     |
+| --------- | --------------------------------- | --------------------------------- | ----------- |
+| title     | `string`                          | The title to set for the document | N/A         |
+| options   | `DocumentTitleOptions` (optional) | The configuration options         | `undefined` |
 
 ## Types Reference
 
-### `T`: options
+1.  `DocumentTitleOptions`: options
 
-| Parameter      | Type      | Description                                          | Default |
-| -------------- | --------- | ---------------------------------------------------- | ------- |
-| resetOnUnmount | `boolean` | Whether to reset to the original title after unmount | N/A     |
+    | Parameter      | Type      | Description                                          | Default |
+    | -------------- | --------- | ---------------------------------------------------- | ------- |
+    | resetOnUnmount | `boolean` | Whether to reset to the original title after unmount | false   |

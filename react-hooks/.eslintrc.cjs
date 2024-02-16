@@ -50,7 +50,7 @@ const config = {
 			}
 		}
 	},
-	ignorePatterns: ['dist/**', 'node_modules/**', '.eslintrc.cjs'],
+	ignorePatterns: ['dist/**', 'node_modules/**', '.eslintrc.cjs', 'rollup.config.mjs'],
 
 	overrides: [
 		{

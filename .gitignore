@@ -43,3 +43,10 @@ yarn-error.log*
 
 # Ignore personal notes
 __*.md
+
+
+## Rollup files
+.rollup.cache
+
+## Typescript files
+tsconfig.tsbuildinfo

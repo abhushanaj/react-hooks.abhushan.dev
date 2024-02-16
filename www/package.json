@@ -25,7 +25,8 @@
 		"react-dom": "^18.2.0",
 		"sharp": "^0.33.2",
 		"tailwindcss": "^3.4.1",
-		"typescript": "^5.3.3"
+		"typescript": "^5.3.3",
+		"@abhushanaj/react-hooks": "workspace:*"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.55",

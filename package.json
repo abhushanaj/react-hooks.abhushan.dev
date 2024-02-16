@@ -7,11 +7,13 @@
 		"dev": "turbo dev",
 		"lint": "pnpm run prettier:format && turbo lint",
 		"lint:check": "pnpm run prettier:check && turbo lint:check",
+		"test": "turbo test",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"dev:www": "turbo dev --filter=www",
 		"build:www": "turbo build --filter=www",
 		"dev:hooks": "turbo dev --filter=@abhushanaj/react-hooks",
 		"build:hooks": "turbo build --filter=@abhushanaj/react-hooks",
+		"test:hooks": "turbo test --filter=@abhushanaj/react-hooks",
 		"prettier:format": "pnpm exec prettier . --write --plugin=prettier-plugin-astro",
 		"prettier:check": "pnpm exec prettier . --check --plugin=prettier-plugin-astro",
 		"prepare": "husky"

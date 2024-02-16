@@ -111,6 +111,9 @@ importers:
 
   www:
     dependencies:
+      '@abhushanaj/react-hooks':
+        specifier: workspace:*
+        version: link:../react-hooks
       '@astrojs/check':
         specifier: ^0.5.4
         version: 0.5.4(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.3.3)

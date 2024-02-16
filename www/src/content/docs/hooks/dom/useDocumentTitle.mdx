@@ -4,12 +4,9 @@ description: 'Dynamically update the document title of a webpage.'
 subtitle: 'Dynamically update the document title of a webpage.'
 ---
 
-import { Code } from '@astrojs/starlight/components';
-
 import { DemoWrapper } from '@/components/demo/wrapper';
 
 import Example from '@/components/demo/useDocumentTitle';
-import code from '@/components/demo/useDocumentTitle?raw';
 
 The `useDocumentTitle` hook is helpful when you want to dynamically update the document title based on a state.
 
@@ -19,8 +16,34 @@ The `useDocumentTitle` hook is helpful when you want to dynamically update the d
 
 ## Usage
 
-<Code lang="tsx" title="./src/App.tsx" code={code} />
+```tsx title="./src/App.tsx"
+function App() {
+	const [count, setCount] = React.useState(0);
 
-## Anatomy
+	return (
+		<div>
+			<p>Count is : {count}</p>
+			<button onClick={() => setCount((prev) => prev + 1)}>Increment by 1</button>
+		</div>
+	);
+}
+
+export default App;
+```
 
 ## API Reference
+
+### Parameters
+
+| Parameter | Type           | Description                       | Default     |
+| --------- | -------------- | --------------------------------- | ----------- |
+| title     | `string`       | The title to set for the document | N/A         |
+| options   | `T` (optional) | The configuration options         | `undefined` |
+
+## Types Reference
+
+### `T`: options
+
+| Parameter      | Type      | Description                                          | Default |
+| -------------- | --------- | ---------------------------------------------------- | ------- |
+| resetOnUnmount | `boolean` | Whether to reset to the original title after unmount | N/A     |

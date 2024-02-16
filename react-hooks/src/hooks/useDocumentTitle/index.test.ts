@@ -54,16 +54,25 @@ describe('useDocumentTitle() hook', () => {
 
 	describe('should respect the resetOnUnmount passed', () => {
 		it('reset to original when resetOnUnmount set to true', () => {
-			const updatedTitle = 'Updated Title';
+			let updatedTitle = 'Updated Title';
 
 			expect.hasAssertions();
 
-			const { unmount } = renderHook(({ title, options }) => useDocumentTitle(title, options), {
+			const { unmount, rerender } = renderHook(({ title, options }) => useDocumentTitle(title, options), {
 				initialProps: {
 					title: updatedTitle,
 					options: {
 						resetOnUnmount: true
 					}
+				}
+			});
+
+			updatedTitle = 'Re-render';
+
+			rerender({
+				title: updatedTitle,
+				options: {
+					resetOnUnmount: true
 				}
 			});
 

@@ -1,9 +1,10 @@
-// ==== DOM
+// ==== DOM ============
 export { useDocumentTitle } from './hooks/useDocumentTitle';
 export type { DocumentTitleOptions } from './hooks/useDocumentTitle';
 
-// ===== BOM
+// ===== BOM ==========
 
-// ====== State
+// ====== State ===========
+export { usePrevious } from './hooks/usePrevious';
 
-// ===== Storage
+// ===== Storage ===========

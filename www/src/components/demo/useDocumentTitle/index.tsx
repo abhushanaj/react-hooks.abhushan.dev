@@ -1,17 +1,13 @@
 import React from 'react';
-
 import { useDocumentTitle } from '@abhushanaj/react-hooks';
 
-import { HookTitle } from '@/components/docs/hook-title';
-
-function App() {
+function UseDocumentTitleExample() {
 	const [count, setCount] = React.useState(0);
 
 	useDocumentTitle(`Count: ${count}`);
 
 	return (
 		<div>
-			<HookTitle>useDocumentTitle</HookTitle>
 			<p>Count is : {count}</p>
 			<button
 				className="text-blac cursor-pointer rounded-md bg-white px-3 py-2 font-medium"
@@ -24,4 +20,4 @@ function App() {
 	);
 }
 
-export default App;
+export default UseDocumentTitleExample;

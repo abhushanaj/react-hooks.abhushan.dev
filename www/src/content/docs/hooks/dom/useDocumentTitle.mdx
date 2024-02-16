@@ -4,23 +4,27 @@ description: 'Dynamically update the document title of a webpage.'
 subtitle: 'Dynamically update the document title of a webpage.'
 ---
 
-import Example from '@/components/demo/useDocumentTitle';
+import UseDocumentTitleExample from '@/components/demo/useDocumentTitle';
 import { DemoWrapper } from '@/components/demo/wrapper';
 
 The `useDocumentTitle` hook is helpful when you want to dynamically update the document title based on a current state or data.
 
-<DemoWrapper>
-	<Example client:load />
+<DemoWrapper title="useDocumentTitle">
+	<UseDocumentTitleExample client:load />
 </DemoWrapper>
 
 ## Usage
 
-When no options argument is passed the `resetOnUnmount` is set to false by default.
+Import the hook from `@abhushanaj/reacty-hooks`.
 
-```tsx title="./src/App.tsx" ins={2,6}
+```tsx title="./src/App.tsx" ins={2}
 import React from 'react';
 import { useDocumentTitle } from '@abhushanaj/react-hooks';
+```
 
+Use the hook in required component.
+
+```tsx title="./src/App.tsx" ins={3}
 function App() {
 	const [count, setCount] = React.useState(0);
 	useDocumentTitle(`Count: ${count}`);
@@ -68,7 +72,7 @@ export default App;
 
 ## Types Reference
 
-1.  `DocumentTitleOptions`: options
+1.  `DocumentTitleOptions`
 
     | Parameter      | Type      | Description                                          | Default |
     | -------------- | --------- | ---------------------------------------------------- | ------- |

@@ -50,7 +50,15 @@ const config = {
 			}
 		}
 	},
-	ignorePatterns: ['dist/**', 'node_modules/**', '.eslintrc.cjs']
+	ignorePatterns: ['dist/**', 'node_modules/**', '.eslintrc.cjs'],
+
+	overrides: [
+		{
+			files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+			plugins: ['vitest'],
+			extends: ['plugin:vitest/recommended', 'plugin:testing-library/react']
+		}
+	]
 };
 
 module.exports = config;

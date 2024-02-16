@@ -57,6 +57,10 @@ export default defineConfig({
 				{
 					label: 'DOM',
 					autogenerate: { directory: '/hooks/dom' }
+				},
+				{
+					label: 'State',
+					autogenerate: { directory: '/hooks/state' }
 				}
 			],
 			components: {

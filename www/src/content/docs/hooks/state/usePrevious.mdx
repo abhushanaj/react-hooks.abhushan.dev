@@ -1,0 +1,88 @@
+---
+title: usePrevious
+description: 'Track the previous value of a variable.'
+subtitle: 'Track the previous value of a variable.'
+---
+
+import Example from '@/components/demo/usePrevious';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `usePrevious` hook is helpful when you want to keep track of the previous value of a variable. This comes in handy when you need to compare the new and previous value to trigger an action.
+
+<DemoWrapper title="usePrevious">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks`.
+
+```tsx title="./src/App.tsx" ins={2,8} {7}
+import React from 'react';
+import { usePrevious } from '@abhushanaj/react-hooks';
+```
+
+Use in the required component.
+
+```tsx title="./src/App.tsx" ins={5} {4}
+function App() {
+	const [count, setCount] = React.useState(0);
+
+	// previousValue on first render will be -1,  as default value is passed
+	const previousValue = usePrevious(count, -1);
+
+	return (
+		<div>
+			<p>Previous Value: {previousValue}</p>
+			<p>Current Value: {count}</p>
+			<button onClick={() => setCount((prev) => prev + 1)}>Increment by 1</button>
+			<button onClick={() => setCount((prev) => prev - 1)}>Decrement by 1</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+If no second argument is passed to the `usePrevious` hook, then on the first render it will return `undefined`
+
+```tsx title="./src/App.tsx" ins={5} {4}
+function App() {
+	const [count, setCount] = React.useState(0);
+
+	// previousValue on first render will be undefined, as no default value is passed
+	const previousValue = usePrevious(count);
+
+	return (
+		<div>
+			<p>Previous Value: {previousValue}</p>
+			<p>Current Value: {count}</p>
+			<button onClick={() => setCount((prev) => prev + 1)}>Increment by 1</button>
+			<button onClick={() => setCount((prev) => prev - 1)}>Decrement by 1</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter    | Type           | Description                            | Default     |
+| ------------ | -------------- | -------------------------------------- | ----------- |
+| value        | `T`            | The variable to keep track of.         | N/A         |
+| defaultValue | `U` (optional) | The default value for the first render | `undefined` |
+
+### Return Value
+
+| Parameter     | Type | Description                         | Default     |
+| ------------- | ---- | ----------------------------------- | ----------- |
+| previousValue | `R`  | The previous value of the value `T` | `undefined` |
+
+## Types Reference
+
+1.  `T`: extends `unknown`
+2.  `U` : extends `T | undefined`
+3.  `R`: `U extends T ? T : undefined`

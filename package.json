@@ -5,7 +5,8 @@
 	"scripts": {
 		"build": "turbo build",
 		"dev": "turbo dev",
-		"lint": "turbo lint",
+		"lint": "pnpm run prettier:format && turbo lint",
+		"lint:check": "pnpm run prettier:check && turbo lint:check",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"dev:www": "turbo dev --filter=www",
 		"build:www": "turbo build --filter=www",

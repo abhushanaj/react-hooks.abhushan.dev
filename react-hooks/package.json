@@ -12,11 +12,14 @@
 	"type": "module",
 	"scripts": {
 		"dev": "rollup -c -w",
-		"build": "rollup -c",
+		"bundle": "rollup -c",
+		"build": "npm-run-all clean bundle",
 		"clean": "rimraf dist",
 		"typecheck": "tsc --noEmit --pretty",
 		"eslint": "eslint . --fix",
-		"eslint:check": "eslint"
+		"eslint:check": "eslint",
+		"lint": "npm-run-all eslint",
+		"lint:check": "npm-run-all typecheck eslint:check"
 	},
 	"repository": {
 		"type": "git",

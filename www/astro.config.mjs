@@ -1,7 +1,7 @@
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
-
 import react from '@astrojs/react';
+import starlight from '@astrojs/starlight';
+import tailwind from '@astrojs/tailwind';
+import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,9 +12,11 @@ export default defineConfig({
 	site: 'https://react-hooks.abhushan.dev',
 	integrations: [
 		react(),
+		tailwind({ applyBaseStyles: false }),
 		// for starlight
 		starlight({
 			title: 'React Hooks',
+			customCss: ['./src/tailwind.css'],
 			social: {
 				github: 'https://github.com/abhushanaj/react-hooks.abhushan.dev'
 			},
@@ -42,11 +44,24 @@ export default defineConfig({
 					label: 'Overview',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Introduction', link: '/overview/introduction/' },
-						{ label: 'Installation', link: '/overview/installation/' }
+						{
+							label: 'Introduction',
+							link: '/overview/introduction/'
+						},
+						{
+							label: 'Installation',
+							link: '/overview/installation/'
+						}
 					]
+				},
+				{
+					label: 'DOM',
+					autogenerate: { directory: '/hooks/dom' }
 				}
-			]
+			],
+			components: {
+				PageTitle: './src/components/docs/page-title/index.astro'
+			}
 		})
 	]
 });

@@ -9,6 +9,10 @@ import { Code, TabItem, Tabs } from '@astrojs/starlight/components';
 
 This tutorial provides a quick guide on installing and using the `@abhushanaj/react-hooks` package.
 
+:::danger[Under development]
+The project is not ready to be used and is still under development. Do not try to use the package as hooks have not been published yet. This is just a starter documentation and things are likely to change with time.
+:::
+
 ### Installation
 
 To get started, you need to install the package. Use one of the following commands based on your package manager:
@@ -54,8 +58,8 @@ You can also import multiple hooks at once.
 Now that you've installed and imported the hooks, you can use them in your components.
 
 ```tsx title="./src/App.tsx" ins={2,6}
-import React from 'react';
 import { useDocumentTitle } from '@abhushanaj/react-hooks';
+import React from 'react';
 
 function App() {
 	const [count, setCount] = React.useState(0);

@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":"AAAA,MAAM,UAAU,UAAU;IACzB,OAAO,CAAC,GAAG,CAAC,mEAAmE,CAAC,CAAC;AAClF,CAAC","sourcesContent":["export function helloWorld() {\r\n\tconsole.log('Hello world! This is the start of @abhushanaj/react-hooks project');\r\n}\r\n"]}

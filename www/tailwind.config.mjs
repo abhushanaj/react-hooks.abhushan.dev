@@ -4,7 +4,11 @@ import starlightPlugin from '@astrojs/starlight-tailwind';
 const config = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		extend: {}
+		extend: {
+			backgroundImage: {
+				'gradient-1': 'linear-gradient(330deg,var(--colors-purple) 0,var(--colors-indigo) 100%)'
+			}
+		}
 	},
 	plugins: [starlightPlugin()]
 };

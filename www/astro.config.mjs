@@ -53,8 +53,15 @@ export default defineConfig({
 							link: '/overview/installation/'
 						}
 					]
+				},
+				{
+					label: 'DOM',
+					autogenerate: { directory: '/hooks/dom' }
 				}
-			]
+			],
+			components: {
+				PageTitle: './src/components/docs/page-title/index.astro'
+			}
 		})
 	]
 });

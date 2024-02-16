@@ -9,6 +9,8 @@
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"dev:www": "turbo dev --filter=www",
 		"build:www": "turbo build --filter=www",
+		"dev:hooks": "turbo dev --filter=@abhushanaj/react-hooks",
+		"build:hooks": "turbo build --filter=@abhushanaj/react-hooks",
 		"prettier:format": "pnpm exec prettier . --write --plugin=prettier-plugin-astro",
 		"prettier:check": "pnpm exec prettier . --check --plugin=prettier-plugin-astro",
 		"prepare": "husky"

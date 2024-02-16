@@ -2,11 +2,20 @@
 	"name": "@abhushanaj/react-hooks",
 	"version": "0.0.2",
 	"description": "A collection of modern and server safe custom React hooks to supercharge your React application development.",
-	"main": "index.js",
-	"module": "index.js",
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/types/index.d.ts",
+	"files": [
+		"dist"
+	],
 	"private": false,
 	"type": "module",
-	"scripts": {},
+	"scripts": {
+		"dev": "rollup -c -w",
+		"build": "rollup -c",
+		"clean": "rimraf dist",
+		"typecheck": "tsc --noEmit --pretty"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/abhushanaj/react-hooks.abhushan.dev.git"
@@ -15,7 +24,8 @@
 		"react",
 		"react-hooks",
 		"typescript",
-		"custom-react-hooks"
+		"custom-react-hooks",
+		"esm"
 	],
 	"author": "Abhushan Adhikari Joshi",
 	"license": "MIT",

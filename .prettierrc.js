@@ -3,7 +3,7 @@ const config = {
 	// we still need to add the `prettier-plugin-astro` in the script, due to upstream pnpm issue as mentioned on astro docs
 	// Reference: https://docs.astro.build/en/editor-setup/#prettier
 
-	plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-astro'],
+	plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
 
 	// General
 	singleQuote: true,
@@ -15,9 +15,14 @@ const config = {
 	bracketSpacing: true,
 	bracketSameLine: false,
 	arrowParens: 'always',
+
 	// jsx specific
 	quoteProps: 'as-needed',
 	jsxSingleQuote: false,
+
+	// tailwind specific
+	tailwindAttributes: ['class:list'],
+	tailwindFunctions: ['cn', 'clsx', 'cls'],
 
 	// Astro specific
 	astroAllowShorthand: false,
@@ -33,6 +38,7 @@ const config = {
 	// sort import plugin options
 	importOrder: [
 		'<BUILTIN_MODULES>',
+		'^(react/(.*)$)|^(react$)',
 		'<THIRD_PARTY_MODULES>',
 		'',
 		'<TYPES>',

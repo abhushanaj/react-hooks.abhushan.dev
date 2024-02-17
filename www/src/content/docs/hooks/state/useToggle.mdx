@@ -1,0 +1,67 @@
+---
+title: useToggle
+description: 'Toogle a boolean value'
+subtitle: 'Toogle a boolean value'
+---
+
+import Example from '@/components/demo/useToggle';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useToggle` hook is helpful when you want to managing a boolean state and provide a function to toggle it.
+It is useful when you want to take an opposite action from the current state like hide/show a modal, open/close a navbar etc.
+
+<DemoWrapper title="useToggle">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,5}
+import React from 'react';
+import { usePrevious } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [isOn, toggleOn] = useToggle(true);
+
+	return (
+		<div>
+			<p>Current Value: {isOn ? 'true' : 'false'}</p>
+			<button onClick={() => toggleOn()}>{isOn ? 'Toggle to false' : 'Toggle to true'}</button>
+			<button onClick={() => toggleOn(true)}>Change to true</button>
+			<button onClick={() => toggleOn(false)}>Change to false</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. The `useToggle` correctly establishes its initial value, casting it to a boolean if it's not one (using the `Boolean` constructor)
+2. Based on the argument passed to the toggle function returned from `useToggle` it will:
+   - Toggle the old state if no argument or `undefined` is passed.
+   - If argument is passed, it will set the state by casting it with the `Boolean` constructor.
+
+## API Reference
+
+### Parameters
+
+| Parameter    | Type      | Description                           | Default |
+| ------------ | --------- | ------------------------------------- | ------- |
+| initialValue | `unknown` | The initial value to track and toggle | N/A     |
+
+### Return Value
+
+It returns a tuple with `[state, toggleFn]` format similar to React's `useState`
+
+| Parameter | Type       | Description                           | Default |
+| --------- | ---------- | ------------------------------------- | ------- |
+| state     | `boolean`  | The current boolean state             | N/A     |
+| toggleFn  | `ToggleFn` | The update method to toggle the state | N/A     |
+
+## Types Reference
+
+1.  `ToggleFn`: `(newValue?: unknown) => void`

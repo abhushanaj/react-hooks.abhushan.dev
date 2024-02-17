@@ -27,7 +27,7 @@ export function useToggle<T>(initialValue: T) {
 		if (typeof value !== 'boolean') {
 			setState((prev) => !prev);
 		} else {
-			setState(Boolean(value));
+			setState(value);
 		}
 	}, []);
 

@@ -42,8 +42,8 @@ export default App;
 
 1. The `useToggle` correctly establishes its initial value, casting it to a boolean if it's not one (using the `Boolean` constructor)
 2. Based on the argument passed to the toggle function returned from `useToggle` it will:
-   - Toggle the old state if no argument or `undefined` is passed.
-   - If argument is passed, it will set the state by casting it with the `Boolean` constructor.
+   - Toggle the old state if any non `boolean` value is passed.
+   - Sets the state directly when a `true` or `false` is passed.
 
 ## API Reference
 

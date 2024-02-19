@@ -1,0 +1,53 @@
+---
+title: useNavigatorLanguage
+description: 'Get the preferred language set by the user in browser settings'
+subtitle: 'Get the preferred language set by the user in browser settings'
+---
+
+import Example from '@/components/demo/useNavigatorLanguage';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useNavigatorLanguage` hook is helpful when you want to get a reactive value which denotes the language set by the user in their browser settings.
+
+It returned a `string` representing the language as defined in [RFC:5646](https://datatracker.ietf.org/doc/html/rfc5646) code.
+
+<DemoWrapper title="useNavigatorLanguage">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={1,4}
+import { useNavigatorLanguage } from '@abhushanaj/react-hooks';
+
+function App() {
+	const preferredLanguage = useNavigatorLanguage('en-US');
+
+	return (
+		<div>
+			<p>Preferred Language is : {preferredLanguage}</p>
+			<small>
+				Try changing the language settings from <a href="chrome://settings/languages">here</a>
+			</small>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter   | Type                | Description                                               | Default |
+| ----------- | ------------------- | --------------------------------------------------------- | ------- |
+| defaultLang | `string` (optional) | The default language to use on server snapshots while SSR | `en-US` |
+
+### Return Value
+
+| Parameter | Type     | Description                                                                      | Default |
+| --------- | -------- | -------------------------------------------------------------------------------- | ------- |
+| language  | `string` | Language as defined in [RFC:5646](https://datatracker.ietf.org/doc/html/rfc5646) | `N/A`   |

@@ -25,31 +25,62 @@ To get started, you need to install the package. Use one of the following comman
 	</TabItem>
 </Tabs>
 
-### Importing the hook
+### Requirements
+
+:::note
+The library requires the latest version of **`React (>=18.x.x)`** and **`ReactDOM (>=18.x.x)`** , since it utilizes newly added hooks in React 18.
+
+<Tabs>
+	<TabItem label="npm">
+		<Code code="npm install react@latest react-dom@latest" lang="bash" />
+	</TabItem>
+	<TabItem label="pnpm">
+		<Code code="pnpm add react@latest react-dom@latest" lang="bash" />
+	</TabItem>
+	<TabItem label="yarn">
+		<Code code="yarn add react@latest react-dom@latest" lang="bash" />
+	</TabItem>
+</Tabs>
+
+:::
+
+If you are looking to support **`React (<=17.x.x)`** versions, you will need to provide a polyfill or shim for the following hooks useDocumentTitle
+
+### Shims for older versions
+
+1. [`useSyncExternalStore`](https://react.dev/reference/react/useSyncExternalStore) for subscribing and managing external stores. The shim is available [here](https://www.npmjs.com/package/use-sync-external-store).
+
+### Browser support
+
+The library is optimized for modern browsers and is transpiled with **ES6** as output target.
+
+> **Depending on your environment, you might need to add polyfills. If you want to support older browsers, you need to transpile the library from node_modules yourselves**
+
+## Usage
 
 All hooks are named exports, so importing them is straightforward.
 
-### Import a single hook
+1. Import a single hook
 
-<Code
-	lang="tsx"
-	title="./src/App.tsx"
-	mark={['useDocumentTitle']}
-	code="import { useDocumentTitle } from '@abhushanaj/react-hooks;"
-/>
+   <Code
+   	lang="tsx"
+   	title="./src/App.tsx"
+   	mark={['useDocumentTitle']}
+   	code="import { useDocumentTitle } from '@abhushanaj/react-hooks;"
+   />
 
-### Import multiple hooks.
+2. Import multiple hooks.
 
-You can also import multiple hooks at once.
+   You can also import multiple hooks at once.
 
-<Code
-	lang="tsx"
-	title="./src/App.tsx"
-	mark={['useDocumentTitle', 'useToggle']}
-	code="import { useDocumentTitle, useToggle } from '@abhushanaj/react-hooks;"
-/>
+   <Code
+   	lang="tsx"
+   	title="./src/App.tsx"
+   	mark={['useDocumentTitle', 'useToggle']}
+   	code="import { useDocumentTitle, useToggle } from '@abhushanaj/react-hooks;"
+   />
 
-## Example Usage
+## Example
 
 ```tsx title="./src/App.tsx" ins={2,6}
 import React from 'react';

@@ -18,6 +18,10 @@
 			"dependsOn": ["^test"],
 			"outputs": []
 		},
+		"test:check": {
+			"dependsOn": ["^test:check"],
+			"outputs": []
+		},
 		"dev": {
 			"cache": false,
 			"persistent": true

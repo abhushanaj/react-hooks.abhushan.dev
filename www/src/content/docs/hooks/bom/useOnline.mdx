@@ -1,0 +1,51 @@
+---
+title: useOnline
+description: 'Detect the current online status of the browser'
+subtitle: 'Detect the current online status of the browser.'
+---
+
+import Example from '@/components/demo/useOnline';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useOnline` hook is helpful when you want to detect the current network online status of the browser.
+
+The property returns a boolean value, with `true` meaning online and `false` meaning offline.
+
+<DemoWrapper title="useOnline">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={1,4}
+import { useOnline } from '@abhushanaj/react-hooks';
+
+function App() {
+	const isOnline = useOnline(true);
+
+	return (
+		<div>
+			<p>Status is : {isOnline ? '🟢' : '🔴'}</p>
+			<p>Try changing the network status from browser devtools settings or disconnect from internet</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter     | Type                 | Description                                             | Default |
+| ------------- | -------------------- | ------------------------------------------------------- | ------- |
+| defaultStatus | `boolean` (optional) | The default status to use on server snapshots while SSR | `true`  |
+
+### Return Value
+
+| Parameter | Type      | Description                              | Default |
+| --------- | --------- | ---------------------------------------- | ------- |
+| isOnline  | `boolean` | The current online status of the network | `true`  |

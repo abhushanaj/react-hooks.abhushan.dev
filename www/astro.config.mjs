@@ -55,8 +55,12 @@ export default defineConfig({
 					]
 				},
 				{
-					label: 'DOM',
+					label: 'Document Object Model (DOM)',
 					autogenerate: { directory: '/hooks/dom' }
+				},
+				{
+					label: 'Browser Object Model (BOM)',
+					autogenerate: { directory: '/hooks/bom' }
 				},
 				{
 					label: 'State',

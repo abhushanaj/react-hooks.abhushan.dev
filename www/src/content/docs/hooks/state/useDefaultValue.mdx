@@ -1,0 +1,81 @@
+---
+title: useDefaultValue
+description: 'Sets a default value to a state when it is null or undefined'
+subtitle: 'Sets a default value to a state when it is null or undefined'
+---
+
+import Example from '@/components/demo/useDefaultValue';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useDefaultValue` hook is helpful when you want to assign a default value to a state which is likely to be `undefined` or `null` in future. It ensures that the state never reaches the `undefined` or `null` values.
+
+<DemoWrapper title="useDefaultValue">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,5}
+import React from 'react';
+import { useDefaultValue } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, setCount] = useDefaultValue(1, 0);
+
+	return (
+		<div>
+			<p>Current Value: {count}</p>
+			<button onClick={() => setCount((prev) => prev + 1)}>Increment by 1</button>
+			<button onClick={() => setCount((prev) => prev - 1)}>Decrement by 1</button>
+			<button onClick={() => setCount(null)>Set to null</button>
+			<button onClick={() => setCount(undefined)>Set to undefined</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+The **defaultValue** cannot be `null` or `undefined`.
+
+In such cases, and error is throw with a message: `Default value cannot be undefined` or `Default value cannot be null`.
+
+```tsx title="./src/App.tsx" del={5}
+function App() {
+	const [count, setCount] = React.useState(0);
+
+	// useDefaultValue will throw an error message: `Default value cannot be undefined`
+	const previousValue = useDefaultValue(count, undefined);
+
+	return <div>.....</div>;
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter    | Type              | Description                                                | Default |
+| ------------ | ----------------- | ---------------------------------------------------------- | ------- |
+| initialValue | `InitialValue<T>` | The variable to keep track of.                             | N/A     |
+| defaultValue | `T`               | The default value when state becomes `null` or `undefined` | N/A     |
+
+### Return Value
+
+The hook returns the same signature of `React.useState()` hook. It is a tuple consistent of `[state, stateUpdateFn]`
+
+| Parameter     | Type                                                     | Description                | Default |
+| ------------- | -------------------------------------------------------- | -------------------------- | ------- |
+| state         | `T`                                                      | The current state value    | N/A     |
+| stateUpdateFn | `React.Dispatch<React.SetStateAction<InitialValues<T>>>` | The state updater function | N/A     |
+
+## Types Reference
+
+1. `T`: the type of state
+2. `InitialValues<T>`: `T | null | undefined`;

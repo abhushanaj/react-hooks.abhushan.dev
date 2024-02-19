@@ -7,5 +7,6 @@ export type { DocumentTitleOptions } from './hooks/useDocumentTitle';
 // ====== State ===========
 export { usePrevious } from './hooks/usePrevious';
 export { useToggle } from './hooks/useToggle';
+export { useDefault } from './hooks/useDefault';
 
 // ===== Storage ===========

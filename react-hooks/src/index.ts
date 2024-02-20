@@ -13,3 +13,6 @@ export { useToggle } from './hooks/useToggle';
 export { useDefault } from './hooks/useDefault';
 
 // ===== Storage ===========
+
+// ======== UI ==========
+export { useLockBodyScroll } from './hooks/useLockBodyScroll';

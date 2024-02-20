@@ -1,0 +1,49 @@
+---
+title: useLockBodyScroll
+description: 'Locks the scroll of document body'
+subtitle: 'Lock the scroll of document body by setting the overflow property to hidden.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useLockBodyScroll';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useLockBodyScroll` hook is helpful when you want lock the scroll behaviour of the document body by setting the overflow property to hidden.
+
+This is useful in components like `<Dialog/>` or `<Alerts/>` where you want to make the content beneath inert.
+
+<DemoWrapper title="useLockBodyScroll">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,6}
+import React from 'react';
+import { useLockBodyScroll } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [isLocked, setIsLocked] = React.useState(false);
+	useLockBodyScroll(isLocked);
+
+	return (
+		<div>
+			<p>Body Scroll is : {isLocked ? 'Locked' : 'Unlocked'}</p>
+			<Button onClick={() => setIsLocked(!isLocked)}>{!isLocked ? 'Lock Scroll' : 'Unlock Scroll'}</Button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type                 | Description                                        | Default |
+| --------- | -------------------- | -------------------------------------------------- | ------- |
+| isLocked  | `boolean` (optional) | Whether or not to lock the scroll on document body | `true`  |

@@ -1,0 +1,58 @@
+---
+title: useCopyToClipboard
+description: 'Copy text context to clipboard'
+subtitle: 'Copy text context to clipboard'
+---
+
+import Example from '@/components/demo/useCopyToClipboard';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useCopyToClipboard` hook is helpful when you want to copy any text content to clipboard using the modern `navigator.clipboard.writeText` method.
+
+<DemoWrapper title="useCopyToClipboard">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={1,4}
+import { useCopyToClipboard } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [copiedText, copyToClipboard] = useCopyToClipboard();
+
+	const message = 'I love react!';
+
+	return (
+		<div>
+			<h2>{message}</h2>
+			<button
+				onClick={() => {
+					copyToClipboard(message);
+				}}
+			>
+				{copiedText === null ? <Copy /> : <Check />}
+			</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Return Value
+
+The hook returns a tuple with `[copiedText, copyToClipboardFn]` signature.
+
+| Parameter         | Type                | Description                             | Default |
+| ----------------- | ------------------- | --------------------------------------- | ------- |
+| copiedText        | `string\|null`      | The last value copied text to clipboard | `null`  |
+| copyToClipboardFn | `CopyToClipboardFn` | Function to copy a value to clipboard   | N/A     |
+
+### Types Value
+
+1. `CopyToClipboardFn` : `(textToCopy: string)=>void`

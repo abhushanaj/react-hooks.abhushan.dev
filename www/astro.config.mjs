@@ -73,6 +73,10 @@ export default defineConfig({
 				{
 					label: 'State',
 					autogenerate: { directory: '/hooks/state' }
+				},
+				{
+					label: 'User Interface (UI)',
+					autogenerate: { directory: '/hooks/ui' }
 				}
 			],
 			components: {

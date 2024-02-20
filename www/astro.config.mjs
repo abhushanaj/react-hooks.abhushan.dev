@@ -51,6 +51,14 @@ export default defineConfig({
 						{
 							label: 'Installation',
 							link: '/overview/installation/'
+						},
+						{
+							label: 'Changelog',
+							link: 'https://github.com/abhushanaj/react-hooks.abhushan.dev/blob/main/react-hooks/CHANGELOG.md',
+							attrs: {
+								target: '_blank',
+								rel: 'noreferrer, noopener'
+							}
 						}
 					]
 				},

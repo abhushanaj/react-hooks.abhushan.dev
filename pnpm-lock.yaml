@@ -135,6 +135,9 @@ importers:
       astro:
         specifier: ^4.4.0
         version: 4.4.0(typescript@5.3.3)
+      lucide-react:
+        specifier: ^0.334.0
+        version: 0.334.0(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -5872,6 +5875,15 @@ packages:
     engines: { node: '>=10' }
     dependencies:
       yallist: 4.0.0
+
+  /lucide-react@0.334.0(react@18.2.0):
+    resolution:
+      { integrity: sha512-y0Rv/Xx6qAq4FutZ3L/efl3O9vl6NC/1p0YOg6mBfRbQ4k1JCE2rz0rnV7WC8Moxq1RY99vLATvjcqUegGJTvA== }
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /lz-string@1.5.0:
     resolution:

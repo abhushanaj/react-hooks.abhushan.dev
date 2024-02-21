@@ -1,0 +1,129 @@
+---
+title: useCounter
+description: 'Manage a counter value with custom min, max and step properties'
+subtitle: 'Manage a counter value with custom min, max and step properties'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useDefaultValue';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useCounter` hook is helpful when you want to manage a counter value with custom min, max and step properties.
+
+The hook returns the latest value of counter and provide handlers to perform `increment`, `decrement`, `set` and `reset` operations.
+
+<DemoWrapper title="useCounter">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,5}
+import React from 'react';
+import { useCounter } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, { increment, decrement, reset, set }] = useCounter(0);
+
+	return (
+		<div>
+			<p>Current count: {count}</p>
+			<button onClick={increment}>Increment by 1</button>
+			<button onClick={decrement}>Decrement by 1</button>
+			<button onClick={reset}>Reset to 0</button>
+			<button onClick={() => set(1)}>Set to 1</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+### With config options
+
+```tsx title="./src/App.tsx" ins={2,5}
+import React from 'react';
+import { useCounter } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, { increment, decrement, reset, set }] = useCounter(0, { step: 5, min: -20, max: 20 });
+
+	return (
+		<div>
+			<p>Current count: {count}</p>
+			<button onClick={increment}>Increment by 5</button>
+			<button onClick={decrement}>Decrement by 5</button>
+			<button onClick={reset}>Reset to 0</button>
+			<button onClick={() => set(5)}>Set to 5</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. The **initialCount** cannot be more than `max` property. It throws an error with message `Initial count cannot be less than min set from options.min`.
+
+2. The **initialCount** cannot be less than `min` property. It throws an error with message `Initial count cannot be more than max set from options.max`.
+
+3. The **set** method throw an error, if the value passed overflows the `options.max` and `options.min` value.
+
+```tsx title="./src/App.tsx" del={3,4,5}
+function App() {
+	// useCounter will throw an error.
+	const previousValue = useCounter(0, {
+		min: 1,
+		max: 5
+	});
+
+	return <div>.....</div>;
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter    | Type                                                   | Description                               | Default     |
+| ------------ | ------------------------------------------------------ | ----------------------------------------- | ----------- |
+| initialCount | `number`                                               | The initial value of the counter.         | N/A         |
+| options      | [`UseCounterOptions`](#1-usecounteroptions) (optional) | The configuration options for the counter | `undefined` |
+
+### Return Value
+
+The hook returns a tuple with `[count, countUpdateFn]` options.
+
+| Parameter     | Type                                | Description                                                                    | Default |
+| ------------- | ----------------------------------- | ------------------------------------------------------------------------------ | ------- |
+| count         | `number`                            | The current count value                                                        | N/A     |
+| countUpdateFn | [`CountUpdateFn`](#2-countupdatefn) | The updater functions to increment, decrement, set and reset the counter value | N/A     |
+
+## Types Reference
+
+### 1. `UseCounterOptions`
+
+The config options for the counter
+
+| Parameter | Type                | Description                                    | Default     |
+| --------- | ------------------- | ---------------------------------------------- | ----------- |
+| step      | `number` (optional) | The step value to incremtnt or decrement with. | `1`         |
+| min       | `number` (optional) | The minimum value the counter can reach.       | `-Infinity` |
+| max       | `number` (optional) | The max value the counter can reach.           | `Infinity`  |
+
+### 2. `CountUpdateFn`
+
+The handlers to update for the counter as an object
+
+| Parameter | Type                       | Description                                 | Default |
+| --------- | -------------------------- | ------------------------------------------- | ------- |
+| increment | `()=>void`                 | To increment the counter with step value.   | N/A     |
+| decrement | `()=>void`                 | To decrement the counter with step value.   | N/A     |
+| reset     | `()=>void`                 | To reset the counter to initialCount value. | N/A     |
+| set       | `(newCount: number)=>void` | To set the counter to `newCount` value.     | N/A     |

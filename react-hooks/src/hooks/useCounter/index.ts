@@ -59,7 +59,7 @@ function checkAndThrowForOverflows(initialCount: number, min: number, max: numbe
 export function useCounter(initialCount: number, options?: UseCounterOptions) {
 	const [count, setCount] = React.useState(initialCount);
 
-	const { step = 1, max = Infinity, min = -Infinity } = options || defaultOptions;
+	const { step = defaultOptions.step, max = defaultOptions.max, min = defaultOptions.min } = options || {};
 
 	checkAndThrowForOverflows(initialCount, min, max);
 

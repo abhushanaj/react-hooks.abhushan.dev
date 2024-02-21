@@ -1,6 +1,11 @@
 import React from 'react';
 
+/**
+ * @deprecated - use the new `UseDocumentTitleOptions` type instead.
+ * This will be removed in the next major version
+ */
 export type DocumentTitleOptions = { resetOnUnmount: boolean };
+export type UseDocumentTitleOptions = { resetOnUnmount: boolean };
 
 /**
  * @param title - title to set for the document
@@ -12,7 +17,7 @@ export type DocumentTitleOptions = { resetOnUnmount: boolean };
  *   useDocumentTitle('Welcome', {resetOnUnmount : true });
  * }
  */
-export function useDocumentTitle(title: string, options?: DocumentTitleOptions) {
+export function useDocumentTitle(title: string, options?: UseDocumentTitleOptions) {
 	const { resetOnUnmount } = options || { resetOnUnmount: false };
 
 	React.useEffect(() => {

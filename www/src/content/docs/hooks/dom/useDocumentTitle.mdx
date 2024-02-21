@@ -42,12 +42,12 @@ export default App;
 import React from 'react';
 import { useDocumentTitle } from '@abhushanaj/react-hooks';
 
-import type { DocumentTitleOptions } from '@abhushanaj/react-hooks';
+import type { UseDocumentTitleOptions } from '@abhushanaj/react-hooks';
 
 function App() {
 	const [count, setCount] = React.useState(0);
 
-	const options: DocumentTitleOptions = {
+	const options: UseDocumentTitleOptions = {
 		resetOnUnmount: true
 	};
 	useDocumentTitle(`Count: ${count}`, options);

@@ -1,6 +1,6 @@
 // ==== DOM ============
 export { useDocumentTitle } from './hooks/useDocumentTitle';
-export type { DocumentTitleOptions } from './hooks/useDocumentTitle';
+export type { DocumentTitleOptions, UseDocumentTitleOptions } from './hooks/useDocumentTitle';
 
 // ===== BOM ==========
 export { useOnline } from './hooks/useOnline';

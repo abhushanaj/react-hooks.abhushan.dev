@@ -1,0 +1,58 @@
+---
+title: useIsDocumentVisible
+description: 'Tracks document visibility using the document.visibilityState property'
+subtitle: 'Tracks document visibility using the document.visibilityState property'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useIsDocumentVisible';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useIsDocumentVisible` hook is helpful when you want to detect a visibility change in the document.
+
+The property returns a boolean value, with `true` meaning `visible` and `false` meaning 'hidden', as per the `document.visibilityState` property.
+
+<DemoWrapper title="useIsDocumentVisible">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={1,4}
+import { useCounter, useIsDocumentVisible } from '@abhushanaj/react-hooks';
+
+function App() {
+	const isVisible = useIsDocumentVisible();
+	const [tabAwayCount, { increment }] = useCounter(0);
+
+	React.useEffect(() => {
+		if (!isVisible) {
+			increment();
+		}
+	}, [isVisible]);
+
+	return (
+		<div>
+			<p>Tab Away count is : {tabAwayCount}</p>
+			<small>Try changing the tab and check the count value</small>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. On the **server snapshot** for the component (when doing SSR), the `isVisible` property returns `true` by default.
+
+## API Reference
+
+### Return Value
+
+| Parameter | Type      | Description                                             | Default |
+| --------- | --------- | ------------------------------------------------------- | ------- |
+| isVisible | `boolean` | Boolen to mark whethere the document is visible or not. | N/A     |

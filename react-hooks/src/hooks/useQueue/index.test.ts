@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { useQueue } from '.';
@@ -123,6 +123,49 @@ describe('useQueue() hook', () => {
 	});
 
 	// Test or the add method
+	describe('addItem update the queue correctly', () => {
+		it('when queue is empty', () => {
+			expect.hasAssertions();
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: emptyQueue
+				}
+			});
+
+			const newItem = { name: 'New Item' };
+			// item is added at the end
+			const updatedQueue = [...emptyQueue, newItem];
+			act(() => {
+				result.current[1].addItem(newItem);
+			});
+
+			expect(result.current[0]).toEqual(updatedQueue);
+			expect(result.current[1].lastItem).toEqual(newItem);
+			expect(result.current[1].firstItem).toEqual(newItem);
+			expect(result.current[1].size).toEqual(updatedQueue.length);
+		});
+
+		it('when queue is non-empty', () => {
+			expect.hasAssertions();
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: initialValuesOfQueue
+				}
+			});
+
+			const newItem = { name: 'New Item' };
+			// item is added at the end
+			const updatedQueue = [...initialValuesOfQueue, newItem];
+			act(() => {
+				result.current[1].addItem(newItem);
+			});
+
+			expect(result.current[0]).toEqual(updatedQueue);
+			expect(result.current[1].lastItem).toEqual(newItem);
+			expect(result.current[1].firstItem).toEqual(initialValuesOfQueue[0]);
+			expect(result.current[1].size).toEqual(updatedQueue.length);
+		});
+	});
 
 	// Test for the remove method
 });

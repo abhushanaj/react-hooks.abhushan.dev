@@ -124,7 +124,7 @@ describe('useQueue() hook', () => {
 	});
 
 	// Test or the add method
-	describe('addItem() updates the queue correctly', () => {
+	describe('add() updates the queue correctly', () => {
 		it('when queue is empty', () => {
 			expect.hasAssertions();
 			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
@@ -137,7 +137,7 @@ describe('useQueue() hook', () => {
 			// item is added at the end
 			const updatedQueue = [...emptyQueue, newItem];
 			act(() => {
-				result.current[1].addItem(newItem);
+				result.current[1].add(newItem);
 			});
 
 			expect(result.current[0]).toEqual(updatedQueue);
@@ -158,7 +158,7 @@ describe('useQueue() hook', () => {
 			// item is added at the end
 			const updatedQueue = [...initialValuesOfQueue, newItem];
 			act(() => {
-				result.current[1].addItem(newItem);
+				result.current[1].add(newItem);
 			});
 
 			expect(result.current[0]).toEqual(updatedQueue);

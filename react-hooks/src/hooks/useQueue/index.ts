@@ -3,7 +3,7 @@ import React from 'react';
 export function useQueue<T>(initialQueue?: Array<T>) {
 	const [queue, setQueue] = React.useState(initialQueue || []);
 
-	const addItem = React.useCallback((newItem: T) => {
+	const add = React.useCallback((newItem: T) => {
 		setQueue((prev) => {
 			prev[prev.length] = newItem;
 			return prev.slice(0);
@@ -20,7 +20,7 @@ export function useQueue<T>(initialQueue?: Array<T>) {
 			firstItem: queue[0],
 			lastItem: queue[queue.length - 1],
 			size: queue.length,
-			addItem,
+			add,
 			clear
 		}
 	] as const;

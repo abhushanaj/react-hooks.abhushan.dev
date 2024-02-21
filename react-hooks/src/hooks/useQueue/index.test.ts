@@ -158,6 +158,43 @@ describe('useQueue() hook', () => {
 	});
 
 	// Test for the remove method
+	describe('remove() updates the queue correctly', () => {
+		it('when queue is empty', () => {
+			expect.hasAssertions();
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: emptyQueue
+				}
+			});
+
+			act(() => {
+				result.current[1].remove();
+			});
+
+			expect(result.current[0]).toEqual(emptyQueue);
+			expect(result.current[1].lastItem).toEqual(emptyQueue[0]);
+			expect(result.current[1].firstItem).toEqual(emptyQueue[0]);
+			expect(result.current[1].size).toEqual(emptyQueue.length);
+		});
+
+		it('when queue is non-empty', () => {
+			expect.hasAssertions();
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: initialValuesOfQueue
+				}
+			});
+
+			let removedItem: unknown;
+
+			act(() => {
+				removedItem = result.current[1].remove();
+			});
+
+			expect(removedItem).toBe(initialValuesOfQueue[0]);
+			expect(result.current[0]).toEqual(initialValuesOfQueue.slice(1));
+		});
+	});
 
 	// Test or the clear method
 	describe('clear() updates the queue correctly', () => {

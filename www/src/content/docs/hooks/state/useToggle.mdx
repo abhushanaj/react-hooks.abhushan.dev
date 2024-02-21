@@ -49,19 +49,15 @@ export default App;
 
 ### Parameters
 
-| Parameter    | Type      | Description                           | Default |
-| ------------ | --------- | ------------------------------------- | ------- |
-| initialValue | `unknown` | The initial value to track and toggle | N/A     |
+| Parameter    | Type      | Description                            | Default |
+| ------------ | --------- | -------------------------------------- | ------- |
+| initialValue | `unknown` | The initial value to track and toggle. | N/A     |
 
 ### Return Value
 
 It returns a tuple with `[state, toggleFn]` format similar to React's `useState`
 
-| Parameter | Type       | Description                           | Default |
-| --------- | ---------- | ------------------------------------- | ------- |
-| state     | `boolean`  | The current boolean state             | N/A     |
-| toggleFn  | `ToggleFn` | The update method to toggle the state | N/A     |
-
-## Types Reference
-
-1.  `ToggleFn`: `(newValue?: unknown) => void`
+| Parameter | Type                           | Description                            | Default |
+| --------- | ------------------------------ | -------------------------------------- | ------- |
+| state     | `boolean`                      | The current boolean state.             | N/A     |
+| toggleFn  | `(newValue?: unknown) => void` | The update method to toggle the state. | N/A     |

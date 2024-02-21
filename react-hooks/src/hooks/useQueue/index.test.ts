@@ -87,17 +87,6 @@ describe('useQueue() hook', () => {
 		});
 	});
 
-	it('first and last item should be same when queue has only length of one', () => {
-		expect.hasAssertions();
-		const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
-			initialProps: {
-				initialQueue: [initialValuesOfQueue[0]]
-			}
-		});
-
-		expect(result.current[1].firstItem).toEqual(result.current[1].lastItem);
-	});
-
 	// Test for the size property
 	describe('yields the correct size property', () => {
 		it('when queue is empty', () => {
@@ -206,6 +195,30 @@ describe('useQueue() hook', () => {
 			expect(result.current[1].lastItem).toEqual(emptyQueue[0]);
 			expect(result.current[1].firstItem).toEqual(emptyQueue[emptyQueue.length - 1]);
 			expect(result.current[1].size).toEqual(emptyQueue.length);
+		});
+	});
+
+	describe('first and last item should be same when', () => {
+		it('queue is empty', () => {
+			expect.hasAssertions();
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: []
+				}
+			});
+
+			expect(result.current[1].firstItem).toEqual(result.current[1].lastItem);
+		});
+
+		it('queue has only one empty', () => {
+			expect.hasAssertions();
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: [initialValuesOfQueue[0]]
+				}
+			});
+
+			expect(result.current[1].firstItem).toEqual(result.current[1].lastItem);
 		});
 	});
 });

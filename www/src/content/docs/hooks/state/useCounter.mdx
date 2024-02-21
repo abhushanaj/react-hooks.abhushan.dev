@@ -6,7 +6,7 @@ sidebar:
   badge: 'New'
 ---
 
-import Example from '@/components/demo/useDefaultValue';
+import Example from '@/components/demo/useCounter';
 import { DemoWrapper } from '@/components/demo/wrapper';
 
 The `useCounter` hook is helpful when you want to manage a counter value with custom min, max and step properties.
@@ -44,12 +44,16 @@ export default App;
 
 ### With config options
 
-```tsx title="./src/App.tsx" ins={2,5}
+```tsx title="./src/App.tsx" ins={2,4,7,9}
 import React from 'react';
 import { useCounter } from '@abhushanaj/react-hooks';
 
+import type { UseCounterOptions } from '@abhushanaj/react-hooks';
+
 function App() {
-	const [count, { increment, decrement, reset, set }] = useCounter(0, { step: 5, min: -20, max: 20 });
+	const config: UseCounterOptions = { step: 5, min: -20, max: 20 };
+
+	const [count, { increment, decrement, reset, set }] = useCounter(0, options);
 
 	return (
 		<div>

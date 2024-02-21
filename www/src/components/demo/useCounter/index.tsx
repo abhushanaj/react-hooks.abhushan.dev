@@ -1,13 +1,17 @@
 import { useCounter } from '@abhushanaj/react-hooks';
 
+import type { UseCounterOptions } from '@abhushanaj/react-hooks';
+
 import Button from '@/components/docs/button';
 
+const options: Required<UseCounterOptions> = {
+	min: -10,
+	max: 10,
+	step: 2
+};
+
 function UseCounterExample() {
-	const [count, { increment, decrement, reset, set }] = useCounter(0, {
-		step: 2,
-		min: -10,
-		max: 10
-	});
+	const [count, { increment, decrement, reset, set }] = useCounter(0, options);
 
 	return (
 		<div className="w-full">
@@ -16,8 +20,12 @@ function UseCounterExample() {
 			</div>
 
 			<div className="mt-6 flex flex-wrap items-center justify-center gap-8">
-				<Button onClick={increment}>Increment by 2</Button>
-				<Button onClick={decrement}>Decrement by 2</Button>
+				<Button onClick={increment} disabled={count >= options.max}>
+					Increment by 2
+				</Button>
+				<Button onClick={decrement} disabled={count <= options.min}>
+					Decrement by 2
+				</Button>
 			</div>
 
 			<div className="mt-6 flex flex-wrap items-center justify-center gap-8">

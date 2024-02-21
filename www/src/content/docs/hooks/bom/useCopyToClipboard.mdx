@@ -48,11 +48,7 @@ export default App;
 
 The hook returns a tuple with `[copiedText, copyToClipboardFn]` signature.
 
-| Parameter         | Type                | Description                             | Default |
-| ----------------- | ------------------- | --------------------------------------- | ------- |
-| copiedText        | `string\|null`      | The last value copied text to clipboard | `null`  |
-| copyToClipboardFn | `CopyToClipboardFn` | Function to copy a value to clipboard   | N/A     |
-
-## Types Reference
-
-1. `CopyToClipboardFn` : `(textToCopy: string)=>void`
+| Parameter         | Type                         | Description                              | Default |
+| ----------------- | ---------------------------- | ---------------------------------------- | ------- |
+| copiedText        | `string\|null`               | The last value copied text to clipboard. | `null`  |
+| copyToClipboardFn | `(textToCopy: string)=>void` | Function to copy a value to clipboard.   | N/A     |

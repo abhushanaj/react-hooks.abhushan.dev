@@ -1,6 +1,7 @@
 // ==== DOM ============
 export { useDocumentTitle } from './hooks/useDocumentTitle';
 export type { DocumentTitleOptions, UseDocumentTitleOptions } from './hooks/useDocumentTitle';
+export { useIsDocumentVisible } from './hooks/useIsDocumentVisible';
 
 // ===== BOM ==========
 export { useOnline } from './hooks/useOnline';

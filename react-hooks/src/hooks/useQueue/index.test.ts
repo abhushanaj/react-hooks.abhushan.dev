@@ -5,10 +5,11 @@ import { useQueue } from '.';
 
 describe('useQueue() hook', () => {
 	let initialValuesOfQueue = [{ name: 'Abhushan' }, { name: 'React Hooks' }];
-	const emptyQueue: unknown[] = [];
+	let emptyQueue: unknown[] = [];
 
 	beforeEach(() => {
 		initialValuesOfQueue = [{ name: 'Abhushan' }];
+		emptyQueue = [];
 	});
 
 	it('should be defined', () => {
@@ -123,7 +124,7 @@ describe('useQueue() hook', () => {
 	});
 
 	// Test or the add method
-	describe('addItem update the queue correctly', () => {
+	describe('addItem() updates the queue correctly', () => {
 		it('when queue is empty', () => {
 			expect.hasAssertions();
 			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
@@ -168,4 +169,43 @@ describe('useQueue() hook', () => {
 	});
 
 	// Test for the remove method
+
+	// Test or the clear method
+	describe('clear() updates the queue correctly', () => {
+		it('when queue is empty', () => {
+			expect.hasAssertions();
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: emptyQueue
+				}
+			});
+
+			act(() => {
+				result.current[1].clear();
+			});
+
+			expect(result.current[0]).toEqual(emptyQueue);
+			expect(result.current[1].lastItem).toEqual(emptyQueue[0]);
+			expect(result.current[1].firstItem).toEqual(emptyQueue[emptyQueue.length - 1]);
+			expect(result.current[1].size).toEqual(emptyQueue.length);
+		});
+
+		it('when queue is non-empty', () => {
+			expect.hasAssertions();
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: initialValuesOfQueue
+				}
+			});
+
+			act(() => {
+				result.current[1].clear();
+			});
+
+			expect(result.current[0]).toEqual(emptyQueue);
+			expect(result.current[1].lastItem).toEqual(emptyQueue[0]);
+			expect(result.current[1].firstItem).toEqual(emptyQueue[emptyQueue.length - 1]);
+			expect(result.current[1].size).toEqual(emptyQueue.length);
+		});
+	});
 });

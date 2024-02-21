@@ -10,13 +10,18 @@ export function useQueue<T>(initialQueue?: Array<T>) {
 		});
 	}, []);
 
+	const clear = React.useCallback(() => {
+		setQueue([]);
+	}, []);
+
 	return [
 		queue,
 		{
 			firstItem: queue[0],
 			lastItem: queue[queue.length - 1],
 			size: queue.length,
-			addItem
+			addItem,
+			clear
 		}
 	] as const;
 }

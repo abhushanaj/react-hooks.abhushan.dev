@@ -57,7 +57,11 @@ export default App;
 
 It returns a tuple with `[state, toggleFn]` format similar to React's `useState`
 
-| Parameter | Type                           | Description                            | Default |
-| --------- | ------------------------------ | -------------------------------------- | ------- |
-| state     | `boolean`                      | The current boolean state.             | N/A     |
-| toggleFn  | `(newValue?: unknown) => void` | The update method to toggle the state. | N/A     |
+| Parameter | Type       | Description                           | Default |
+| --------- | ---------- | ------------------------------------- | ------- |
+| state     | `boolean`  | The current boolean state             | N/A     |
+| toggleFn  | `ToggleFn` | The update method to toggle the state | N/A     |
+
+## Types Reference
+
+### 1. `ToggleFn`: `(newValue?: unknown) => void`

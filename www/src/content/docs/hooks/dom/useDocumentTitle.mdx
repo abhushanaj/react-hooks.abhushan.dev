@@ -15,9 +15,7 @@ The `useDocumentTitle` hook is helpful when you want to dynamically update the d
 
 ## Usage
 
-Import the hook from `@abhushanaj/react-hooks` and use in requyired component.
-
-Use the hook in required component.
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
 ```tsx title="./src/App.tsx" ins={2,6}
 import React from 'react';
@@ -38,15 +36,21 @@ function App() {
 export default App;
 ```
 
-To enable resetting of the title to the original title, set the `resetOnUnmount` as `true`
+### With config options
 
-```tsx title="./src/App.tsx" ins={6}
+```tsx title="./src/App.tsx" ins={2,4,9-12}
 import React from 'react';
 import { useDocumentTitle } from '@abhushanaj/react-hooks';
 
+import type { DocumentTitleOptions } from '@abhushanaj/react-hooks';
+
 function App() {
 	const [count, setCount] = React.useState(0);
-	useDocumentTitle(`Count: ${count}`, { resetOnUnmount: true });
+
+	const options: DocumentTitleOptions = {
+		resetOnUnmount: true
+	};
+	useDocumentTitle(`Count: ${count}`, options);
 
 	return (
 		<div>
@@ -63,15 +67,15 @@ export default App;
 
 ### Parameters
 
-| Parameter | Type                              | Description                       | Default     |
-| --------- | --------------------------------- | --------------------------------- | ----------- |
-| title     | `string`                          | The title to set for the document | N/A         |
-| options   | `DocumentTitleOptions` (optional) | The configuration options         | `undefined` |
+| Parameter | Type                                                         | Description                        | Default     |
+| --------- | ------------------------------------------------------------ | ---------------------------------- | ----------- |
+| title     | `string`                                                     | The title to set for the document. | N/A         |
+| options   | [`DocumentTitleOptions`](#1-documenttitleoptions) (optional) | The configuration options.         | `undefined` |
 
 ## Types Reference
 
-1.  `DocumentTitleOptions`
+### 1. `DocumentTitleOptions`
 
     | Parameter      | Type      | Description                                          | Default |
     | -------------- | --------- | ---------------------------------------------------- | ------- |
-    | resetOnUnmount | `boolean` | Whether to reset to the original title after unmount | false   |
+    | resetOnUnmount | `boolean` | Whether to reset to the original title after unmount. | false   |

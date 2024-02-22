@@ -1,7 +1,12 @@
+import React from 'react';
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { useEffectOnlyOnceWhen } from '.';
+
+function ExampleComponentWithStrictMode({ children }: { children: React.ReactNode }) {
+	return <React.StrictMode>{children}</React.StrictMode>;
+}
 
 describe('useEffectOnlyOnceWhen() hook', () => {
 	it('should be defined', () => {
@@ -54,6 +59,27 @@ describe('useEffectOnlyOnceWhen() hook', () => {
 				callback: mockedCb,
 				condition: true
 			}
+		});
+
+		rerender({
+			callback: mockedCb,
+			condition: true
+		});
+
+		expect(mockedCb).toHaveBeenCalledTimes(1);
+	});
+
+	it('should run only once, when the condition is met even with Strict Mode enabled', () => {
+		expect.hasAssertions();
+
+		const mockedCb = vi.fn();
+
+		const { rerender } = renderHook(({ callback, condition }) => useEffectOnlyOnceWhen(callback, condition), {
+			initialProps: {
+				callback: mockedCb,
+				condition: true
+			},
+			wrapper: ExampleComponentWithStrictMode
 		});
 
 		rerender({

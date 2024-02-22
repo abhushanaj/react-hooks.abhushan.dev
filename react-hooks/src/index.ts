@@ -13,7 +13,7 @@ export { useToggle } from './hooks/useToggle';
 export { useDefault } from './hooks/useDefault';
 export { useCounter } from './hooks/useCounter';
 export type { UseCounterOptions } from './hooks/useCounter';
-export type { useQueue } from './hooks/useQueue';
+export { useQueue } from './hooks/useQueue';
 
 // ===== Storage ===========
 

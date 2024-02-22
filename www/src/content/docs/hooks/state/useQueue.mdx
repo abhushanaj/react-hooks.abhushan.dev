@@ -21,44 +21,30 @@ It provide with helper methods like `add`, `clear`, `remove` and additional prop
 
 Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
-```tsx title="./src/App.tsx" ins={2,8}
+```tsx title="./src/App.tsx" ins={2,5,7}
 import React from 'react';
-import { usePrevious } from '@abhushanaj/react-hooks';
+import { useQueue } from '@abhushanaj/react-hooks';
 
 function App() {
-	const [count, setCount] = React.useState(0);
+	const [queue, queueControls] = useQueue([]);
 
-	// previousValue on first render will be -1,  as default value is passed
-	const previousValue = usePrevious(count, -1);
+	const { remove, add, clear, firstItem, lastItem, size } = queueControls;
 
 	return (
 		<div>
-			<p>Previous Value: {previousValue}</p>
-			<p>Current Value: {count}</p>
-			<button onClick={() => setCount((prev) => prev + 1)}>Increment by 1</button>
-			<button onClick={() => setCount((prev) => prev - 1)}>Decrement by 1</button>
-		</div>
-	);
-}
-
-export default App;
-```
-
-If **no second argument** is passed to the `usePrevious` hook, then on the first render it will return `undefined`
-
-```tsx title="./src/App.tsx" ins={5} {4}
-function App() {
-	const [count, setCount] = React.useState(0);
-
-	// previousValue on first render will be undefined, as no default value is passed
-	const previousValue = usePrevious(count);
-
-	return (
-		<div>
-			<p>Previous Value: {previousValue}</p>
-			<p>Current Value: {count}</p>
-			<button onClick={() => setCount((prev) => prev + 1)}>Increment by 1</button>
-			<button onClick={() => setCount((prev) => prev - 1)}>Decrement by 1</button>
+			<p>Size: {size}</p>
+			<p>First Item: {firstItem}</p>
+			<p>Last Item: {lastItem}</p>
+			<button onClick={clear}>Clear</button>
+			<button onClick={() => add(queue.length)}>Add Item</button>
+			<button
+				onClick={() => {
+					const removedItem = remove();
+					console.log(removedItem);
+				}}
+			>
+				Remove Item
+			</button>
 		</div>
 	);
 }
@@ -70,19 +56,26 @@ export default App;
 
 ### Parameters
 
-| Parameter    | Type           | Description                             | Default     |
-| ------------ | -------------- | --------------------------------------- | ----------- |
-| value        | `T`            | The variable to keep track of.          | N/A         |
-| defaultValue | `U` (optional) | The default value for the first render. | `undefined` |
+| Parameter    | Type                  | Description                             | Default |
+| ------------ | --------------------- | --------------------------------------- | ------- |
+| initialQueue | `Array<T>` (optional) | The initial queue with items prefilled. | `[]`    |
 
 ### Return Value
 
-| Parameter     | Type | Description                          | Default     |
-| ------------- | ---- | ------------------------------------ | ----------- |
-| previousValue | `R`  | The previous value of the value `T`. | `undefined` |
+| Parameter     | Type                                | Description                                           | Default |
+| ------------- | ----------------------------------- | ----------------------------------------------------- | ------- |
+| queue         | `Array<T>`                          | The current queue.                                    | N/A     |
+| queueControls | [`QueueControls`](#1-queuecontrols) | The control options for the queue to add, remove etc. | N/A     |
 
 ## Types Reference
 
-1.  `T`: extends `unknown`
-2.  `U` : extends `T | undefined`
-3.  `R`: `U extends T ? T : undefined`
+### 1. `QueueControls`
+
+| Parameter | Type                 | Description                                                                                                                 | Default |
+| --------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| firstItem | `T\|undefined`       | The first item inserted into queue.                                                                                         | N/A     |
+| lastItem  | `T\|undefined`       | The last item inserted into queue.                                                                                          | N/A     |
+| size      | `number`             | The size of the queue.                                                                                                      | N/A     |
+| clear     | `()=>void`           | Clears the queue to an empty state.                                                                                         | N/A     |
+| add       | `(newItem: T)=>void` | Adds a new item to the queue.                                                                                               | N/A     |
+| remove    | `()=>T`              | Removes the first inserted ([FIFO](<https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)>)) and returns the item. | N/A     |

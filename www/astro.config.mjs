@@ -75,6 +75,10 @@ export default defineConfig({
 					autogenerate: { directory: '/hooks/state' }
 				},
 				{
+					label: 'Effects and Lifecycles',
+					autogenerate: { directory: '/hooks/effects-and-lifecycles' }
+				},
+				{
 					label: 'User Interface (UI)',
 					autogenerate: { directory: '/hooks/ui' }
 				}

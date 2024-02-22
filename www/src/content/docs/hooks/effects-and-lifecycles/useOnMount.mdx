@@ -1,0 +1,76 @@
+---
+title: useOnMount
+description: 'Run a callback after a component mounts using the useOnMount hook.'
+subtitle: 'Run a callback after a component mounts using the useOnMount hook.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useOnMount';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useOnMount` hook is helpful when you want to run a callback function after the component has mounted. It relies on the `React.useEffect()` hook internally.
+
+<DemoWrapper title="useOnMount">
+	<Example client:load />
+</DemoWrapper>
+
+:::caution
+In React version **18.x.x** and above, when the development mode includes the usage of [`<React.StrictMode/>`](https://react.dev/reference/react/StrictMode) and is enabled, components may undergo a double mounting process. As a result, any callback associated with these components will also be executed twice during this initial mounting.
+:::
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={1,4-6}
+import { useOnMount } from '@abhushanaj/react-hooks';
+
+function App() {
+	useOnMount(() => {
+		console.log('Mounted');
+	});
+
+	return (
+		<div>
+			<p>I am now mounted!</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. When using the `useOnMount` hook, **you don't need to memoize the callback** with `React.useCallback` or similar. The hook inherently maintains referential stability for the callback. As the callback is not utilized as a dependency in the useEffect, you can pass your callback as is, and rest assured that it will be called only once during the initial mount, regardless of subsequent re-renders.
+
+```tsx title="./src/App.tsx" del={6-8, 10}
+import React from 'react';
+import { useOnMount } from '@abhushanaj/react-hooks';
+
+function App() {
+	// This is not required at all.
+	const callback = React.useCallback(() => {
+		console.log('Mounted');
+	}, []);
+
+	useOnMount(callback);
+
+	return (
+		<div>
+			<p>I am now mounted!</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type       | Description                                         | Default |
+| --------- | ---------- | --------------------------------------------------- | ------- |
+| callback  | `()=>void` | The callback function to run after component mount. | N/A     |

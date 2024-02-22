@@ -1,0 +1,50 @@
+---
+title: useOnUnmount
+description: 'Run a callback after a component unmounts using the useOnUnmount hook.'
+subtitle: 'Run a callback after a component unmounts using the useOnUnmount hook.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useOnUnmount';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useOnUnmount` hook is helpful when you want to run a callback function after the component has unmounted. It relies on the `React.useEffect()` hook internally.
+
+<DemoWrapper title="useOnUnmount">
+	<Example client:load />
+</DemoWrapper>
+
+:::caution
+In React version **18.x.x** and above, when the development mode includes the usage of [`<React.StrictMode/>`](https://react.dev/reference/react/StrictMode) and is enabled, components may undergo a double mounting/unmounting process. As a result, any callback associated with these components will also be executed twice during this initial mounting/unmounting.
+:::
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={1,4-6}
+import { useOnUnmount } from '@abhushanaj/react-hooks';
+
+function App() {
+	useOnUnmount(() => {
+		console.log('Unmounted!');
+	});
+
+	return (
+		<div>
+			<p>I am now mounted!</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type       | Description                                           | Default |
+| --------- | ---------- | ----------------------------------------------------- | ------- |
+| callback  | `()=>void` | The callback function to run after component unmount. | N/A     |

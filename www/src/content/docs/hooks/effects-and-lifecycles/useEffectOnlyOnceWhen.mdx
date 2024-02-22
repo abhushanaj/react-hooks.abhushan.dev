@@ -1,0 +1,61 @@
+---
+title: useEffectOnlyOnceWhen
+description: 'Runs a callback effect once when condition is met or is met in future'
+subtitle: 'Runs a callback effect once when condition is met or is met in future'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useEffectOnlyOnceWhen';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useEffectOnlyOnceWhen` hook is helpful when you want to run a callback effect atmost one time after a condition is met, after a component mounts.
+
+The condition can be met at the beginning or in future re-renders.
+
+<DemoWrapper title="useEffectOnlyOnceWhen">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={1,6-8}
+import { useEffectOnlyOnceWhen } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [shouldRun, setShouldRun] = React.useState(false);
+
+	useEffectOnlyOnceWhen(() => {
+		console.log('I am run');
+	}, shouldRun);
+
+	React.useEffect(() => {
+		let timerId = setTimeout(() => {
+			setShouldRun(true);
+		}, 2000);
+
+		return () => {
+			clearTimeout(timerId);
+		};
+	}, []);
+
+	return (
+		<div>
+			<p>I am now mounted!</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type       | Description                                                                        | Default |
+| --------- | ---------- | ---------------------------------------------------------------------------------- | ------- |
+| callback  | `()=>void` | The callback function to run after atmost onnce after the condition is met.        | N/A     |
+| condition | `boolean`  | The condition which needs to be met inorder for the effect callback to be invoked. | N/A     |

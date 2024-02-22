@@ -4,10 +4,6 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { useEffectOnlyOnceWhen } from '.';
 
-function ExampleComponentWithStrictMode({ children }: { children: React.ReactNode }) {
-	return <React.StrictMode>{children}</React.StrictMode>;
-}
-
 describe('useEffectOnlyOnceWhen() hook', () => {
 	it('should be defined', () => {
 		expect.hasAssertions();
@@ -89,6 +85,7 @@ describe('useEffectOnlyOnceWhen() hook', () => {
 		expect(mockedCb).not.toHaveBeenCalled();
 	});
 
+	// Strict Mode settings
 	it('should run only once, when the condition is met even with Strict Mode enabled', () => {
 		expect.hasAssertions();
 
@@ -99,7 +96,7 @@ describe('useEffectOnlyOnceWhen() hook', () => {
 				callback: mockedCb,
 				condition: true
 			},
-			wrapper: ExampleComponentWithStrictMode
+			wrapper: React.StrictMode
 		});
 
 		rerender({

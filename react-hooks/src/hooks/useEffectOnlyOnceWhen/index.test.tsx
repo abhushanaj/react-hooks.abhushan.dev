@@ -69,6 +69,26 @@ describe('useEffectOnlyOnceWhen() hook', () => {
 		expect(mockedCb).toHaveBeenCalledTimes(1);
 	});
 
+	it('should not run if condition was never met', () => {
+		expect.hasAssertions();
+
+		const mockedCb = vi.fn();
+
+		const { rerender } = renderHook(({ callback, condition }) => useEffectOnlyOnceWhen(callback, condition), {
+			initialProps: {
+				callback: mockedCb,
+				condition: false
+			}
+		});
+
+		rerender({
+			callback: mockedCb,
+			condition: false
+		});
+
+		expect(mockedCb).not.toHaveBeenCalled();
+	});
+
 	it('should run only once, when the condition is met even with Strict Mode enabled', () => {
 		expect.hasAssertions();
 

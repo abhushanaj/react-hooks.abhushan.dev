@@ -43,7 +43,7 @@ export default App;
 
 ## Properties
 
-1. When using the `useOnMount` hook, **you don't need to memoize the callback** with `React.useCallback` or similar. The hook inherently maintains referential stability for the callback. As the callback is not utilized as a dependency in the useEffect, you can pass your callback as is, and rest assured that it will be called only once during the initial mount, regardless of subsequent re-renders.
+1. When using the `useOnMount` hook, **you don't need to memoize the callback** with `React.useCallback` or similar. As the callback is not utilized as a dependency in the `useEffect`, you can pass your callback as is, and rest assured that it will be called only once during mount, regardless of subsequent re-renders.
 
 ```tsx title="./src/App.tsx" del={6-8, 10}
 import React from 'react';

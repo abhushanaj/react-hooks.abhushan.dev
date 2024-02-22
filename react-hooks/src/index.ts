@@ -20,3 +20,6 @@ export { useQueue } from './hooks/useQueue';
 
 // ======== UI ==========
 export { useLockBodyScroll } from './hooks/useLockBodyScroll';
+
+// ========= Effects and Lifecycles
+export { useOnMount } from './hooks/useOnMount';

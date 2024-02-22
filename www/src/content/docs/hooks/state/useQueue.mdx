@@ -1,0 +1,81 @@
+---
+title: useQueue
+description: 'Manage a queue of items'
+subtitle: 'Manage a queue of items'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useQueue';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useQueue` hook is helpful when you want to manage a queue of items (based on queue data structure).
+
+It provide with helper methods like `add`, `clear`, `remove` and additional properties like `firstItem`, `lastItem` and `size`.
+
+<DemoWrapper title="useQueue">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,5,7}
+import React from 'react';
+import { useQueue } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [queue, queueControls] = useQueue([]);
+
+	const { remove, add, clear, firstItem, lastItem, size } = queueControls;
+
+	return (
+		<div>
+			<p>Size: {size}</p>
+			<p>First Item: {firstItem}</p>
+			<p>Last Item: {lastItem}</p>
+			<button onClick={clear}>Clear</button>
+			<button onClick={() => add(queue.length)}>Add Item</button>
+			<button
+				onClick={() => {
+					const removedItem = remove();
+					console.log(removedItem);
+				}}
+			>
+				Remove Item
+			</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter    | Type                  | Description                             | Default |
+| ------------ | --------------------- | --------------------------------------- | ------- |
+| initialQueue | `Array<T>` (optional) | The initial queue with items prefilled. | `[]`    |
+
+### Return Value
+
+| Parameter     | Type                                | Description                                           | Default |
+| ------------- | ----------------------------------- | ----------------------------------------------------- | ------- |
+| queue         | `Array<T>`                          | The current queue.                                    | N/A     |
+| queueControls | [`QueueControls`](#1-queuecontrols) | The control options for the queue to add, remove etc. | N/A     |
+
+## Types Reference
+
+### 1. `QueueControls`
+
+| Parameter | Type                 | Description                                                                                                                 | Default |
+| --------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| firstItem | `T\|undefined`       | The first item inserted into queue.                                                                                         | N/A     |
+| lastItem  | `T\|undefined`       | The last item inserted into queue.                                                                                          | N/A     |
+| size      | `number`             | The size of the queue.                                                                                                      | N/A     |
+| clear     | `()=>void`           | Clears the queue to an empty state.                                                                                         | N/A     |
+| add       | `(newItem: T)=>void` | Adds a new item to the queue.                                                                                               | N/A     |
+| remove    | `()=>T`              | Removes the first inserted ([FIFO](<https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)>)) and returns the item. | N/A     |

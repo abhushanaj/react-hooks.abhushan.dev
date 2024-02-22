@@ -23,3 +23,4 @@ export { useLockBodyScroll } from './hooks/useLockBodyScroll';
 
 // ========= Effects and Lifecycles
 export { useOnMount } from './hooks/useOnMount';
+export { useOnUnmount } from './hooks/useOnUnmount';

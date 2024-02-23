@@ -22,39 +22,8 @@ function checkAndThrowForOverflows(initialCount: number, min: number, max: numbe
 	}
 }
 /**
- * useCounter() hook - Manage a custom counter with min, max, and stepper values
- * @param {number} initialCount - Initial value of the counter to keep track of
- * @param {UseCounterOptions} options - Configuration options for the useCounter
- * @property {number} options.step - Increment/decrement step value (default: 1)
- * @property {number} options.min - Minimum value for the counter (default: -Infinity)
- * @property {number} options.max - Maximum value for the counter (default: Infinity)
- * @returns {[number, { increment: () => void, decrement: () => void, set: (newCount: number) => void, reset: () => void }]} - A tuple containing the current count and an object with functions to manipulate the counter
- * @example
- * // Example usage of useCounter hook
- * function CounterComponent() {
- *   // Setting up initial count with options
- *   const initialCount = 0;
- *   const options: UseCounterOptions = {
- *     step: 2,
- *     min: -5,
- *     max: 10
- *   };
- *
- *   // Using the useCounter hook
- *   const [count, { increment, decrement, set, reset }] = useCounter(initialCount, options);
- *
- *   return (
- *     <div>
- *       <p>Count: {count}</p>
- *       <button onClick={increment}>Increment</button>
- *       <button onClick={decrement}>Decrement</button>
- *       <button onClick={() => set(5)}>Set to 5</button>
- *       <button onClick={reset}>Reset</button>
- *     </div>
- *   );
- * }
- *
- * export default CounterComponent;
+ * useCounter() - Custom react hook to manage a custom counter with min, max, and step values.
+ * @see - https://react-hooks.abhushan.dev/hooks/state/usecounter/
  */
 export function useCounter(initialCount: number, options?: UseCounterOptions) {
 	const [count, setCount] = React.useState(initialCount);

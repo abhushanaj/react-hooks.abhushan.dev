@@ -2,19 +2,10 @@ import { noop } from '../../utils';
 import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
 
 /**
- * useLockBodyScroll hook - Locks the scrolling of the document body by setting the overflow property to hidden.
+ * useLockBodyScroll() - Custom react hook that locks the scrolling of the document body by setting the overflow property to hidden.
  * Useful when you are trying to render a component like dialogs/alerts, which renders the content beneath it inert.
- * @param {boolean} isLocked - Flag indicating whether to lock or unlock the body scroll. Defaults to true
- * @example
- * function Dialog() {
- *     useLockBodyScroll();
- *     return (
- *         <div role="dialog">
- * 					/// You dialog content
- *         </div>
- *     );
- * }
- */
+ * @see - https://react-hooks.abhushan.dev/hooks/ui/uselockbodyscroll/
+ * */
 export function useLockBodyScroll(isLocked = true) {
 	useIsomorphicLayoutEffect(() => {
 		const documentBody = document.body;

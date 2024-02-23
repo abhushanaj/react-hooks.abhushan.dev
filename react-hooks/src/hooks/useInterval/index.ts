@@ -1,11 +1,8 @@
 import React from 'react';
 
 /**
- * useInterval hook - Custom react hook to invoke a callback function after a minimum delay (ms) using the setInterval method.
- * @param callback - The callback to invoke
- * @param duration - The duration for the interval specified in millisecond.
- * @param immediate - Whether or not to invoke the callback immediately without waiting for first interval to finish. Defaults to false.
- * @returns
+ * useInterval() - Custom react hook to invoke a callback function after a minimum delay (ms) using the setInterval method.
+ * @see - https://react-hooks.abhushan.dev/hooks/timers/useinterval/
  */
 export function useInterval(callback: () => void, duration = 0, immediate = false) {
 	const timerRef = React.useRef<number | null>(null);

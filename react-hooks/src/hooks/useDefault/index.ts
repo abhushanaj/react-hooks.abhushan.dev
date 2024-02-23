@@ -5,7 +5,7 @@ type DefaultValues<T> = T extends null ? never : T extends undefined ? never : T
 
 /**
  * useDefault() - Custom react hook that manages a state value with optional default value. Returns the default value whenever state becomes null or undefined.
- * @see - https://react-hooks.abhushan.dev/hooks/state/usedefaultvalue/
+ * @see - https://react-hooks.abhushan.dev/hooks/state/usedefault/
  */
 export function useDefault<T>(initialValue: InitialValues<T>, defaultValue: DefaultValues<T>) {
 	const [value, setValue] = React.useState<InitialValues<T>>(initialValue);

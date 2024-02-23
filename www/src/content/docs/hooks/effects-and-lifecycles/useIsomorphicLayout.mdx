@@ -1,0 +1,74 @@
+---
+title: useIsomorphicLayoutEffect
+description: 'Hook that resolves to useEffect on the server and useLayoutEffect on the client'
+subtitle: 'Hook that resolves to useEffect on the server and useLayoutEffect on the clien'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useIsomorphicLayoutEffect';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useIsomorphicLayoutEffect` hook is helpful when you want to have an isomorphic version of an effect which resolves to `React.useEffect` on SRR and `React.useLayoutEffect` on browswers.
+
+This is required as React currently throws a warning when using useLayoutEffect on the server. To get around it, we can conditionally useEffect on the server (no-op) and
+useLayoutEffect in the browser.
+
+:::note
+You can learn more about this behaviour from the official [React](https://react.dev/reference/react/useLayoutEffect#im-getting-an-error-uselayouteffect-does-nothing-on-the-server) docs.
+:::
+
+## Usage
+
+<DemoWrapper title="useIsomorphicLayoutEffect">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={1,4-6}
+import { useIsomorphicLayoutEffect } from '@abhushanaj/react-hooks';
+
+function App() {
+	useIsomorphicLayoutEffect(() => {
+		console.log('Rendered');
+	}, []);
+
+	return (
+		<div>
+			<p>I am now rendered!</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+The signature for the `useIsomorphicLayoutEffect` is exactly same to one provided by `React.useEffect` and `React.useLayoutEffect`.
+
+| Parameter    | Type                                           | Description                                                | Default     |
+| ------------ | ---------------------------------------------- | ---------------------------------------------------------- | ----------- |
+| callback     | `React.EffectCallback`                         | The callback function to run when the dependencies change. | N/A         |
+| dependencies | `React.DependencyList \| undefined` (optional) | An array of dependencies for the effect.                   | `undefined` |
+
+## Return Value
+
+The hook returns `React.useEffect` when window is not defined (or likely undefined) and `React.useLayoutEffect` on the client where window is defined.
+
+As based on different environment (some of them polyfilling window), the results returned can likely provide a false positive, we use the following condition to hopefully determine the environment is window:
+
+```js
+// Hopefully the environemnt is window now.
+export const isWindow = () =>
+	typeof window !== 'undefined' &&
+	typeof window.document !== 'undefined' &&
+	typeof window.document.createElement !== 'undefined';
+```
+
+This is a popular stratergy also used by other popular libraries like [redux](https://github.com/reduxjs/react-redux/blob/2eac86163be2bd5627dab3e33e8b4e0926895442/src/hooks/useSelector.js#L22-L27).

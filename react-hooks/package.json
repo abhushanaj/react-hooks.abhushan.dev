@@ -1,6 +1,6 @@
 {
 	"name": "@abhushanaj/react-hooks",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "A collection of modern and server safe custom React hooks to supercharge your React application development.",
 	"main": "dist/cjs/index.js",
 	"module": "dist/esm/index.js",

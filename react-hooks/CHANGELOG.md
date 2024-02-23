@@ -1,5 +1,23 @@
 # @abhushanaj/react-hooks
 
+## 0.2.0
+
+### Minor Changes
+
+- 48f0d91: Addition of the useIsomorphicLayout effect
+- 92f0e99: Add a useInterval hook
+- c5ef054: Addition of the useLockBodyScroll hook
+- 67e05fc: Addition of the useCounter hook
+- 68af904: Addition of the useQueue hook
+- 3333f9a: Add the useIsDocumentVisible hook
+- 775ce06: Addition of the useEffectOnlyOnceWhen hook
+- 8a3c8c4: Addition of the useOnMount hook
+- 7027600: Addition of the useOnUnmount hook
+
+### Patch Changes
+
+- b8ee474: Update the useLockBodyScroll to leverage isomorphicLayoutEffect instead
+
 ## 0.1.0
 
 ### Minor Changes

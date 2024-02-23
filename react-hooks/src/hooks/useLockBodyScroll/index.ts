@@ -1,6 +1,5 @@
-import React from 'react';
-
-import { isSSR, noop } from '../../utils';
+import { noop } from '../../utils';
+import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
 
 /**
  * useLockBodyScroll hook - Locks the scrolling of the document body by setting the overflow property to hidden.
@@ -17,7 +16,7 @@ import { isSSR, noop } from '../../utils';
  * }
  */
 export function useLockBodyScroll(isLocked = true) {
-	React[isSSR ? 'useEffect' : 'useLayoutEffect'](() => {
+	useIsomorphicLayoutEffect(() => {
 		const documentBody = document.body;
 		const ogOverflowStyle = getComputedStyle(documentBody).overflow;
 

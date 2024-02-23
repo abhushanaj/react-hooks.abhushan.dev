@@ -1,12 +1,10 @@
 import React from 'react';
-import { renderHook } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { Mock } from 'vitest';
 
 import * as utils from '../../utils';
 
-vi.mock('react');
 vi.mock('../../utils');
 
 describe('useIsomorphicLayoutEffect() hook', () => {
@@ -27,10 +25,8 @@ describe('useIsomorphicLayoutEffect() hook', () => {
 
 		const { useIsomorphicLayoutEffect } = await import('.');
 
-		renderHook(() => useIsomorphicLayoutEffect(() => {}, []));
-
-		expect(React.useEffect).not.toHaveBeenCalled();
-		expect(React.useLayoutEffect).toHaveBeenCalled();
+		expect(useIsomorphicLayoutEffect).toEqual(React.useLayoutEffect);
+		expect(useIsomorphicLayoutEffect).not.toEqual(React.useEffect);
 	});
 
 	it('should be reference of useEffect for non-window based environment', async () => {
@@ -40,9 +36,7 @@ describe('useIsomorphicLayoutEffect() hook', () => {
 
 		const { useIsomorphicLayoutEffect } = await import('.');
 
-		renderHook(() => useIsomorphicLayoutEffect(() => {}, []));
-
-		expect(React.useEffect).toHaveBeenCalled();
-		expect(React.useLayoutEffect).not.toHaveBeenCalled();
+		expect(useIsomorphicLayoutEffect).not.toEqual(React.useLayoutEffect);
+		expect(useIsomorphicLayoutEffect).toEqual(React.useEffect);
 	});
 });

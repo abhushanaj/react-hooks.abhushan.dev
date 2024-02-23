@@ -134,4 +134,29 @@ describe('useInterval() hook', () => {
 			expect(cb).toHaveBeenCalledTimes(newExpectedCalls + expectedCalls);
 		});
 	});
+
+	// invoked the callback immediately one with eager
+	it('should invoke callback called immediately and after the  delay (ms) when eager is et specified', () => {
+		expect.hasAssertions();
+		const cb = vi.fn();
+
+		renderHook(({ callback, delay, eager }) => useInterval(callback, delay, eager), {
+			initialProps: {
+				callback: cb,
+				delay: defaultDelay,
+				eager: true
+			}
+		});
+
+		// immediately called since eager is passed
+		expect(cb).toHaveBeenCalledTimes(1);
+
+		// advance the time by 1ms
+		act(() => {
+			vi.advanceTimersByTime(defaultDelay);
+		});
+
+		// called by the interval completed after advaning the time (1 (eager) + 1 (after interval))
+		expect(cb).toHaveBeenCalledTimes(2);
+	});
 });

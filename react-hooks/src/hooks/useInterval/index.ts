@@ -3,9 +3,21 @@ import React from 'react';
 type UseIntervalOptions = {
 	callback: (...args: Array<unknown>) => void;
 	delay: number;
+	eager: boolean;
 };
 
-export function useInterval(callback: UseIntervalOptions['callback'], delay?: UseIntervalOptions['delay']) {
+/**
+ * useInterval hook - Custom react hook to invoke a callback function after a minimum delay (ms) using the setInterval method.
+ * @param callback - The callback to invoke
+ * @param duration - The duration for the interval specified in millisecond.
+ * @param eager - Whether or not to invoke the callback immediately for first time. Defaults to undefined.
+ * @returns
+ */
+export function useInterval(
+	callback: UseIntervalOptions['callback'],
+	duration?: UseIntervalOptions['delay'],
+	eager?: UseIntervalOptions['eager']
+) {
 	const timerRef = React.useRef<number | null>(null);
 	const callbackRef = React.useRef(callback);
 
@@ -31,10 +43,15 @@ export function useInterval(callback: UseIntervalOptions['callback'], delay?: Us
 		 * This line can actually be replaced with the new experimental React.useEffectCallack hook as well
 		 * `timerRef.current = window.setInterval(onInterval, 200);`
 		 */
-		timerRef.current = window.setInterval(callbackRef.current, delay);
+
+		if (eager) {
+			callbackRef.current();
+		}
+
+		timerRef.current = window.setInterval(callbackRef.current, duration);
 
 		return cancelInterval;
-	}, [cancelInterval, delay]);
+	}, [cancelInterval, duration, eager]);
 
 	return [cancelInterval] as const;
 }

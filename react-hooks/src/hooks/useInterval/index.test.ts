@@ -95,5 +95,43 @@ describe('useInterval() hook', () => {
 			});
 			expect(cb).toHaveBeenCalledTimes(advancedFactor);
 		});
+
+		it('with new delay (ms) passed during a re-render', () => {
+			expect.hasAssertions();
+			const cb = vi.fn();
+			const advancedFactor = 3;
+			const afterRerenderDelay = 500;
+
+			const { rerender } = renderHook(({ callback, delay }) => useInterval(callback, delay), {
+				initialProps: {
+					callback: cb,
+					delay: defaultDelay
+				}
+			});
+
+			// we advance time  by 1000*3 =3000ms
+			act(() => {
+				vi.advanceTimersByTime(defaultDelay * advancedFactor);
+			});
+			const expectedCalls = Math.floor((defaultDelay * advancedFactor) / defaultDelay);
+
+			// we expect the callback to be invoked 3 times
+			expect(cb).toHaveBeenCalledTimes(expectedCalls);
+
+			// we change the delay to be 500ms
+			rerender({
+				callback: cb,
+				delay: afterRerenderDelay
+			});
+
+			// we advance time to be 500* 5 = 2500ms
+			act(() => {
+				vi.advanceTimersByTime(afterRerenderDelay * advancedFactor);
+			});
+
+			const newExpectedCalls = Math.floor((afterRerenderDelay * advancedFactor) / afterRerenderDelay);
+
+			expect(cb).toHaveBeenCalledTimes(newExpectedCalls + expectedCalls);
+		});
 	});
 });

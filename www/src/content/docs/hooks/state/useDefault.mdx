@@ -1,17 +1,17 @@
 ---
-title: useDefaultValue
+title: useDefault
 description: 'Sets a default value to a state when it is null or undefined'
 subtitle: 'Sets a default value to a state when it is null or undefined'
 ---
 
-import Example from '@/components/demo/useDefaultValue';
+import Example from '@/components/demo/useDefault';
 import { DemoWrapper } from '@/components/demo/wrapper';
 
-The `useDefaultValue` hook is helpful when you want to assign a default value to a state which is likely to be `undefined` or `null` in future.
+The `useDefault` hook is helpful when you want to assign a default value to a state which is likely to be `undefined` or `null` in future.
 
 It ensures that the state never reaches the `undefined` or `null` values.
 
-<DemoWrapper title="useDefaultValue">
+<DemoWrapper title="useDefault">
 	<Example client:load />
 </DemoWrapper>
 
@@ -21,10 +21,10 @@ Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
 ```tsx title="./src/App.tsx" ins={2,5}
 import React from 'react';
-import { useDefaultValue } from '@abhushanaj/react-hooks';
+import { useDefault } from '@abhushanaj/react-hooks';
 
 function App() {
-	const [count, setCount] = useDefaultValue(1, 0);
+	const [count, setCount] = useDefault(1, 0);
 
 	return (
 		<div>
@@ -50,8 +50,8 @@ In such cases, and error is throw with a message: `Default value cannot be undef
 function App() {
 	const [count, setCount] = React.useState(0);
 
-	// useDefaultValue will throw an error message: `Default value cannot be undefined`
-	const previousValue = useDefaultValue(count, undefined);
+	// useDefault will throw an error message: `Default value cannot be undefined`
+	const previousValue = useDefault(count, undefined);
 
 	return <div>.....</div>;
 }

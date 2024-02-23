@@ -2,7 +2,7 @@ import { useDefault } from '@abhushanaj/react-hooks';
 
 import Button from '@/components/docs/button';
 
-function UsePreviousHookExample() {
+function UseDefaultExample() {
 	const [count, setCount] = useDefault(1, 0);
 
 	return (
@@ -50,4 +50,4 @@ function UsePreviousHookExample() {
 	);
 }
 
-export default UsePreviousHookExample;
+export default UseDefaultExample;

@@ -79,6 +79,10 @@ export default defineConfig({
 					autogenerate: { directory: '/hooks/effects-and-lifecycles' }
 				},
 				{
+					label: 'Timers',
+					autogenerate: { directory: '/hooks/timers' }
+				},
+				{
 					label: 'User Interface (UI)',
 					autogenerate: { directory: '/hooks/ui' }
 				}

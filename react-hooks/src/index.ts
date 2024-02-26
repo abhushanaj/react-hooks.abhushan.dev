@@ -29,3 +29,4 @@ export { useIsomorphicLayoutEffect } from './hooks/useIsomorphicLayoutEffect';
 
 // ============== Timers =--------
 export { useInterval } from './hooks/useInterval';
+export { useTimeout } from './hooks/useTimeout';

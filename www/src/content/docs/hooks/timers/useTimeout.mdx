@@ -1,0 +1,87 @@
+---
+title: useTimeout
+description: 'Manage timeouts conveniently using the useTimeout hook.'
+subtitle: 'Manage timeouts conveniently using the useTimeout hook.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useTimeout';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useTimeout` hook is helpful when you want to setup a timeout callback from your components. It can be helpful in cases when you want to perform a delayed action or a timed event for maybe an animation or clearing loading states.
+
+It automatically cleans up the timeout created by the `window.setTimeout` API when component unmounts and also returns an `cancelTimeout` method to cancel the the timeout programatically.
+
+The hook relies on the [setTimeout (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) method available on browsers.
+
+<DemoWrapper title="useTimeout">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={2,5-7}
+import React from 'react';
+import { useTimeout } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [cancelTimeout] = useInterval(() => {
+		console.log('I will run after a minimum wait of 1000ms');
+	}, 1000);
+
+	return (
+		<div>
+			<p>Count: {count}</p>
+			<button onClick={cancelTimeout}>Cancel the delay action immediately.</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. When using the `useTimeout` hook, **you don't need to memoize the callback** with `React.useCallback` or similar. As the callback is not utilized as a dependency in the `React.useEffect`, you can pass your callback as is, and rest assured that it will be called correctly after the delay.
+
+```tsx title="./src/App.tsx" del={6-8, 10}
+import React from 'react';
+import { useTimeout } from '@abhushanaj/react-hooks';
+
+function App() {
+	// This is not required at all.
+	const callback = React.useCallback(() => {
+		console.log('Calling after interval');
+	}, []);
+
+	useTimeout(callback, 1000);
+
+	return (
+		<div>
+			<p>I am now rendered!</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type                | Description                                              | Default |
+| --------- | ------------------- | -------------------------------------------------------- | ------- |
+| callback  | `()=>void`          | The callback function to execute after the delay period. | N/A     |
+| duration  | `number` (optional) | The duration of timeout in `ms`.                         | `0`     |
+
+### Return Value
+
+The return value follows the signature `[cancelTimeout]`.
+
+| Parameter     | Type       | Description                                                     | Default |
+| ------------- | ---------- | --------------------------------------------------------------- | ------- |
+| cancelTimeout | `()=>void` | A function to clear the timeout and stop the delayed execution. | N/A     |

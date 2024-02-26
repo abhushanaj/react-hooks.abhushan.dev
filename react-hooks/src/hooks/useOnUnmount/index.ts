@@ -1,18 +1,9 @@
 import React from 'react';
 
 /**
- * useOnUnmount hook - Calls the provided callback function after the component is unmounted.
- *
- * @param {() => void} callback - The callback function to be executed after component unmount.
- *
- * @example
- * // Example usage of useOnUnmount hook
- * useOnUnmount(() => {
- *   console.log('Component is unmounted!');
- *   // Additional initialization or side effects can be performed here
- * });
+ * useOnUnmount() - Custom react hook that invokes the provided callback function after the component is unmounted.
+ * @see - https://react-hooks.abhushan.dev/hooks/effects-and-lifecycles/useonunmount/
  */
-
 export function useOnUnmount(callback: () => void) {
 	React.useEffect(() => {
 		return callback;

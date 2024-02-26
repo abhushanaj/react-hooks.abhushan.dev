@@ -1,18 +1,8 @@
 import React from 'react';
 
 /**
- * useQueue: Custom React hook for managing a queue of items.
- *
- * @template T - The type of items in the queue.
- * @param {Array<T>} [initialQueue] - Initial array of items for the queue.
- * @returns {[Array<T>, {
- *    firstItem: T | undefined,
- *    lastItem: T | undefined,
- *    size: number,
- *    add: (newItem: T) => void,
- *    clear: () => void,
- *    remove: () => T | undefined
- * }]} - A tuple containing the current queue array and an object with utility functions.
+ * useQueue(): Custom react hook for managing a queue of items.
+ * @see - https://react-hooks.abhushan.dev/hooks/state/usequeue/
  */
 export function useQueue<T>(initialQueue?: Array<T>) {
 	const [queue, setQueue] = React.useState(initialQueue || []);

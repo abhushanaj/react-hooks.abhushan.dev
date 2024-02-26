@@ -8,14 +8,8 @@ export type DocumentTitleOptions = { resetOnUnmount: boolean };
 export type UseDocumentTitleOptions = { resetOnUnmount: boolean };
 
 /**
- * @param title - title to set for the document
- * @param  options - options to reset to original title or not. Defaults to false
- * @example
- * function App(){
- *   useDocumentTitle('Welcome');
- *   // usage with the reset option
- *   useDocumentTitle('Welcome', {resetOnUnmount : true });
- * }
+ * useDocumentTitle() - Custom react hook to dynamically update the document title.
+ * @see - https://react-hooks.abhushan.dev/hooks/dom/usedocumenttitle/
  */
 export function useDocumentTitle(title: string, options?: UseDocumentTitleOptions) {
 	const { resetOnUnmount } = options || { resetOnUnmount: false };

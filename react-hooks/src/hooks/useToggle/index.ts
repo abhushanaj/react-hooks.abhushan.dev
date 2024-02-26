@@ -1,24 +1,8 @@
 import React from 'react';
 
 /**
- * useToogle- Custom React hook for managing a boolean state and providing a function to toggle it.
- * @template T - typeof the the initial value
- * @param {T} initialValue - the initial value to toggle on
- * @returns {[boolean, (value?: unknown) => void]} Tuple containing the boolean state and a function to toggle the state
- * @example
- * // Example usage of useToggle hook
- * const App = () => {
- *   const [isToggled, toggleState] = useToggle(false);
- *
- *   return (
- *     <div>
- *       <p>Current State: {isToggled ? 'True' : 'False'}</p>
- *       <button onClick={() => toggleState()}>Toggle</button>
- *       <button onClick={() => toggleState(true)}>Set to True</button>
- *       <button onClick={() => toggleState({})}>Toogle the state</button>
- *     </div>
- *   );
- * };
+ * useToogle() - Custom react hook for managing a boolean state and providing a function to toggle it.
+ * @see - https://react-hooks.abhushan.dev/hooks/state/usetoggle/
  */
 export function useToggle<T>(initialValue: T) {
 	const [state, setState] = React.useState(typeof initialValue === 'boolean' ? initialValue : Boolean(initialValue));

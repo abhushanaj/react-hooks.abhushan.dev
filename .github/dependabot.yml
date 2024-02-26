@@ -5,14 +5,20 @@
 
 version: 2
 updates:
-  - package-ecosystem: 'npm' # See documentation for possible values
-    directory: '/' # Location of package manifests
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
       interval: 'weekly'
       day: 'sunday'
     open-pull-requests-limit: 5
-  - package-ecosystem: 'npm' # See documentation for possible values
-    directory: '/www' # Location of package manifests
+  - package-ecosystem: 'npm'
+    directory: '/www'
+    schedule:
+      interval: 'weekly'
+      day: 'sunday'
+    open-pull-requests-limit: 15
+  - package-ecosystem: 'npm'
+    directory: '/react-hooks'
     schedule:
       interval: 'weekly'
       day: 'sunday'

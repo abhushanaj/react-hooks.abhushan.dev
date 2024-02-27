@@ -22,6 +22,8 @@ export { useQueue } from './hooks/useQueue';
 export { useLockBodyScroll } from './hooks/useLockBodyScroll';
 export { useWindowSize } from './hooks/useWindowSize';
 export type { UseWindowSizeResult } from './hooks/useWindowSize';
+export { useOuterWindowSize } from './hooks/useOuterWindowSize';
+export type { UseOuterWindowSizeResult } from './hooks/useOuterWindowSize';
 
 // ========= Effects and Lifecycles
 export { useOnMount } from './hooks/useOnMount';

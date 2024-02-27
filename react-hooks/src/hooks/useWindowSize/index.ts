@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
+
 export type UseWindowSizeResult = {
 	width: number | null;
 	height: number | null;
@@ -16,7 +18,7 @@ export function useWindowSize() {
 		height: null
 	});
 
-	React.useLayoutEffect(() => {
+	useIsomorphicLayoutEffect(() => {
 		const setWindowDimensions = () => {
 			setDimensions({
 				width: window.innerWidth,

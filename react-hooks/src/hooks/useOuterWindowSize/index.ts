@@ -9,7 +9,7 @@ export type UseOuterWindowSizeResult = {
 
 /**
  * useOuterWindowSize() - Custm react hook to get the values of `window.outerWidth` and `window.outerHeight`. It also subscribes to the resize event to get latest values.
- * @see - https://react-hooks.abhushan.dev/hooks/ui/useouterwindowsize/
+ * @see - https://react-hooks.abhushan.dev//hooks/ui/useouterwindowsize/
  *
  */
 export function useOuterWindowSize() {

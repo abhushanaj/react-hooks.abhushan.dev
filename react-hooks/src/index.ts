@@ -20,6 +20,8 @@ export { useQueue } from './hooks/useQueue';
 
 // ======== UI ==========
 export { useLockBodyScroll } from './hooks/useLockBodyScroll';
+export { useWindowSize } from './hooks/useWindowSize';
+export type { UseWindowSizeResult } from './hooks/useWindowSize';
 
 // ========= Effects and Lifecycles
 export { useOnMount } from './hooks/useOnMount';

@@ -38,7 +38,7 @@ describe('useWindowSize() hook', () => {
 		const updatedWidth = 100;
 		const updatedHeight = 200;
 
-		// mcok the resize event action
+		// mock the resize event action
 		act(() => {
 			windowWidthSpy.mockReturnValue(updatedWidth);
 			windowHeightSpy.mockReturnValue(updatedHeight);

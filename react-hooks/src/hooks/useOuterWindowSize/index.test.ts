@@ -55,7 +55,7 @@ describe('useOuterWindowSize() hook', () => {
 
 		const { result, unmount } = renderHook(() => useOuterWindowSize());
 
-		// we unmount here, to the values of resize event shuld not reflect anymore
+		// we unmount here, to the values of resize event should not reflect anymore.
 		unmount();
 
 		act(() => {

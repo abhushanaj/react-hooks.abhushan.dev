@@ -435,4 +435,102 @@ describe('useList() hook', () => {
 			expect(result.current[0]).toEqual(dataList);
 		});
 	});
+
+	// insertAt
+	describe('should should insert item at the specified index', () => {
+		it('should generate sparse array when positive index is out of bounds', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const newValue = 'TNew';
+
+			// out of bounds to generate sprase arrays
+			const insertIndex = dataList.length + 2;
+
+			act(() => {
+				result.current[1].insertAt(insertIndex, newValue);
+			});
+
+			dataList[insertIndex] = newValue;
+
+			expect(result.current[0]).toStrictEqual(dataList);
+		});
+
+		it('should insert at zero index if out of bounds for negative index', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const newValue = 'TNew';
+
+			// out of bounds to generate sprase arrays
+			const insertIndex = -dataList.length - 1;
+
+			act(() => {
+				result.current[1].insertAt(insertIndex, newValue);
+			});
+
+			// inserts are zero when negative out of bounds
+			dataList[0] = newValue;
+
+			expect(result.current[0]).toStrictEqual(dataList);
+		});
+	});
+
+	// insertAt===updateAt when index are in bounds
+	describe('insertAt behaves like updateAt for within bounds index', () => {
+		it('when it is positive', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const newValue = 'TNew';
+
+			// out of bounds to generate sprase arrays
+			const insertIndex = 0;
+			act(() => {
+				result.current[1].insertAt(insertIndex, newValue);
+			});
+
+			dataList[insertIndex] = newValue;
+
+			expect(result.current[0]).toStrictEqual(dataList);
+		});
+
+		it('when it is negative', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const newValue = 'TNew';
+
+			// out of bounds to generate sprase arrays
+			const insertIndex = -1;
+			act(() => {
+				result.current[1].insertAt(insertIndex, newValue);
+			});
+
+			// as -1 is last element
+			dataList[dataList.length - 1] = newValue;
+
+			expect(result.current[0]).toStrictEqual(dataList);
+		});
+	});
 });

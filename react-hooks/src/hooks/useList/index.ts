@@ -55,8 +55,33 @@ export function useList<T>(initialList?: Array<T>) {
 		});
 	}, []);
 
+	const insertAt = React.useCallback((index: number, value: T) => {
+		setList((prevList) => {
+			const size = prevList.length;
+			let normalizedIndex = index < 0 ? index + size : index;
+
+			// out of bounds on negative side insert at first index
+			if (normalizedIndex < 0) {
+				normalizedIndex = 0;
+			}
+
+			prevList[normalizedIndex] = value;
+			return prevList.slice(0);
+		});
+	}, []);
+
 	return [
 		list,
-		{ reset, set, firstItem: list[0], lastItem: list[list.length - 1], valueAt, clear, removeAt, updateAt }
+		{
+			reset,
+			set,
+			firstItem: list[0],
+			lastItem: list[list.length - 1],
+			valueAt,
+			clear,
+			removeAt,
+			updateAt,
+			insertAt
+		}
 	] as const;
 }

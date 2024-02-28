@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * useList() - Custom react hook to work with lists.
+ * @see -  https://react-hooks.abhushan.dev/hooks/state/uselist/
+ */
 export function useList<T>(initialList?: Array<T>) {
 	const [list, setList] = React.useState(initialList || []);
 
@@ -77,6 +81,7 @@ export function useList<T>(initialList?: Array<T>) {
 			set,
 			firstItem: list[0],
 			lastItem: list[list.length - 1],
+			size: list.length,
 			valueAt,
 			clear,
 			removeAt,

@@ -5,11 +5,11 @@ import { useList } from '.';
 
 describe('useList() hook', () => {
 	let emptyList: unknown[] = [];
-	let dataList: Array<string> = ['Test Data 1'];
+	let dataList: Array<string> = ['T1', 'T2'];
 
 	afterEach(() => {
 		emptyList = [];
-		dataList = ['Test Data 1'];
+		dataList = ['T1', 'T2'];
 	});
 
 	it('should be defined', () => {
@@ -226,5 +226,74 @@ describe('useList() hook', () => {
 		});
 
 		expect(result.current[0]).toEqual(emptyList);
+	});
+
+	// removeAt
+	describe('should remove the item at the index', () => {
+		it('when list is empty', () => {
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: emptyList
+				}
+			});
+
+			act(() => {
+				result.current[1].removeAt(0);
+			});
+
+			expect(result.current[0]).toEqual(emptyList);
+		});
+
+		it('when list is non-empty and index is not out of bounds', () => {
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const index = 0;
+			act(() => {
+				result.current[1].removeAt(index);
+			});
+
+			const filteredList = dataList.filter((_, ind) => ind !== index);
+
+			expect(result.current[0]).toEqual(filteredList);
+		});
+
+		it('when list is non-empty and index is negative and not out of bounds', () => {
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const index = -1;
+			act(() => {
+				result.current[1].removeAt(index);
+			});
+
+			const filteredList = dataList.filter((_, ind) => ind !== dataList.length + index);
+
+			expect(result.current[0]).toEqual(filteredList);
+		});
+
+		it('when index is out of bounds (positive or negative', () => {
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const index = -10;
+			act(() => {
+				result.current[1].removeAt(index);
+			});
+
+			const filteredList = dataList.filter((_, ind) => ind !== dataList.length + index);
+
+			expect(result.current[0]).toEqual(filteredList);
+			expect(result.current[0]).toEqual(dataList);
+		});
 	});
 });

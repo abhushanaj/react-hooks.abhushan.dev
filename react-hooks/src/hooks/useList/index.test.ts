@@ -67,7 +67,9 @@ describe('useList() hook', () => {
 
 	// set
 	describe('should set to a new state of the list', () => {
-		it('wne no list is passed, defaults to empty list', () => {
+		it('when no list is passed, defaults to empty list', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(() => useList());
 
 			const updatedNewList = emptyList.concat('Test 2');
@@ -80,6 +82,8 @@ describe('useList() hook', () => {
 		});
 
 		it('when the list state is empty', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: emptyList
@@ -96,6 +100,8 @@ describe('useList() hook', () => {
 		});
 
 		it('when the list state is non-empty', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -115,6 +121,8 @@ describe('useList() hook', () => {
 	// reset
 	describe('should reset to initial state of the list', () => {
 		it('when the list is empty', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: emptyList
@@ -131,6 +139,8 @@ describe('useList() hook', () => {
 		});
 
 		it('when the list state is non-empty', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -150,6 +160,8 @@ describe('useList() hook', () => {
 	// firstItem
 	describe('should yield the correct first item or undefined', () => {
 		it('when the list is empty', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: emptyList
@@ -160,6 +172,8 @@ describe('useList() hook', () => {
 		});
 
 		it('when the list is non-empty', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -173,6 +187,8 @@ describe('useList() hook', () => {
 	// lastItem
 	describe('should yield the correct last item or undefined', () => {
 		it('when the list is empty', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: emptyList
@@ -183,6 +199,8 @@ describe('useList() hook', () => {
 		});
 
 		it('when the list is non-empty', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -196,6 +214,8 @@ describe('useList() hook', () => {
 	// valueAt
 	describe('should return the right value at an index else undefined', () => {
 		it('when the list is empty', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: emptyList
@@ -206,6 +226,8 @@ describe('useList() hook', () => {
 		});
 
 		it('when the list is non-empty', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -216,6 +238,8 @@ describe('useList() hook', () => {
 		});
 
 		it('when negative index is passed', () => {
+			expect.hasAssertions();
+
 			const filledList = dataList.concat(['Test 2', 'Test 3', 'Test 4']);
 			const size = filledList.length;
 
@@ -236,6 +260,8 @@ describe('useList() hook', () => {
 
 	// clear
 	it('should clear the list back to empty state', () => {
+		expect.hasAssertions();
+
 		const { result } = renderHook(({ initialList }) => useList(initialList), {
 			initialProps: {
 				initialList: dataList
@@ -252,6 +278,8 @@ describe('useList() hook', () => {
 	// removeAt
 	describe('should remove the item at the index', () => {
 		it('with positive inbounds index', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -270,6 +298,8 @@ describe('useList() hook', () => {
 		});
 
 		it('with negative inbounds index', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -288,6 +318,8 @@ describe('useList() hook', () => {
 		});
 
 		it('with positive out-of-bounds index', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -304,6 +336,8 @@ describe('useList() hook', () => {
 		});
 
 		it('with negative out-of-bounds index', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -323,6 +357,8 @@ describe('useList() hook', () => {
 	// updateAt
 	describe('should update the item at the index with given value', () => {
 		it('with positive inbounds index', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -342,6 +378,8 @@ describe('useList() hook', () => {
 		});
 
 		it('with negative inbounds index', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -360,6 +398,8 @@ describe('useList() hook', () => {
 		});
 
 		it('with positive out-of-bounds index', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
@@ -377,6 +417,8 @@ describe('useList() hook', () => {
 		});
 
 		it('with negative out-of-bounds index', () => {
+			expect.hasAssertions();
+
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList

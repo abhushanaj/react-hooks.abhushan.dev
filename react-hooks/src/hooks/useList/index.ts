@@ -28,6 +28,7 @@ export function useList<T>(initialList?: Array<T>) {
 			const size = prevList.length;
 			const normalizedIndex = index < 0 ? index + size : index;
 
+			// no changes if out of bounds
 			if (normalizedIndex >= size || normalizedIndex < 0) {
 				return prevList;
 			}
@@ -38,5 +39,24 @@ export function useList<T>(initialList?: Array<T>) {
 		});
 	}, []);
 
-	return [list, { reset, set, firstItem: list[0], lastItem: list[list.length - 1], valueAt, clear, removeAt }] as const;
+	const updateAt = React.useCallback((index: number, value: T) => {
+		setList((prevList) => {
+			const size = prevList.length;
+			const normalizedIndex = index < 0 ? index + size : index;
+
+			// no changes if out of bounds
+			if (normalizedIndex >= size || normalizedIndex < 0) {
+				return prevList;
+			}
+
+			prevList[normalizedIndex] = value;
+			const listCopy = prevList.slice(0);
+			return listCopy;
+		});
+	}, []);
+
+	return [
+		list,
+		{ reset, set, firstItem: list[0], lastItem: list[list.length - 1], valueAt, clear, removeAt, updateAt }
+	] as const;
 }

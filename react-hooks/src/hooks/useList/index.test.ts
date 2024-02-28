@@ -3,6 +3,22 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { useList } from '.';
 
+/**
+ * Probably replace them with some third party utility library
+ */
+
+function _updateList<T>(list: Array<T>, index: number, item: T) {
+	const updatedList = list.map((value, i) => {
+		if (index === i || index === i - list.length) {
+			return item;
+		}
+
+		return value;
+	});
+
+	return updatedList;
+}
+
 describe('useList() hook', () => {
 	let emptyList: unknown[] = [];
 	let dataList: Array<string> = ['T1', 'T2'];
@@ -293,6 +309,80 @@ describe('useList() hook', () => {
 			const filteredList = dataList.filter((_, ind) => ind !== dataList.length + index);
 
 			expect(result.current[0]).toEqual(filteredList);
+			expect(result.current[0]).toEqual(dataList);
+		});
+	});
+
+	// updateAt
+	describe('should update the item at the index with given value', () => {
+		it('with positive inbounds index', () => {
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const updateIndex = 0;
+			const updateItem = 'Updated Item';
+
+			act(() => {
+				result.current[1].updateAt(updateIndex, updateItem);
+			});
+
+			const updatedList = _updateList(dataList, updateIndex, updateItem);
+
+			expect(result.current[0]).toEqual(updatedList);
+		});
+
+		it('with negative inbounds index', () => {
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const updateIndex = -1;
+			const updateItem = 'Updated Item';
+			const updatedList = _updateList(dataList, updateIndex, updateItem);
+
+			act(() => {
+				result.current[1].updateAt(updateIndex, updateItem);
+			});
+
+			expect(result.current[0]).toEqual(updatedList);
+		});
+
+		it('with positive out-of-bounds index', () => {
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const updateIndex = 10;
+			const updateItem = 'Updated Item';
+
+			act(() => {
+				result.current[1].updateAt(updateIndex, updateItem);
+			});
+
+			expect(result.current[0]).toEqual(dataList);
+		});
+
+		it('with negative out-of-bounds index', () => {
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const updateIndex = -10;
+			const updateItem = 'Updated Item';
+
+			act(() => {
+				result.current[1].updateAt(updateIndex, updateItem);
+			});
+
 			expect(result.current[0]).toEqual(dataList);
 		});
 	});

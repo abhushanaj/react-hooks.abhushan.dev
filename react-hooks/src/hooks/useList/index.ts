@@ -19,5 +19,9 @@ export function useList<T>(initialList?: Array<T>) {
 		[list]
 	);
 
-	return [list, { reset, set, firstItem: list[0], lastItem: list[list.length - 1], valueAt }] as const;
+	const clear = React.useCallback(() => {
+		setList([]);
+	}, []);
+
+	return [list, { reset, set, firstItem: list[0], lastItem: list[list.length - 1], valueAt, clear }] as const;
 }

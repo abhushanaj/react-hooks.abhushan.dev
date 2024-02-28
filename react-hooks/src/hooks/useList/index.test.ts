@@ -212,4 +212,19 @@ describe('useList() hook', () => {
 			expect(result.current[1].valueAt(index)).toEqual(filledList[index + size]);
 		});
 	});
+
+	// clear
+	it('should clear the list back to empty state', () => {
+		const { result } = renderHook(({ initialList }) => useList(initialList), {
+			initialProps: {
+				initialList: dataList
+			}
+		});
+
+		act(() => {
+			result.current[1].clear();
+		});
+
+		expect(result.current[0]).toEqual(emptyList);
+	});
 });

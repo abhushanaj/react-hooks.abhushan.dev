@@ -1,0 +1,93 @@
+---
+title: useList
+description: 'Manage a list of items'
+subtitle: 'Manage a list of items'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useQueue';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useList` hook is helpful when you want to manage a list of items.
+
+It provide with helper methods like `valueAt`, `insertAt`, `updateAt`, `removeAt`, `clear`, `reset` and additional properties like `firstItem`, `lastItem` and `size`.
+
+<DemoWrapper title="useList">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,5,7}
+import React from 'react';
+import { useQueue } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [queue, queueControls] = useQueue([]);
+
+	const { remove, add, clear, firstItem, lastItem, size } = queueControls;
+
+	return (
+		<div>
+			<p>Size: {size}</p>
+			<p>First Item: {firstItem}</p>
+			<p>Last Item: {lastItem}</p>
+			<button onClick={clear}>Clear</button>
+			<button onClick={() => add(queue.length)}>Add Item</button>
+			<button
+				onClick={() => {
+					const removedItem = remove();
+					console.log(removedItem);
+				}}
+			>
+				Remove Item
+			</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. The `insertAt`, `removeAt` , `valueAt` `updateAt` methods can work both with positive and negative index. Negative index values count back from the last item in the list.
+2. Performing `insertAt` with positive out of bounds index will result in a [sparse array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays), while negative out of bounds index will simply update the item at `index=0`.
+3. Performing `removeAt` and `updateAt` with out of bounds index will not change the array.
+
+## API Reference
+
+### Parameters
+
+| Parameter   | Type                  | Description                            | Default |
+| ----------- | --------------------- | -------------------------------------- | ------- |
+| initialList | `Array<T>` (optional) | The initial list with items prefilled. | `[]`    |
+
+### Return Value
+
+| Parameter    | Type                              | Description                                          | Default |
+| ------------ | --------------------------------- | ---------------------------------------------------- | ------- |
+| list         | `Array<T>`                        | The current list.                                    | N/A     |
+| listControls | [`ListControls`](#1-listcontrols) | The control options for the list to add, remove etc. | N/A     |
+
+## Types Reference
+
+### 1. `ListControls`
+
+| Parameter | Type                             | Description                                                                 | Default |
+| --------- | -------------------------------- | --------------------------------------------------------------------------- | ------- |
+| firstItem | `T\|undefined`                   | The first item of the list.                                                 | N/A     |
+| lastItem  | `T\|undefined`                   | The last item of the list.                                                  | N/A     |
+| size      | `number`                         | The size of the list.                                                       | N/A     |
+| clear     | `()=>void`                       | Clears the list to an empty state.                                          | N/A     |
+| reset     | `()=>void`                       | Resets the list to the initial state.                                       | N/A     |
+| set       | `(newList: Array<T>)=>void`      | Replaces the existing list with the new list.                               | N/A     |
+| valueAt   | `(index:number)=>T \| undefined` | Gets the item at the given index or returns `undefined` if does not exists. | N/A     |
+| insertAt  | `(index:number, value: T)=>void` | Inserts the item at the given index and updates the list.                   | N/A     |
+| updateAt  | `(index:number, value: T)=>void` | Updates the index with the new value and updates the list.                  | N/A     |
+| removeAt  | `(index: number)=>void`          | Removes the item present at index and updates the list.                     | N/A     |
+
+**Note**: See [properties](http://localhost:3000/hooks/state/uselist/#properties) to understand caveats while working with index methods.

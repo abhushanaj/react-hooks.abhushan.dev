@@ -19,6 +19,11 @@ function _updateList<T>(list: Array<T>, index: number, item: T) {
 	return updatedList;
 }
 
+function _removeFromList<T>(list: Array<T>, index: number) {
+	const normalizedIndex = index < 0 ? index + list.length : index;
+	const updatedList = list.filter((_, ind) => ind !== normalizedIndex);
+	return updatedList;
+}
 describe('useList() hook', () => {
 	let emptyList: unknown[] = [];
 	let dataList: Array<string> = ['T1', 'T2'];
@@ -246,69 +251,71 @@ describe('useList() hook', () => {
 
 	// removeAt
 	describe('should remove the item at the index', () => {
-		it('when list is empty', () => {
-			const { result } = renderHook(({ initialList }) => useList(initialList), {
-				initialProps: {
-					initialList: emptyList
-				}
-			});
-
-			act(() => {
-				result.current[1].removeAt(0);
-			});
-
-			expect(result.current[0]).toEqual(emptyList);
-		});
-
-		it('when list is non-empty and index is not out of bounds', () => {
+		it('with positive inbounds index', () => {
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
 				}
 			});
 
-			const index = 0;
+			const removeIndex = 0;
+
 			act(() => {
-				result.current[1].removeAt(index);
+				result.current[1].removeAt(removeIndex);
 			});
 
-			const filteredList = dataList.filter((_, ind) => ind !== index);
+			const filteredList = _removeFromList(dataList, removeIndex);
 
 			expect(result.current[0]).toEqual(filteredList);
 		});
 
-		it('when list is non-empty and index is negative and not out of bounds', () => {
+		it('with negative inbounds index', () => {
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
 				}
 			});
 
-			const index = -1;
+			const removeIndex = -1;
+
 			act(() => {
-				result.current[1].removeAt(index);
+				result.current[1].removeAt(removeIndex);
 			});
 
-			const filteredList = dataList.filter((_, ind) => ind !== dataList.length + index);
+			const filteredList = _removeFromList(dataList, removeIndex);
 
 			expect(result.current[0]).toEqual(filteredList);
 		});
 
-		it('when index is out of bounds (positive or negative', () => {
+		it('with positive out-of-bounds index', () => {
 			const { result } = renderHook(({ initialList }) => useList(initialList), {
 				initialProps: {
 					initialList: dataList
 				}
 			});
 
-			const index = -10;
+			const removeIndex = 10;
+
 			act(() => {
-				result.current[1].removeAt(index);
+				result.current[1].removeAt(removeIndex);
 			});
 
-			const filteredList = dataList.filter((_, ind) => ind !== dataList.length + index);
+			expect(result.current[0]).toEqual(dataList);
+		});
 
-			expect(result.current[0]).toEqual(filteredList);
+		it('with negative out-of-bounds index', () => {
+			const { result } = renderHook(({ initialList }) => useList(initialList), {
+				initialProps: {
+					initialList: dataList
+				}
+			});
+
+			const removeIndex = -10;
+
+			act(() => {
+				result.current[1].removeAt(removeIndex);
+			});
+
 			expect(result.current[0]).toEqual(dataList);
 		});
 	});

@@ -6,7 +6,7 @@ sidebar:
   badge: 'New'
 ---
 
-import Example from '@/components/demo/useQueue';
+import Example from '@/components/demo/useList';
 import { DemoWrapper } from '@/components/demo/wrapper';
 
 The `useList` hook is helpful when you want to manage a list of items.
@@ -23,12 +23,12 @@ Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
 ```tsx title="./src/App.tsx" ins={2,5,7}
 import React from 'react';
-import { useQueue } from '@abhushanaj/react-hooks';
+import { useList } from '@abhushanaj/react-hooks';
 
 function App() {
-	const [queue, queueControls] = useQueue([]);
+	const [list, listControls] = useList([1, 2, 3, 4]);
 
-	const { remove, add, clear, firstItem, lastItem, size } = queueControls;
+	const { firstItem, lastItem, size, clear, reset, set, valueAt, inserAt, updateAt, removeAt } = listControls;
 
 	return (
 		<div>
@@ -36,14 +36,21 @@ function App() {
 			<p>First Item: {firstItem}</p>
 			<p>Last Item: {lastItem}</p>
 			<button onClick={clear}>Clear</button>
-			<button onClick={() => add(queue.length)}>Add Item</button>
 			<button
 				onClick={() => {
-					const removedItem = remove();
-					console.log(removedItem);
+					set([1, 2, 3]);
 				}}
 			>
-				Remove Item
+				Set [1,2,3]
+			</button>
+
+			<button onClick={() => updateAt(0, 4)}>Update Index 0 with 4</button>
+			<button
+				onClick={() => {
+					removeAt(2);
+				}}
+			>
+				Remove index 2
 			</button>
 		</div>
 	);

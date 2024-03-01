@@ -25,6 +25,7 @@ export { useWindowSize } from './hooks/useWindowSize';
 export type { UseWindowSizeResult } from './hooks/useWindowSize';
 export { useOuterWindowSize } from './hooks/useOuterWindowSize';
 export type { UseOuterWindowSizeResult } from './hooks/useOuterWindowSize';
+export { useDebouncedValue } from './hooks/useDebouncedValue';
 
 // ========= Effects and Lifecycles
 export { useOnMount } from './hooks/useOnMount';

@@ -1,0 +1,73 @@
+---
+title: useDebouncedValue
+description: 'Delay execution of a state update until a defined time period.'
+subtitle: 'Delay execution of a state update until a defined time period.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useDebouncedValue';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useDebouncedValue` hook is helpful when you want to delay the execution of a state value update until a given time period (ms).
+
+This is helpful in scenarios when you want to make an API requests based on user input like search.
+
+<DemoWrapper title="useDebouncedValue">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,6}
+import React from 'react';
+import { useDebouncedValue } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [enteredText, setEnteredText] = React.useState('');
+	const [searchText, cancel] = useDebouncedValue(enteredText, 200);
+
+	return (
+		<div>
+			<div>
+				<label htmlFor="search">Enter your search query</label>
+				<input
+					type="search"
+					id="search"
+					value={enteredText}
+					onChange={(e) => {
+						setEnteredText(e.target.value);
+					}}
+				/>
+			</div>
+
+			<p>Debounced search term {searchText} ...</p>
+			<button onClick={cancel}>Cancel</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. On the initial render, the `debouncedValue` will be `undefined` until the wait duration has passed.
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type     | Description                                                                         | Default |
+| --------- | -------- | ----------------------------------------------------------------------------------- | ------- |
+| value     | `T`      | The state value to debounce.                                                        | N/A     |
+| wait      | `number` | The wait time in milliseconds. After this amount of time, the latest value is used. | N/A     |
+
+## Return Value
+
+| Parameter      | Type            | Description                                                                                      | Default |
+| -------------- | --------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| debouncedValue | `T\| undefined` | The debounced value. After the `wait` time has passed, this will be updated to the latest value. | N/A     |
+| cancel         | `()=>void`      | Function to cancel any pending invocations for state updates.                                    | N/A     |

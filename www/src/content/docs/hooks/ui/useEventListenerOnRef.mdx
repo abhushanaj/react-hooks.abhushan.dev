@@ -1,0 +1,110 @@
+---
+title: useEventListenerOnRef
+description: 'Adds an event listener to a element through the ref object'
+subtitle: 'Adds an event listener to a element through the ref object'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useEventListenerOnRef';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useEventListenerOnRef` hook is helpful when you want attach event listener to elements through their ref objects created from `React.useRef`.
+The event listener attached will automatically be cleanuped once the component is unmounted.
+
+<DemoWrapper title="useEventListenerOnRef">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,7-9}
+import React from 'react';
+import { useEventListenerOnRef } from '@abhushanaj/react-hooks';
+
+function App() {
+	const ref = React.useRef<HTMLButtonElement>(null);
+
+	useEventListenerOnRef(ref, 'click', () => {
+		alert('Clicked');
+	});
+
+	return <button ref={ref}>Click Me!</button>;
+}
+
+export default App;
+```
+
+## Properties
+
+1. When using the `useEventListenerOnRef` hook, **you don't need to memoize the callback** with `React.useCallback` or similar. As the callback is not utilized as a dependency in the `useEffect`, the listener does not remove and attach itself again on change of the callback callback functions' reference identity.
+
+```tsx title="./src/App.tsx" del={8-10, 12}
+import React from 'react';
+import { useEventListenerOnRef } from '@abhushanaj/react-hooks';
+
+function App() {
+	const ref = React.useRef<HTMLButtonElement>(null);
+
+	// This is not required at all.
+	const callback = React.useCallback(() => {
+		console.log('Mounted');
+	}, []);
+
+	useEventListenerOnRef(ref, 'click', callback);
+
+	return (
+		<div>
+			<button ref={ref}>Click me!</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+2. You can pass any options defined on `AddEventListenerOptions` to the event handler as defined on [MDN spec](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#parameters).
+
+```tsx title="./src/App.tsx" ins={7-11, 17}
+import React from 'react';
+import { useEventListenerOnRef } from '@abhushanaj/react-hooks';
+
+function App() {
+	const ref = React.useRef<HTMLButtonElement>(null);
+
+	const options = {
+		once: true,
+		passive: false,
+		capture: true
+	} satisfies AddEventListenerOptions;
+
+	const callback = () => {
+		alert('Clicked');
+	};
+
+	useEventListenerOnRef(ref, 'click', callback, options);
+
+	return (
+		<div>
+			<button ref={ref}>Click me!</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type                                            | Description                                                            | Default     |
+| --------- | ----------------------------------------------- | ---------------------------------------------------------------------- | ----------- |
+| ref       | `TargetRef`                                     | The target ref on which you want to attach the listeners.              | N/A         |
+| eventName | `string`                                        | The name of the event to listen to.                                    | N/A         |
+| callback  | `EventListenerOrEventListenerObject`            | The event handler function to be executed when the event is triggered. | N/A         |
+| options   | `AddEventListenerOptions \| boolean` (optional) | Additional options for the event listener.                             | `undefined` |
+
+**Note:** The `EventListenerOrEventListenerObject` and `AddEventListenerOptions` are standard types defined by `lib.dom.d.ts`. You can refer the [MDN spec](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#parameters) for additional information.

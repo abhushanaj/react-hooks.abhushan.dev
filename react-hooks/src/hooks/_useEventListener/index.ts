@@ -22,7 +22,7 @@ type PossibleEventMap<Target extends PossibleTargets> =
 
 /**
  * _useEventListener() - Custom react hook to attach event listeners for a target element or ref object
- * @see - https://react-hooks.abhushan.dev/hooks/ui/_useEventListener/
+ *
  */
 export function _useEventListener<T extends PossibleTargets>(
 	target: T,

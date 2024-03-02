@@ -38,9 +38,10 @@ describe('_useEventListener() hook', () => {
 			element.dispatchEvent(new Event('click'));
 		});
 
-		unmount();
-
 		expect(mockedAddEvtListener).toHaveBeenCalledWith('click', mockedCb, options);
+		expect(mockedRemoveEvtListener).not.toHaveBeenCalled();
+
+		unmount();
 		expect(mockedRemoveEvtListener).toHaveBeenCalledWith('click', mockedCb, options);
 	});
 

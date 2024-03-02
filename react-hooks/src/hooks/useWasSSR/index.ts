@@ -4,6 +4,7 @@ import { noop } from '../../utils';
 
 /**
  * useWasSSR() - Custom react hook which returns a boolean flag to indicate on whether the component was SSR.
+ * @see- https://react-hooks.abhushan.dev/hooks/utilities/usewasssr/
  */
 export function useWasSSR() {
 	const wasSSRRef = React.useRef<boolean>(false);

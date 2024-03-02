@@ -3,9 +3,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { RefObject } from 'react';
 
-import { useEventListener } from '.';
+import { _useEventListener } from '.';
 
-describe('useEventListener() hook', () => {
+describe('_useEventListener() hook', () => {
 	const mockedCb = vi.fn();
 
 	afterEach(() => {
@@ -14,12 +14,12 @@ describe('useEventListener() hook', () => {
 
 	it('should be defined', () => {
 		expect.hasAssertions();
-		expect(useEventListener).toBeDefined();
+		expect(_useEventListener).toBeDefined();
 	});
 
 	it('should remove the callback for the target', () => {
 		expect.hasAssertions();
-		const { unmount } = renderHook(() => useEventListener(document, 'click', mockedCb));
+		const { unmount } = renderHook(() => _useEventListener(document, 'click', mockedCb));
 
 		unmount();
 
@@ -33,7 +33,7 @@ describe('useEventListener() hook', () => {
 	it('should setup event for document element', () => {
 		expect.hasAssertions();
 
-		renderHook(() => useEventListener(document, 'click', mockedCb));
+		renderHook(() => _useEventListener(document, 'click', mockedCb));
 
 		act(() => {
 			document.dispatchEvent(new Event('click'));
@@ -45,7 +45,7 @@ describe('useEventListener() hook', () => {
 	it('should setup event for window element', () => {
 		expect.hasAssertions();
 
-		renderHook(() => useEventListener(window, 'click', mockedCb));
+		renderHook(() => _useEventListener(window, 'click', mockedCb));
 
 		act(() => {
 			window.dispatchEvent(new Event('click'));
@@ -61,7 +61,7 @@ describe('useEventListener() hook', () => {
 			current: document.createElement('button')
 		} satisfies RefObject<HTMLButtonElement>;
 
-		renderHook(() => useEventListener(mockedRef, 'click', mockedCb));
+		renderHook(() => _useEventListener(mockedRef, 'click', mockedCb));
 
 		act(() => {
 			mockedRef.current.dispatchEvent(new Event('click'));
@@ -80,7 +80,7 @@ describe('useEventListener() hook', () => {
 			capture: false,
 			passive: true
 		};
-		renderHook(() => useEventListener(window, 'click', mockedCb, options));
+		renderHook(() => _useEventListener(window, 'click', mockedCb, options));
 
 		act(() => {
 			window.dispatchEvent(new Event('click'));

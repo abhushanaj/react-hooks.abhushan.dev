@@ -1,0 +1,44 @@
+---
+title: useWasSRR
+description: "Indicates whether the component was SSR'ed or not."
+subtitle: "Indicates whether the component was SSR'ed or not."
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useWasSSR';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useWasSRR` hook is helpful when you want to know whether the component was server-side rendered (SSR) or not.
+
+<DemoWrapper title="useWasSRR">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={1,4}
+import { useWasSSR } from '@abhushanaj/react-hooks';
+
+function App() {
+	const wasSSR = useWasSSR();
+
+	return (
+		<div>
+			<p>{useWasSSR ? 'Yes' : 'No'}</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Return Value
+
+| Parameter | Type      | Description                                       | Default |
+| --------- | --------- | ------------------------------------------------- | ------- |
+| wasSSR    | `boolean` | Whether or not the component was server rendered. | N/A     |

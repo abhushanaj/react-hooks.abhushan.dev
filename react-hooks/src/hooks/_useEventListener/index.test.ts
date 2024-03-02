@@ -17,44 +17,34 @@ describe('_useEventListener() hook', () => {
 		expect(_useEventListener).toBeDefined();
 	});
 
-	it('should remove the callback for the target', () => {
+	it('should setup and destroy listeners for any generic target element', () => {
+		const mockedAddEvtListener = vi.fn();
+
+		const mockedRemoveEvtListener = vi.fn();
+
+		const element = {
+			addEventListener: mockedAddEvtListener,
+			removeEventListener: mockedRemoveEvtListener,
+			dispatchEvent: vi.fn()
+		} as unknown as Element;
+
+		const options = {};
+
 		expect.hasAssertions();
-		const { unmount } = renderHook(() => _useEventListener(document, 'click', mockedCb));
+
+		const { unmount } = renderHook(() => _useEventListener(element, 'click', mockedCb, options));
+
+		act(() => {
+			element.dispatchEvent(new Event('click'));
+		});
 
 		unmount();
 
-		act(() => {
-			document.dispatchEvent(new Event('click'));
-		});
-
-		expect(mockedCb).not.toHaveBeenCalled();
+		expect(mockedAddEvtListener).toHaveBeenCalledWith('click', mockedCb, options);
+		expect(mockedRemoveEvtListener).toHaveBeenCalledWith('click', mockedCb, options);
 	});
 
-	it('should setup event for document element', () => {
-		expect.hasAssertions();
-
-		renderHook(() => _useEventListener(document, 'click', mockedCb));
-
-		act(() => {
-			document.dispatchEvent(new Event('click'));
-		});
-
-		expect(mockedCb).toHaveBeenCalledTimes(1);
-	});
-
-	it('should setup event for window element', () => {
-		expect.hasAssertions();
-
-		renderHook(() => _useEventListener(window, 'click', mockedCb));
-
-		act(() => {
-			window.dispatchEvent(new Event('click'));
-		});
-
-		expect(mockedCb).toHaveBeenCalledTimes(1);
-	});
-
-	it('should setup event for a ref object', () => {
+	it('should setup event for a generic ref object', () => {
 		expect.hasAssertions();
 
 		const mockedRef = {

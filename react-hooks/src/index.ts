@@ -42,3 +42,4 @@ export { useTimeout } from './hooks/useTimeout';
 // ========= Utilities ==========
 export { useDebouncedValue } from './hooks/useDebouncedValue';
 export { useWasSSR } from './hooks/useWasSSR';
+export { useIsClient } from './hooks/useIsClient';

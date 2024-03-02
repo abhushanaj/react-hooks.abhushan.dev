@@ -9,7 +9,7 @@ export type UseWindowSizeResult = {
 
 /**
  * useWindowSize() - Custom react hook to get the dimensions(width and height) of the window. The hooks also gets the latest values based on the resize event.
- * @see - https://react-hooks.abhushan.dev/hooks/ui/usewindowsize/
+ * @see - https://react-hooks.abhushan.dev/hooks/window/usewindowsize/
  *
  */
 export function useWindowSize() {

@@ -66,13 +66,22 @@ export default defineConfig({
 					label: 'Document Object Model (DOM)',
 					autogenerate: { directory: '/hooks/dom' }
 				},
+
 				{
 					label: 'Browser Object Model (BOM)',
 					autogenerate: { directory: '/hooks/bom' }
 				},
 				{
+					label: 'Window',
+					autogenerate: { directory: '/hooks/window' }
+				},
+				{
 					label: 'State',
 					autogenerate: { directory: '/hooks/state' }
+				},
+				{
+					label: 'User Interface (UI)',
+					autogenerate: { directory: '/hooks/ui' }
 				},
 				{
 					label: 'Effects and Lifecycles',
@@ -83,8 +92,8 @@ export default defineConfig({
 					autogenerate: { directory: '/hooks/timers' }
 				},
 				{
-					label: 'User Interface (UI)',
-					autogenerate: { directory: '/hooks/ui' }
+					label: 'Utilities',
+					autogenerate: { directory: '/hooks/utilities' }
 				}
 			],
 			components: {

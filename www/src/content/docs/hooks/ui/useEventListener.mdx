@@ -1,0 +1,54 @@
+---
+title: useEventListener
+description: Subscribe to events on any target element
+subtitle: Subscribe to events on any target element
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useEventListener';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useEventListener` hook is helpful when you want to subscribe to an event and run a callback whenever the event is triggered for any DOM element.
+
+The hook automatically removes the listener once the component is unmounted.
+
+<DemoWrapper title="useEventListener">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={1,4, 8-9}
+import { useOuterWindowSize } from '@abhushanaj/react-hooks';
+
+function App() {
+	const { width, height } = useOuterWindowSize();
+
+	return (
+		<div>
+			<p>Window Width is : {width ?? 0} px</p>
+			<p>Window Height is : {height ?? 0} px</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. **When Server Side Rendering (SSR) is performed**, the initial values for `width` and `height` will be `null`, and the actual dimensions will be reflected once it reaches the browser.
+
+2. The API uses the [`window.outerHeight`](https://developer.mozilla.org/en-US/docs/Web/API/Window/outerHeight) and [`window.outerWidth`](https://developer.mozilla.org/en-US/docs/Web/API/Window/outerWidth) properties to get window dimension. Learn more about them from MDN.
+
+## API Reference
+
+### Return Value
+
+| Parameter | Type           | Description                     | Default |
+| --------- | -------------- | ------------------------------- | ------- |
+| width     | `number\|null` | The width of the outer window.  | N/A     |
+| height    | `number\|null` | The height of the outer window. | N/A     |

@@ -2,9 +2,15 @@ import React from 'react';
 
 import type { RefObject } from 'react';
 
-type PossibleTargets = Window | Document | HTMLElement | SVGElement | RefObject<HTMLElement | SVGElement> | Element;
+export type UseEventListenerPossibleTargets =
+	| Window
+	| Document
+	| HTMLElement
+	| SVGElement
+	| RefObject<HTMLElement | SVGElement>
+	| Element;
 
-type PossibleEventMap<Target extends PossibleTargets> =
+export type UseEventListenerEventMap<Target extends UseEventListenerPossibleTargets> =
 	// 1st: When Window
 	Target extends Window
 		? WindowEventMap
@@ -20,15 +26,18 @@ type PossibleEventMap<Target extends PossibleTargets> =
 					: // end: just send plain old strings
 						Record<string, never>;
 
+export type UseEventListenerCallback = EventListenerOrEventListenerObject;
+export type UseEventListenerOptions = AddEventListenerOptions | boolean;
+
 /**
  * _useEventListener() - Custom react hook to attach event listeners for a target element or ref object
  *
  */
-export function _useEventListener<T extends PossibleTargets>(
+export function _useEventListener<T extends UseEventListenerPossibleTargets>(
 	target: T,
-	eventName: keyof PossibleEventMap<T>,
-	callback: EventListenerOrEventListenerObject,
-	options?: AddEventListenerOptions | boolean
+	eventName: keyof UseEventListenerEventMap<T>,
+	callback: UseEventListenerCallback,
+	options?: UseEventListenerOptions
 ) {
 	const callbackRef = React.useRef(callback);
 

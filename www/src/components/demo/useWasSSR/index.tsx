@@ -7,13 +7,11 @@ function Box() {
 	return (
 		<div
 			className={`flex size-20 items-center justify-center rounded-md border-2 border-white  text-white ${wasSSRed ? 'bg-green-500' : 'bg-red-500'}`}
-		>
-			{wasSSRed ? 'Y' : 'N'}
-		</div>
+		/>
 	);
 }
 
-function UseLockBodyScrollExample() {
+function UseWasSSRExample() {
 	return (
 		<div>
 			{/* Markers */}
@@ -25,7 +23,7 @@ function UseLockBodyScrollExample() {
 
 				<div className="flex items-center gap-1">
 					<span className="block size-2 bg-red-500" />
-					<small>Not SSR'ed</small>
+					<small>Client Only</small>
 				</div>
 			</div>
 
@@ -40,4 +38,4 @@ function UseLockBodyScrollExample() {
 	);
 }
 
-export default UseLockBodyScrollExample;
+export default UseWasSSRExample;

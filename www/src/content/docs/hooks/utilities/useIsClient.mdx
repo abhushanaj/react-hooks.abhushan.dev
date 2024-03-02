@@ -1,0 +1,41 @@
+---
+title: useIsClient
+description: 'Returns a boolean flag to mark if code in running on client side.'
+subtitle: 'Returns a boolean flag to mark if code in running on client side.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useIsClient';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useIsClient` hook is helpful when you want to know whether the whether the component was running on client side or not.
+
+It is useful when you want to create gate-keeping components like `<ClientOnly/>` which ensures a component renders only on client, even when page is SSR'ed.
+
+<DemoWrapper title="useIsClient">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/ClientOnly.tsx" ins={1,4}
+import { useIsClient } from '@abhushanaj/react-hooks';
+
+function ClientOnly(props) {
+	const isClient = useIsClient();
+	return isClient ? props.children : null;
+}
+
+export default ClientOnly;
+```
+
+## API Reference
+
+### Return Value
+
+| Parameter | Type      | Description                                       | Default |
+| --------- | --------- | ------------------------------------------------- | ------- |
+| isClient  | `boolean` | Whether or not the it is client-side environment. | N/A     |

@@ -43,4 +43,4 @@ export { useTimeout } from './hooks/useTimeout';
 export { useDebouncedValue } from './hooks/useDebouncedValue';
 export { useWasSSR } from './hooks/useWasSSR';
 export { useIsClient } from './hooks/useIsClient';
-export { useFreshValue } from './hooks/useFreshValue';
+export { useFreshRef } from './hooks/useFreshRef';

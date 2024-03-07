@@ -1,12 +1,12 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { useFreshValue } from '.';
+import { useFreshRef } from '.';
 
-describe('useFreshValue() hook', () => {
+describe('useFreshRef() hook', () => {
 	it('should be defined', () => {
 		expect.hasAssertions();
-		expect(useFreshValue).toBeDefined();
+		expect(useFreshRef).toBeDefined();
 	});
 
 	it('should update the ref with latest function passed', () => {
@@ -15,7 +15,7 @@ describe('useFreshValue() hook', () => {
 
 		expect.hasAssertions();
 
-		const { result, rerender } = renderHook(({ value }) => useFreshValue(value), {
+		const { result, rerender } = renderHook(({ value }) => useFreshRef(value), {
 			initialProps: {
 				value: mockedCb1
 			}
@@ -36,7 +36,7 @@ describe('useFreshValue() hook', () => {
 
 		expect.hasAssertions();
 
-		const { result, rerender } = renderHook(({ value }) => useFreshValue(value), {
+		const { result, rerender } = renderHook(({ value }) => useFreshRef(value), {
 			initialProps: {
 				value: mockedCb1
 			}

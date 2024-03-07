@@ -9,7 +9,7 @@ describe('useFreshRef() hook', () => {
 		expect(useFreshRef).toBeDefined();
 	});
 
-	it('should update the ref with latest function passed', () => {
+	it('should return the ref with latest function passed', () => {
 		const mockedCb1 = vi.fn();
 		const mockedCb2 = vi.fn();
 
@@ -30,24 +30,24 @@ describe('useFreshRef() hook', () => {
 		expect(result.current.current).toBe(mockedCb2);
 	});
 
-	it('should update the ref with latest value passed', () => {
-		const mockedCb1 = 'Initial Value';
-		const mockedCb2 = 'Updated Value';
+	it('should return the ref with latest value passed', () => {
+		const initialValue = { name: 'Initial Name' };
+		const updatedValue = { name: 'Updated Name' };
 
 		expect.hasAssertions();
 
 		const { result, rerender } = renderHook(({ value }) => useFreshRef(value), {
 			initialProps: {
-				value: mockedCb1
+				value: initialValue
 			}
 		});
 
-		expect(result.current.current).toBe(mockedCb1);
+		expect(result.current.current).toBe(initialValue);
 
 		rerender({
-			value: mockedCb2
+			value: updatedValue
 		});
 
-		expect(result.current.current).toBe(mockedCb2);
+		expect(result.current.current).toBe(updatedValue);
 	});
 });

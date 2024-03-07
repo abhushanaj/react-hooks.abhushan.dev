@@ -1,0 +1,73 @@
+---
+title: useFreshRef
+description: 'Returns a ref with the latest and fresh value passed to it.'
+subtitle: 'Returns a ref with the latest and fresh value passed to it.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useFreshRef';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useFreshRef` hook is helpful when you want to address the issue of stale closures by providing a ref with the latest and freshest value passed to it.
+
+It can be particularly helpful to prevent stale state in callbacks, ensuring that the latest value is always accessible without introducing unnecessary re-renders.
+
+<DemoWrapper title="useFreshRef">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,11, 15}
+import React from 'react';
+import { useFreshRef } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, setCount] = React.useState(0);
+
+	const increment = () => {
+		setCount(count + 1);
+	};
+
+	const callbackRef = useFreshRef(increment);
+
+	React.useEffect(() => {
+		function tick() {
+			callbackRef.current();
+		}
+
+		const timerId = setInterval(tick, 1000);
+
+		return () => {
+			clearInterval(timerId);
+		};
+	}, []);
+
+	return (
+		<div>
+			<p>Count Value: {count}</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Return Value
+
+| Parameter | Type | Description                                     | Default |
+| --------- | ---- | ----------------------------------------------- | ------- |
+| value     | `T`  | The value which needs to be fresh at all times. | N/A     |
+
+### Return Value
+
+| Parameter | Type                 | Description                                 | Default |
+| --------- | -------------------- | ------------------------------------------- | ------- |
+| ref       | `React.RefObject<T>` | Ref object with the latest and fresh value. | N/A     |
+
+**Note**: The `useFreshRef` is probably the most useful when used with callback functions where you want to abstract reactive but non synchronizing values.

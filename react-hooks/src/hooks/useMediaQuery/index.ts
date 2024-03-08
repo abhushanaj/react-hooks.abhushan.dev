@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * useMediaQuery() - Custom react hook to check if the document matched a certain media uery string using the [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API.
- * @see -
+ * @see - https://react-hooks.abhushan.dev/hooks/ui/usemediaquery/
  */
 export function useMediaQuery(mediaQueryString: string, serverDefault = false) {
 	const subscribe = React.useCallback(

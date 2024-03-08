@@ -1,0 +1,51 @@
+---
+title: useMediaQuery
+description: 'Match a media query against the document.'
+subtitle: 'Match a media query against the document.'
+---
+
+import Example from '@/components/demo/useMediaQuery';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useMediaQuery` hook is helpful when you want to match a certain media query string against the document. It also listens for changes in the document to return to most recent result at all times.
+
+The utilizes the browsers [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) API under the hood.
+
+<DemoWrapper title="useMediaQuery">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={1,4}
+import { useMediaQuery } from '@abhushanaj/react-hooks';
+
+function App() {
+	const isMatch = useMediaQuery('(min-width: 600px)');
+
+	return (
+		<div>
+			<p>Media Query is : {isMatch ? 'Matched' : 'Not Matched'}</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter        | Type                 | Description                                                                | Default |
+| ---------------- | -------------------- | -------------------------------------------------------------------------- | ------- |
+| mediaQueryString | `string`             | The media query to match against the document.                             | N/A     |
+| serverDefault    | `boolean` (optional) | The match value to use in server snapshot (during SSR). Defaults to false. | `false` |
+
+### Return Value
+
+| Parameter | Type      | Description                                   | Default |
+| --------- | --------- | --------------------------------------------- | ------- |
+| isMatch   | `boolean` | Whether the media query matches the document. | N/A     |

@@ -8,6 +8,7 @@ export { useWindowSize } from './hooks/useWindowSize';
 export type { UseWindowSizeResult } from './hooks/useWindowSize';
 export { useOuterWindowSize } from './hooks/useOuterWindowSize';
 export type { UseOuterWindowSizeResult } from './hooks/useOuterWindowSize';
+export { useWindowEventListener } from './hooks/useWindowEventListener';
 
 // ===== BOM ==========
 export { useOnline } from './hooks/useOnline';

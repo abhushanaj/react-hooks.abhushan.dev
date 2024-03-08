@@ -1,5 +1,24 @@
 # @abhushanaj/react-hooks
 
+## 0.3.0
+
+### Minor Changes
+
+- dd8a834: Addition of useTimeout hook
+- ddfdf3f: Addition of the useWasSSR hook
+- 41e7f3b: Addition of the useDebouncedValue hook
+- 1e7b0e8: Addition of the useFreshRef hook
+- 352667d: Addition of the useWindowEventListener hook
+- b4842c7: Addition of the useDocumentEventListener
+- 21a588e: Addition of the useMediaQuery hook
+- fc0b027: Addition of the useList hook
+- d634957: Addition of the useWindowSize hook
+- f09b34d: Addition of the useOuterWindowSize hook
+- 43621bc: Addition of the useEventListenerOnRef hook
+- 00bc3e6: Addition of the useFreshCallback
+- b4eefad: Addition of internal \_useEventListener hook
+- aaf7eaf: Addition of the useIsClient hook
+
 ## 0.2.0
 
 ### Minor Changes

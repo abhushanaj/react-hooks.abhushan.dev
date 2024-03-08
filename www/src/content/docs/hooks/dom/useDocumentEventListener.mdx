@@ -1,21 +1,21 @@
 ---
-title: useWindowEventListener
-description: 'Adds an event listener to the window object.'
-subtitle: 'Adds an event listener to the window object.'
+title: useDocumentEventListener
+description: 'Adds an event listener to the document object.'
+subtitle: 'Adds an event listener to the document object.'
 sidebar:
   badge: 'New'
 ---
 
-import Example from '@/components/demo/useWindowEventListener';
+import Example from '@/components/demo/useDocumentEventListener';
 import { DemoWrapper } from '@/components/demo/wrapper';
 
-The `useWindowEventListener` hook is helpful when you want attach event listener to the window object and run callbacks after the event is triggered.
+The `useDocumentEventListener` hook is helpful when you want attach event listener to the document object and run callbacks after the event is triggered.
 
 The event listener attached will automatically be cleanuped once the component is unmounted.
 
-This hook is exactly to [useEventListenerOnRef](/hooks/ui/useeventlisteneronref/), but with [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) object as target.
+This hook is exactly to [useEventListenerOnRef](/hooks/ui/useeventlisteneronref/), but with [`document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) object as target.
 
-<DemoWrapper title="useWindowEventListener">
+<DemoWrapper title="useDocumentEventListener">
 	<Example client:load />
 </DemoWrapper>
 
@@ -23,22 +23,15 @@ This hook is exactly to [useEventListenerOnRef](/hooks/ui/useeventlisteneronref/
 
 Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
-```tsx title="./src/App.tsx" ins={2,7-9}
-import React from 'react';
-import { useWindowEventListener } from '@abhushanaj/react-hooks';
+```tsx title="./src/App.tsx" ins={1,4-6}
+import { useDocumentEventListener } from '@abhushanaj/react-hooks';
 
 function App() {
-	const [yScroll, setYScroll] = React.useState<number>(0);
-
-	useWindowEventListener('scroll', () => {
-		setYScroll(window.scrollY);
+	useDocumentEventListener('click', () => {
+		alert('Click event triggered');
 	});
 
-	return (
-		<div>
-			<p>Y Scroll : {yScroll}px</p>
-		</div>
-	);
+	return <p>Click anywhere on document to trigger the event.</p>;
 }
 
 export default App;

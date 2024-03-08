@@ -2,6 +2,7 @@
 export { useDocumentTitle } from './hooks/useDocumentTitle';
 export type { DocumentTitleOptions, UseDocumentTitleOptions } from './hooks/useDocumentTitle';
 export { useIsDocumentVisible } from './hooks/useIsDocumentVisible';
+export { useDocumentEventListener } from './hooks/useDocumentEventListener';
 
 // ======= Window =======
 export { useWindowSize } from './hooks/useWindowSize';

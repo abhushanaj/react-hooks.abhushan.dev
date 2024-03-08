@@ -1,7 +1,7 @@
 ---
 title: useFreshCallback
-description: 'Returns a ref with the latest and fresh value passed to it.'
-subtitle: 'Returns a ref with the latest and fresh value passed to it.'
+description: 'Returns the latest and fresh callback function.'
+subtitle: 'Returns the latest and fresh callback function.'
 sidebar:
   badge: 'New'
 ---
@@ -23,7 +23,7 @@ Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
 ```tsx title="./src/App.tsx" ins={2,11, 14}
 import React from 'react';
-import { useFreshRef } from '@abhushanaj/react-hooks';
+import { useFreshCallback } from '@abhushanaj/react-hooks';
 
 function App() {
 	const [count, setCount] = React.useState(0);

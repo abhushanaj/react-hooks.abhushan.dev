@@ -28,6 +28,7 @@ export { useList } from './hooks/useList';
 // ======== UI ==========
 export { useLockBodyScroll } from './hooks/useLockBodyScroll';
 export { useEventListenerOnRef } from './hooks/useEventListenerOnRef';
+export { useMediaQuery } from './hooks/useMediaQuery';
 
 // ========= Effects and Lifecycles
 export { useOnMount } from './hooks/useOnMount';

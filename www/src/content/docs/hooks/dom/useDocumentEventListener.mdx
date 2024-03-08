@@ -1,0 +1,50 @@
+---
+title: useDocumentEventListener
+description: 'Adds an event listener to the document object.'
+subtitle: 'Adds an event listener to the document object.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useDocumentEventListener';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useDocumentEventListener` hook is helpful when you want attach event listener to the document object and run callbacks after the event is triggered.
+
+The event listener attached will automatically be cleanuped once the component is unmounted.
+
+This hook is exactly to [useEventListenerOnRef](/hooks/ui/useeventlisteneronref/), but with [`document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) object as target.
+
+<DemoWrapper title="useDocumentEventListener">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={1,4-6}
+import { useDocumentEventListener } from '@abhushanaj/react-hooks';
+
+function App() {
+	useDocumentEventListener('click', () => {
+		alert('Click event triggered');
+	});
+
+	return <p>Click anywhere on document to trigger the event.</p>;
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type                                            | Description                                                            | Default     |
+| --------- | ----------------------------------------------- | ---------------------------------------------------------------------- | ----------- |
+| eventName | `string`                                        | The name of the event to listen to.                                    | N/A         |
+| callback  | `EventListenerOrEventListenerObject`            | The event handler function to be executed when the event is triggered. | N/A         |
+| options   | `AddEventListenerOptions \| boolean` (optional) | Additional options for the event listener.                             | `undefined` |
+
+**Note:** The `EventListenerOrEventListenerObject` and `AddEventListenerOptions` are standard types defined by [`lib.dom.d.ts`](https://github.com/microsoft/TypeScript/blob/main/src/lib/dom.generated.d.ts). You can refer the [MDN spec](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#parameters) for additional information.

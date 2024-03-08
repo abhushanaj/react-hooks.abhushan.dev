@@ -50,16 +50,16 @@ export function _useEventListener<T extends UseEventListenerPossibleTargets>(
 	});
 
 	React.useEffect(() => {
-		const element = (target as RefObject<Element>)?.current || (target as Element);
+		const elementOrTarget = (target as RefObject<Element>)?.current || (target as Element);
 
-		if (!element?.addEventListener) {
+		if (!elementOrTarget?.addEventListener) {
 			return;
 		}
 
-		element.addEventListener(eventName as string, callbackRef.current, options);
+		elementOrTarget.addEventListener(eventName as string, callbackRef.current, options);
 
 		return () => {
-			element.removeEventListener(eventName as string, callbackRef.current, options);
+			elementOrTarget.removeEventListener(eventName as string, callbackRef.current, options);
 		};
 	}, [eventName, target, options]);
 }

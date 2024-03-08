@@ -1,0 +1,57 @@
+---
+title: useWindowEventListener
+description: 'Adds an event listener to the window object.'
+subtitle: 'Adds an event listener to the window object.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useWindowEventListener';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useWindowEventListener` hook is helpful when you want attach event listener to the window object and run callbacks after the event is triggered.
+
+The event listener attached will automatically be cleanuped once the component is unmounted.
+
+This hook is exactly to [useEventListenerOnRef](/hooks/ui/useeventlisteneronref/), but with [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) object as target.
+
+<DemoWrapper title="useWindowEventListener">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,7-9}
+import React from 'react';
+import { useWindowEventListener } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [yScroll, setYScroll] = React.useState<number>(0);
+
+	useWindowEventListener('scroll', () => {
+		setYScroll(window.scrollY);
+	});
+
+	return (
+		<div className="flex flex-col gap-2">
+			<p>Y Scroll : {yScroll}px</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type                                            | Description                                                            | Default     |
+| --------- | ----------------------------------------------- | ---------------------------------------------------------------------- | ----------- |
+| eventName | `string`                                        | The name of the event to listen to.                                    | N/A         |
+| callback  | `EventListenerOrEventListenerObject`            | The event handler function to be executed when the event is triggered. | N/A         |
+| options   | `AddEventListenerOptions \| boolean` (optional) | Additional options for the event listener.                             | `undefined` |
+
+**Note:** The `EventListenerOrEventListenerObject` and `AddEventListenerOptions` are standard types defined by [`lib.dom.d.ts`](https://github.com/microsoft/TypeScript/blob/main/src/lib/dom.generated.d.ts). You can refer the [MDN spec](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#parameters) for additional information.

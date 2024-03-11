@@ -41,6 +41,7 @@ export { useIsomorphicLayoutEffect } from './hooks/useIsomorphicLayoutEffect';
 // ============== Timers ========
 export { useInterval } from './hooks/useInterval';
 export { useTimeout } from './hooks/useTimeout';
+export { useIntervalWhen } from './hooks/useIntervalWhen';
 
 // ========= Utilities ==========
 export { useDebouncedValue } from './hooks/useDebouncedValue';

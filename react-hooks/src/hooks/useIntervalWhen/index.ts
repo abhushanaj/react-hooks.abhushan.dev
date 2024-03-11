@@ -17,6 +17,9 @@ export function useIntervalWhen(callback: () => void, duration = 0, immediate = 
 		}
 	}, []);
 
+	/**
+	 * Can be rewritten using the React.useEffectEvent hook
+	 */
 	React.useEffect(() => {
 		callbackRef.current = callback;
 	});

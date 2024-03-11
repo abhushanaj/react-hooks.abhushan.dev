@@ -1,0 +1,127 @@
+---
+title: useIntervalWhen
+description: 'Manage intervals against a flag conveniently using the useIntervalWhen hook.'
+subtitle: 'Manage intervals against a flag conveniently using the useIntervalWhen hook.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useIntervalWhen';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useIntervalWhen` hook is helpful when you want to invoke a callback periodically on an interval. It can be helpful in cases when you want to peform a polling action or maybe an animation. The useIntervalWhen hook can stop and restart the action based on the `when` flag.
+
+It automatically cleans up the interval set using the `window.setInterval` API when component unmounts and also returns an `cancelInterval` method to cancel the the interval programatically.
+
+The hook relies on the [setInterval (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) method available on browsers.
+
+<DemoWrapper title="useIntervalWhen">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={2,8-15}
+import React from 'react';
+import { useCounter, useIntervalWhen } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, { increment }] = useCounter(0);
+	const [when, setWhen] = React.useState(true);
+
+	const [cancelInterval] = useIntervalWhen(
+		() => {
+			increment();
+		},
+		1000, // duration
+		false, // immediate
+		when // whethere to stop or resume the interval
+	);
+
+	return (
+		<div>
+			<p>Count: {count}</p>
+			<button
+				onClick={() => {
+					setWhen(!when);
+				}}
+			>
+				Toggle Interval
+			</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. When using the `useIntervalWhen` hook, **you don't need to memoize the callback** with `React.useCallback` or similar. As the callback is not utilized as a dependency in the `React.useEffect`, you can pass your callback as is, and rest assured that it will be called correctly during the intervals.
+
+```tsx title="./src/App.tsx" del={6-8, 10}
+import React from 'react';
+import { useIntervalWhen } from '@abhushanaj/react-hooks';
+
+function App() {
+	// This is not required at all.
+	const callback = React.useCallback(() => {
+		console.log('Calling after interval');
+	}, []);
+
+	useIntervalWhen(callback, 1000);
+
+	return (
+		<div>
+			<p>I am now rendered!</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+2. When the `cancelInterval` is invoked then the interval **cannot** be triggered again.
+
+   Use `when` flag to **start/stop/resume** the intervals and use `cancelInterval` when you want to permanently stop the interval.
+
+```tsx title="./src/App.tsx" mark="cancelInterval"
+import React from 'react';
+import { useIntervalWhen } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [cancelInterval] = useIntervalWhen(() => {
+		console.log('I am called in intervals');
+	}, 1000);
+
+	return (
+		<div>
+			<p>I am now rendered!</p>
+			<button onClick={cancelInterval}>Stop permanently</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type                 | Description                                      | Default |
+| --------- | -------------------- | ------------------------------------------------ | ------- |
+| callback  | `()=>void`           | The callback function to at specified intervals. | N/A     |
+| duration  | `number` (optional)  | The duration of interval in `ms`.                | `0`     |
+| immediate | `boolean` (optional) | Whether or not to wait for the first interval.   | `false` |
+| when      | `boolean` (optional) | Whether or not to trigger the interval.          | `true`  |
+
+### Return Value
+
+The return value follows the signature `[cancelInterval]`.
+
+| Parameter      | Type       | Description                                              | Default |
+| -------------- | ---------- | -------------------------------------------------------- | ------- |
+| cancelInterval | `()=>void` | A function to clear the interval and stop the execution. | N/A     |

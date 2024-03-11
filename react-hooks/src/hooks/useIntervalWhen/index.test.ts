@@ -122,10 +122,8 @@ describe('useIntervalWhen() hook', () => {
 		});
 	});
 
-	// usage with immediate flag
+	// usage with "immediate" flag
 	it('should invoke immediately and in durations (ms) specified', () => {
-		expect.hasAssertions();
-
 		expect.hasAssertions();
 
 		const advancedFactor = 3;
@@ -148,5 +146,53 @@ describe('useIntervalWhen() hook', () => {
 
 		// we expect one call to happen immediately and then other calls after durations
 		expect(mockedCb).toHaveBeenCalledTimes(advancedFactor + 1);
+	});
+
+	// usage with "when" flag
+	describe('should respect the when flag', () => {
+		it('should not invoke callback when set as false', () => {
+			expect.hasAssertions();
+
+			renderHook(({ callback, duration, immediate }) => useIntervalWhen(callback, duration, immediate), {
+				initialProps: {
+					callback: mockedCb,
+					duration: defaultDuration,
+					immediate: false,
+					when: false
+				}
+			});
+
+			// as when flag is passed as false
+			expect(mockedCb).not.toHaveBeenCalled();
+		});
+
+		it('should resume to invoke callback when set as true after', () => {
+			expect.hasAssertions();
+
+			const { rerender } = renderHook(
+				({ callback, duration, immediate }) => useIntervalWhen(callback, duration, immediate),
+				{
+					initialProps: {
+						callback: mockedCb,
+						duration: defaultDuration,
+						immediate: false,
+						when: false
+					}
+				}
+			);
+
+			rerender({
+				callback: mockedCb,
+				duration: defaultDuration,
+				immediate: false,
+				when: true
+			});
+
+			act(() => {
+				vi.advanceTimersByTime(defaultDuration);
+			});
+
+			expect(mockedCb).toHaveBeenCalled();
+		});
 	});
 });

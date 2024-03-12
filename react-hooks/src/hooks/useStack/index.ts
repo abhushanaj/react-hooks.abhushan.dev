@@ -11,11 +11,16 @@ export function useStack<T>(initialValue: Array<T>) {
 		setStack(initialValue);
 	}, [initialValue]);
 
+	const set = React.useCallback((newStack: Array<T>) => {
+		setStack(newStack);
+	}, []);
+
 	return [
 		stack,
 		{
 			clear,
-			reset
+			reset,
+			set
 		}
 	] as const;
 }

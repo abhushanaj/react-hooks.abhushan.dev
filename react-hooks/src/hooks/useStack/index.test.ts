@@ -106,4 +106,43 @@ describe('useStack() hook', () => {
 			expect(result.current[0]).toEqual(filledStack);
 		});
 	});
+
+	// set method
+	describe('should set the stack to new stack state', () => {
+		it('when the stack is empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: emptyStack
+				}
+			});
+
+			const newStackState = ['Item4'];
+
+			act(() => {
+				result.current[1].set(newStackState);
+			});
+
+			expect(result.current[0]).toEqual(newStackState);
+		});
+
+		it('when the stack is non-empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: filledStack
+				}
+			});
+
+			const newStackState = ['Item4'];
+
+			act(() => {
+				result.current[1].set(newStackState);
+			});
+
+			expect(result.current[0]).toEqual(newStackState);
+		});
+	});
 });

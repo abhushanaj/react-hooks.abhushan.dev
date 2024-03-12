@@ -7,10 +7,15 @@ export function useStack<T>(initialValue: Array<T>) {
 		setStack([]);
 	}, []);
 
+	const reset = React.useCallback(() => {
+		setStack(initialValue);
+	}, [initialValue]);
+
 	return [
 		stack,
 		{
-			clear
+			clear,
+			reset
 		}
 	] as const;
 }

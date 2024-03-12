@@ -24,6 +24,7 @@ export { useCounter } from './hooks/useCounter';
 export type { UseCounterOptions } from './hooks/useCounter';
 export { useQueue } from './hooks/useQueue';
 export { useList } from './hooks/useList';
+export { useStack } from './hooks/useStack';
 
 // ===== Storage ===========
 

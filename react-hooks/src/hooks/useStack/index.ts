@@ -1,14 +1,18 @@
 import React from 'react';
 
-export function useStack<T>(initialValue: Array<T>) {
-	const [stack, setStack] = React.useState(initialValue);
+/**
+ * useStack() - Custom react hook to manage a stack of items.
+ * @see - https://react-hooks.abhushan.dev/hooks/state/usestack/
+ */
+export function useStack<T>(initialValue?: Array<T>) {
+	const [stack, setStack] = React.useState(initialValue || []);
 
 	const clear = React.useCallback(() => {
 		setStack([]);
 	}, []);
 
 	const reset = React.useCallback(() => {
-		setStack(initialValue);
+		setStack(initialValue || []);
 	}, [initialValue]);
 
 	const set = React.useCallback((newStack: Array<T>) => {

@@ -14,6 +14,14 @@ describe('useStack() hook', () => {
 
 	// initial return value
 	describe('should return the initial stack', () => {
+		it('when no initial stack is provided', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(() => useStack());
+
+			expect(result.current[0]).toEqual(emptyStack);
+		});
+
 		it('when it is empty', () => {
 			expect.hasAssertions();
 

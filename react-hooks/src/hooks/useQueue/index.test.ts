@@ -258,4 +258,58 @@ describe('useQueue() hook', () => {
 			expect(result.current[1].firstItem).toEqual(result.current[1].lastItem);
 		});
 	});
+
+	// reset method
+	describe('should reset the queue to initial queue', () => {
+		it('when it is empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: emptyQueue
+				}
+			});
+
+			act(() => {
+				result.current[1].reset();
+			});
+
+			expect(result.current[0]).toEqual(emptyQueue);
+		});
+
+		it('when it is non-empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: initialValuesOfQueue
+				}
+			});
+
+			act(() => {
+				result.current[1].add({ name: 'New Item' });
+				result.current[1].reset();
+			});
+
+			expect(result.current[0]).toEqual(initialValuesOfQueue);
+		});
+	});
+
+	// set method
+	it('should set the queue to new queue provided', () => {
+		expect.hasAssertions();
+
+		const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+			initialProps: {
+				initialQueue: initialValuesOfQueue
+			}
+		});
+
+		const newQueue = [{ name: 'New Queue' }];
+		act(() => {
+			result.current[1].set(newQueue);
+		});
+
+		expect(result.current[0]).toEqual(newQueue);
+	});
 });

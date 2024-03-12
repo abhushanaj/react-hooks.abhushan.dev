@@ -206,4 +206,43 @@ describe('useStack() hook', () => {
 			expect(result.current[1].size).toEqual(filledStack.length);
 		});
 	});
+
+	// push method
+	describe('should add a new item to stack at the end', () => {
+		it('when the stack is empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: emptyStack
+				}
+			});
+
+			const addedItem = 'Item 4';
+
+			act(() => {
+				result.current[1].push(addedItem);
+			});
+
+			expect(result.current[0]).toEqual(emptyStack.concat(addedItem));
+		});
+
+		it('when the stack is non-empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: filledStack
+				}
+			});
+
+			const addedItem = 'Item 4';
+
+			act(() => {
+				result.current[1].push(addedItem);
+			});
+
+			expect(result.current[0]).toEqual(filledStack.concat(addedItem));
+		});
+	});
 });

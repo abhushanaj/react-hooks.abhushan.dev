@@ -23,6 +23,14 @@ export function useStack<T>(initialValue: Array<T>) {
 		return stack[stack.length - 1];
 	}, [stack]);
 
+	const push = React.useCallback((item: T) => {
+		setStack((prev) => {
+			const newStack = prev.slice(0);
+			newStack.push(item);
+			return newStack;
+		});
+	}, []);
+
 	return [
 		stack,
 		{
@@ -30,7 +38,8 @@ export function useStack<T>(initialValue: Array<T>) {
 			reset,
 			set,
 			peek,
-			size: stack.length
+			size: stack.length,
+			push
 		}
 	] as const;
 }

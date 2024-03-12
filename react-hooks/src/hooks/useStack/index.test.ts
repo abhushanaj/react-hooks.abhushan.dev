@@ -145,4 +145,65 @@ describe('useStack() hook', () => {
 			expect(result.current[0]).toEqual(newStackState);
 		});
 	});
+
+	// peek method
+	describe('should return the latest item in stack', () => {
+		it('when it is empty', () => {
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: emptyStack
+				}
+			});
+
+			let peekedItem;
+
+			act(() => {
+				peekedItem = result.current[1].peek();
+			});
+
+			expect(peekedItem).toBeUndefined();
+		});
+
+		it('when it is non-empty', () => {
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: filledStack
+				}
+			});
+
+			let peekedItem;
+			act(() => {
+				peekedItem = result.current[1].peek();
+			});
+
+			expect(peekedItem).toBe(filledStack[filledStack.length - 1]);
+		});
+	});
+
+	// size property
+	describe('should return the correct size of stack', () => {
+		it('when the stack is empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: emptyStack
+				}
+			});
+
+			expect(result.current[1].size).toEqual(emptyStack.length);
+		});
+
+		it('when the stack is non-empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: filledStack
+				}
+			});
+
+			expect(result.current[1].size).toEqual(filledStack.length);
+		});
+	});
 });

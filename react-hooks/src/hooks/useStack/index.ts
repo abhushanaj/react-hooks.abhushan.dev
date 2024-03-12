@@ -15,12 +15,22 @@ export function useStack<T>(initialValue: Array<T>) {
 		setStack(newStack);
 	}, []);
 
+	const peek = React.useCallback(() => {
+		if (stack.length === 0) {
+			return undefined;
+		}
+
+		return stack[stack.length - 1];
+	}, [stack]);
+
 	return [
 		stack,
 		{
 			clear,
 			reset,
-			set
+			set,
+			peek,
+			size: stack.length
 		}
 	] as const;
 }

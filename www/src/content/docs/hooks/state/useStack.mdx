@@ -1,0 +1,80 @@
+---
+title: useStack
+description: 'Manage a stack of items'
+subtitle: 'Manage a stack of items'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useStack';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useStack` hook is helpful when you want to manage a stack of items (based on stack data structure).
+
+It provides with helper methods like `push`, `pop`, `peek`, `clear`, `set`, `reset` and additional properties like`size`.
+
+<DemoWrapper title="useStack">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,5,7}
+import React from 'react';
+import { useStack } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [stack, stackControls] = useStack([]);
+
+	const { clear, push, pop, size, reset, peek } = stackControls;
+
+	return (
+		<div>
+			<p>Size: {size}</p>
+			<button onClick={clear}>Clear</button>
+			<button onClick={() => push(stack.length)}>Add Item</button>
+			<button
+				onClick={() => {
+					const poppedItem = pop();
+					console.log(poppedItem);
+				}}
+			>
+				Remove Item
+			</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter    | Type                  | Description                             | Default |
+| ------------ | --------------------- | --------------------------------------- | ------- |
+| initialStack | `Array<T>` (optional) | The initial stack with items prefilled. | `[]`    |
+
+### Return Value
+
+| Parameter     | Type                                | Description                                           | Default |
+| ------------- | ----------------------------------- | ----------------------------------------------------- | ------- |
+| stack         | `Array<T>`                          | The current stack.                                    | N/A     |
+| stackControls | [`StackControls`](#1-stackcontrols) | The control options for the stack to add, remove etc. | N/A     |
+
+## Types Reference
+
+### 1. `StackControls`
+
+| Parameter | Type                         | Description                                                            | Default |
+| --------- | ---------------------------- | ---------------------------------------------------------------------- | ------- |
+| size      | `number`                     | Returns the size of the stack.                                         | N/A     |
+| clear     | `()=>void`                   | Clears the stack to an empty state.                                    | N/A     |
+| reset     | `()=>void`                   | Resets the stack back to the inital state.                             | N/A     |
+| set       | `(newStack: Array<T>)=>void` | Replaces current stack with newStack.                                  | N/A     |
+| push      | `(newItem: T)=>void`         | Adds a new item to the stack. Item is added at the end of the stack.   | N/A     |
+| pop       | `()=>T\|undefined`           | Removes the last entry from the stack and returns it.                  | N/A     |
+| peek      | `()=>T\|undefined`           | Returns the last entry from the stack, but does not alter stack state. | N/A     |

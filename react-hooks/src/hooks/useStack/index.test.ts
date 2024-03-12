@@ -180,33 +180,6 @@ describe('useStack() hook', () => {
 		});
 	});
 
-	// size property
-	describe('should return the correct size of stack', () => {
-		it('when the stack is empty', () => {
-			expect.hasAssertions();
-
-			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
-				initialProps: {
-					initialValue: emptyStack
-				}
-			});
-
-			expect(result.current[1].size).toEqual(emptyStack.length);
-		});
-
-		it('when the stack is non-empty', () => {
-			expect.hasAssertions();
-
-			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
-				initialProps: {
-					initialValue: filledStack
-				}
-			});
-
-			expect(result.current[1].size).toEqual(filledStack.length);
-		});
-	});
-
 	// push method
 	describe('should add a new item to stack at the end', () => {
 		it('when the stack is empty', () => {
@@ -282,6 +255,65 @@ describe('useStack() hook', () => {
 			});
 
 			expect(poppedItem).toBe(filledStack[filledStack.length - 1]);
+		});
+	});
+
+	// size property
+	describe('should return the correct size of stack', () => {
+		it('when the stack is empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: emptyStack
+				}
+			});
+
+			expect(result.current[1].size).toEqual(emptyStack.length);
+		});
+
+		it('when the stack is non-empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: filledStack
+				}
+			});
+
+			expect(result.current[1].size).toEqual(filledStack.length);
+		});
+
+		it('when the push operation is performed', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: filledStack
+				}
+			});
+
+			act(() => {
+				result.current[1].push('New Item');
+			});
+
+			expect(result.current[1].size).toEqual(filledStack.length + 1);
+		});
+
+		it('when the pop operation is performed', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: filledStack
+				}
+			});
+
+			act(() => {
+				result.current[1].pop();
+			});
+
+			expect(result.current[1].size).toEqual(filledStack.length - 1);
 		});
 	});
 });

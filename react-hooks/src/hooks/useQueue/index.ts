@@ -30,6 +30,10 @@ export function useQueue<T>(initialQueue?: Array<T>) {
 		return removedItem;
 	}, []);
 
+	const reset = React.useCallback(() => {
+		setQueue(initialQueue || []);
+	}, [initialQueue]);
+
 	return [
 		queue,
 		{
@@ -38,7 +42,8 @@ export function useQueue<T>(initialQueue?: Array<T>) {
 			size: queue.length,
 			add,
 			clear,
-			remove
+			remove,
+			reset
 		}
 	] as const;
 }

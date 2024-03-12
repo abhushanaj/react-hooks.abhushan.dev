@@ -258,4 +258,40 @@ describe('useQueue() hook', () => {
 			expect(result.current[1].firstItem).toEqual(result.current[1].lastItem);
 		});
 	});
+
+	// reset method
+	describe('should reset the queue to new queue provided', () => {
+		it('when it is empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: emptyQueue
+				}
+			});
+
+			act(() => {
+				result.current[1].reset();
+			});
+
+			expect(result.current[0]).toEqual(emptyQueue);
+		});
+
+		it('when it is non-empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialQueue }) => useQueue(initialQueue), {
+				initialProps: {
+					initialQueue: initialValuesOfQueue
+				}
+			});
+
+			act(() => {
+				result.current[1].add({ name: 'New Item' });
+				result.current[1].reset();
+			});
+
+			expect(result.current[0]).toEqual(initialValuesOfQueue);
+		});
+	});
 });

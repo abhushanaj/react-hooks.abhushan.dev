@@ -13,7 +13,7 @@ describe('useStack() hook', () => {
 	});
 
 	// initial return value
-	describe('returns the initial stack', () => {
+	describe('should return the initial stack', () => {
 		it('when it is empty', () => {
 			expect.hasAssertions();
 
@@ -40,7 +40,7 @@ describe('useStack() hook', () => {
 	});
 
 	// clear method
-	describe('clears the stack to empty state', () => {
+	describe('should clear the stack to empty state', () => {
 		it('when it is empty', () => {
 			expect.hasAssertions();
 			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
@@ -73,7 +73,7 @@ describe('useStack() hook', () => {
 	});
 
 	// reset method
-	describe('reset the stack to original initial value', () => {
+	describe('should reset the stack to original initial value', () => {
 		it('when stack is empty', () => {
 			expect.hasAssertions();
 

@@ -31,6 +31,18 @@ export function useStack<T>(initialValue: Array<T>) {
 		});
 	}, []);
 
+	const pop = React.useCallback(() => {
+		let poppedItem: T | undefined;
+
+		setStack((prev) => {
+			const newStack = prev.slice(0);
+			poppedItem = newStack.pop();
+			return newStack;
+		});
+
+		return poppedItem;
+	}, []);
+
 	return [
 		stack,
 		{
@@ -39,7 +51,8 @@ export function useStack<T>(initialValue: Array<T>) {
 			set,
 			peek,
 			size: stack.length,
-			push
+			push,
+			pop
 		}
 	] as const;
 }

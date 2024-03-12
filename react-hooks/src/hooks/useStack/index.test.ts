@@ -245,4 +245,43 @@ describe('useStack() hook', () => {
 			expect(result.current[0]).toEqual(filledStack.concat(addedItem));
 		});
 	});
+
+	// pop method
+	describe('should remove the last item to stack from the stack and return the item', () => {
+		it('when stack is empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: emptyStack
+				}
+			});
+
+			let poppedItem;
+
+			act(() => {
+				poppedItem = result.current[1].pop();
+			});
+
+			expect(poppedItem).toBeUndefined();
+		});
+
+		it('when stack is non-empty', () => {
+			expect.hasAssertions();
+
+			const { result } = renderHook(({ initialValue }) => useStack(initialValue), {
+				initialProps: {
+					initialValue: filledStack
+				}
+			});
+
+			let poppedItem;
+
+			act(() => {
+				poppedItem = result.current[1].pop();
+			});
+
+			expect(poppedItem).toBe(filledStack[filledStack.length - 1]);
+		});
+	});
 });

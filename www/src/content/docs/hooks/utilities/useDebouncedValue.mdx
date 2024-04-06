@@ -19,7 +19,7 @@ This is helpful in scenarios when you want to make an API requests based on user
 
 Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
-```tsx title="./src/App.tsx" ins={2,6}
+```tsx title="./src/App.tsx" ins={2,6} mark="useDebouncedValue"
 import React from 'react';
 import { useDebouncedValue } from '@abhushanaj/react-hooks';
 
@@ -63,7 +63,7 @@ export default App;
 | value     | `T`      | The state value to debounce.                                                        | N/A     |
 | wait      | `number` | The wait time in milliseconds. After this amount of time, the latest value is used. | N/A     |
 
-## Return Value
+### Return Value
 
 | Parameter      | Type            | Description                                                                                      | Default |
 | -------------- | --------------- | ------------------------------------------------------------------------------------------------ | ------- |

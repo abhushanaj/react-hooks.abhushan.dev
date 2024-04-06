@@ -1,0 +1,33 @@
+# .github/workflows/development.yml
+
+name: Development
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    stratergy:
+      matrix:
+        node-version: [latest] ## Run code against these many node versions
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{matrix.node-version}}
+          cache: 'pnpm'
+      - name: 'Install dependencies'
+        run: pnpm install
+      - name: 'Lint check'
+        run: pnpm lint:check

@@ -26,7 +26,7 @@ You can learn more about this behaviour from the official [React](https://react.
 
 Import the hook from `@abhushanaj/react-hooks` and use in required component;
 
-```tsx title="./src/App.tsx" ins={1,4-6}
+```tsx title="./src/App.tsx" ins={1,4-6} mark="useIsomorphicLayoutEffect"
 import { useIsomorphicLayoutEffect } from '@abhushanaj/react-hooks';
 
 function App() {
@@ -55,7 +55,7 @@ The signature for the `useIsomorphicLayoutEffect` is exactly same to one provide
 | callback     | `React.EffectCallback`                         | The callback function to run when the dependencies change. | N/A         |
 | dependencies | `React.DependencyList \| undefined` (optional) | An array of dependencies for the effect.                   | `undefined` |
 
-## Return Value
+### Return Value
 
 The hook returns `React.useEffect` when window is not defined (or likely undefined) and `React.useLayoutEffect` on the client where window is defined.
 

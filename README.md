@@ -1,6 +1,10 @@
-<h1 style="text-align:center">React Hooks by Abhushan </h1>
+<h1 align="center">React Hooks by Abhushan </h1>
+
+</br>
 
 <img src="./react-hooks-thumbnail.png" />
+
+</br>
 
 ---
 

@@ -1,0 +1,76 @@
+---
+title: useCycleOn
+description: 'Cycle through a list of values.'
+subtitle: 'Cycle through a list of values.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useCycleOn';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useCycleOn` hook is helpful when you want to cycle through a list of items.
+
+It provides with helper methods like `forward`, `backward` and `reset` to cycle in either directions or reset the cycle progress.
+
+<DemoWrapper title="useCycleOn">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={1,4,6}  mark="useCycleOn"
+import { useCycleOn } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [value, cycleControls] = useCycleOn(['🍎', '🍌', '🍐', '🍑']);
+
+	const { forward, backward, reset } = cycleControls;
+
+	return (
+		<div>
+			<p>Current: {value}</p>
+			<button onClick={forward}>Forward</button>
+			<button onClick={backward}>Backward</button>
+			<button onClick={reset}>Reset</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. The `forward()` method starts from beginning again when the end of values list is reached.
+1. The `backward()` method starts from end again when the activeIndex reaches zero.
+
+At no point is time will the **activeIndex** value return out of bounds index.
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type                  | Description                              | Default |
+| --------- | --------------------- | ---------------------------------------- | ------- |
+| values    | `Array<T>` (optional) | The values on which we need to cycle on. | `[]`    |
+
+### Return Value
+
+| Parameter     | Type                                | Description                                           | Default |
+| ------------- | ----------------------------------- | ----------------------------------------------------- | ------- |
+| value         | `T`                                 | The current value in the cycle.                       | N/A     |
+| cycleControls | [`CycleControls`](#1-cyclecontrols) | The control options for the stack to add, remove etc. | N/A     |
+
+## Types Reference
+
+### 1. `CycleControls`
+
+| Parameter   | Type       | Description                                                              | Default |
+| ----------- | ---------- | ------------------------------------------------------------------------ | ------- |
+| activeIndex | `number`   | Returns the current activeIndex on the cycle.                            | N/A     |
+| reset       | `()=>void` | Resets the cycle back to the inital state,i.e activeIndex is reset to 0. | N/A     |
+| forward     | `()=>void` | Move one step forward on the cycle.                                      | N/A     |
+| backward    | `()=>void` | Move one step backward on the cycle.                                     | N/A     |

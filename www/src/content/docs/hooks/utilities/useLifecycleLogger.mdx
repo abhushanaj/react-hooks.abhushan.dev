@@ -19,8 +19,8 @@ The `useLifecycleLogger` hook is helpful when you want to log a message during c
 
 Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
-```tsx title="./src/Counter.tsx" ins={6-8}
-import { useLifecycleLogger } from '@abhushanaj/react-hooks';
+```tsx title="./src/Counter.tsx" ins={1, 6-8} mark="useLifecycleLogger"
+import { useCounter, useLifecycleLogger } from '@abhushanaj/react-hooks';
 
 function Counter(props) {
 	const [count, { increment }] = useCounter(0);
@@ -44,7 +44,7 @@ export default Counter;
 
 ### Parameters
 
-| Parameter | Type                                | Description                          | Default |
-| --------- | ----------------------------------- | ------------------------------------ | ------- |
-| name      | `string`                            | Name for the component.              | N/A     |
-| data      | `Record<string \| number, unknown>` | Any additional data you want to log. | `{}`    |
+| Parameter | Type                                           | Description                          | Default |
+| --------- | ---------------------------------------------- | ------------------------------------ | ------- |
+| name      | `string`                                       | Name for the component.              | N/A     |
+| data      | `Record<string \| number, unknown>` (optional) | Any additional data you want to log. | `{}`    |

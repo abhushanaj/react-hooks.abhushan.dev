@@ -15,15 +15,15 @@ function UseSampleCallbackExample() {
 
 			<div className="my-4 flex items-center justify-center gap-4">
 				<Button variant="secondary" onClick={sampleByTwo}>
-					Increment by 2
+					Increment by 1
 				</Button>
 
 				<Button variant="secondary" onClick={reset}>
-					Reset sampling period
+					Reset
 				</Button>
 			</div>
 
-			<small>The increment by now sample by a period of 2.</small>
+			<small>Increment is now sampled by a period of 2.</small>
 		</div>
 	);
 }

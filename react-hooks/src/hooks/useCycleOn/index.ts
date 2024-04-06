@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * useCycleOn() - Custom react hook to cycle through a list of values.
+ * @see - https://react-hooks.abhushan.dev/hooks/state/usecycleon/
+ */
 export const useCycleOn = <T>(values: Array<T>) => {
 	const [activeIndex, setActiveIndex] = React.useState(0);
 
@@ -28,7 +32,7 @@ export const useCycleOn = <T>(values: Array<T>) => {
 	}, []);
 
 	return [
-		values[activeIndex],
+		values.at(activeIndex),
 		{
 			activeIndex,
 			forward,

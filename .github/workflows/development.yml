@@ -31,3 +31,5 @@ jobs:
         run: pnpm install
       - name: 'Lint check'
         run: pnpm lint:check
+      - name: 'Test check'
+        run: pnpm test:check

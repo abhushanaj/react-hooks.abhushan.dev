@@ -8,6 +8,7 @@
 		"lint": "pnpm run prettier:format && turbo lint",
 		"lint:check": "pnpm run prettier:check && turbo lint:check",
 		"test": "turbo test",
+		"test:check": "turbo test:check",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"dev:www": "turbo dev --filter=www",
 		"build:www": "turbo build --filter=www",

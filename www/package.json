@@ -12,7 +12,8 @@
 		"sync": "astro sync",
 		"typecheck": "astro check",
 		"clean": "rimraf .astro",
-		"clean:modules": "rimraf node_modules"
+		"clean:modules": "rimraf node_modules",
+		"lint:check": "astro check"
 	},
 	"dependencies": {
 		"@abhushanaj/react-hooks": "workspace:*",

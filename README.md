@@ -1,8 +1,8 @@
+<h1 style="text-align:center">React Hooks by Abhushan </h1>
+
 <img src="./react-hooks-thumbnail.png" />
 
 ---
-
-# React Hooks
 
 > The project is under development.
 
@@ -10,11 +10,56 @@ A collection of modern, server-safe custom React hooks to supercharge your React
 
 Find useful reusable abstractions for browser API's, custom utilities to manage states, create and cleanup subscription to external stores or in general encapsulate often repeated business logic.
 
-## Overview
+## Installation
 
-The project is created from the official turborepo starter using the `create-turbo@latest` CLI.
+To get started, you need to install the package. Use one of the following commands based on your package manage
 
-Find the documentation of the project at : https://react-hooks.abhushan.dev/
+```bash
+npm install @abhushanaj/react-hooks
+```
+
+## Usage
+
+### Import a hook
+
+All hooks are named exports, so importing them is straightforward.
+
+```tsx
+import { useDocumentTitle } from '@abhushanaj/react-hooks;
+```
+
+### Import multiple hooks.
+
+You can also import multiple hooks at once.
+
+```tsx
+import { useDocumentTitle, useToggle } from '@abhushanaj/react-hooks;
+```
+
+## Example
+
+Now that you’ve installed and imported the hooks, you can use them in your components.
+
+```jsx
+import React from 'react';
+import { useDocumentTitle } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, setCount] = React.useState(0);
+	useDocumentTitle(`Current count is: ${count}`, { resetOnUnmount: true });
+
+	return (
+		<section>
+			<h1>Update document title to show the latest count</h1>
+			<button onClick={() => setCount((prev) => prev + 1)}>Increment Count: {count}</button>
+		</section>
+	);
+}
+```
+
+## Documentation
+
+Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more information about the package.
 
 ## List of Available Hooks
 
@@ -94,7 +139,7 @@ Find the documentation of the project at : https://react-hooks.abhushan.dev/
 
 ## Project Structure
 
-The project is a monorepo setup managed by turborepo and contains two main workspaces:
+The project is a monorepo setup created from the `create-turbo` CLI starter contains two main workspaces:
 
 1. `www`: the documentation site for the `@abhushanaj/react-hooks`.
 2. `react-hooks`: the actual npm package for `@abhushanaj/react-hooks` which is shipped to npm registry.

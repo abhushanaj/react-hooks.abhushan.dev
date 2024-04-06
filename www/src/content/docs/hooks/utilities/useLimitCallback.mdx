@@ -1,0 +1,75 @@
+---
+title: useLimitCallback
+description: 'Limit invocations of a callback to at max period count.'
+subtitle: 'Limit invocations of a callback to at max period count.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useLimitCallback';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useLimitCallback` hook is helpful when you want to limit the invocation of a calback to at max **period** count.
+
+It can be used to create common utilities like **limitOnce**, **limitTwice** etc.
+
+<DemoWrapper title="useLimitCallback">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,7-9} mark="useLimitCallback"
+import React from 'react';
+import { useLimitCallback } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, { increment }] = useCounter(0);
+
+	const [sampleByTwo, { reset }] = useLimitCallback(() => {
+		increment();
+	}, 2);
+
+	return (
+		<div>
+			<p>Count Value: {count}</p>
+			<button onClick={sampleByTwo}>Increment by 1</button>
+			<button onClick={reset}>Reset</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+### Properties
+
+1. Negative period values passed are converted to positive values using `Math.abs()` utility.
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type       | Description                             | Default |
+| --------- | ---------- | --------------------------------------- | ------- |
+| callback  | `()=>void` | The function which needs to be sampled. | N/A     |
+| period    | `()=>void` | The max limit period of the function.   | N/A     |
+
+### Return Value
+
+The return value follow the structure of `[fn, samplingControls]`.
+
+| Parameter         | Type                                | Description                        | Default |
+| ----------------- | ----------------------------------- | ---------------------------------- | ------- |
+| fn                | `()=>void`                          | New limited function over period.  | N/A     |
+| limitedFnControls | [`LimitControls`](#1-limitcontrols) | Controls for the limited callback. | N/A     |
+
+## Types Reference
+
+## 1. `LimitControls`
+
+| Parameter | Type       | Description                                                                                                                        | Default |
+| --------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| reset     | `()=>void` | Resets the limit period back to zero. After calling the reset function, the callback can be invoked again for at max period times. | N/A     |

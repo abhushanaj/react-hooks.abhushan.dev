@@ -18,7 +18,7 @@ The event listener attached will automatically be cleanuped once the component i
 
 Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
-```tsx title="./src/App.tsx" ins={2,7-9}
+```tsx title="./src/App.tsx" ins={2,7-9} mark="useEventListenerOnRef"
 import React from 'react';
 import { useEventListenerOnRef } from '@abhushanaj/react-hooks';
 
@@ -65,7 +65,7 @@ export default App;
 
 2. You can pass any options defined on `AddEventListenerOptions` to the event handler as defined on [MDN spec](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#parameters).
 
-```tsx title="./src/App.tsx" ins={7-11, 17}
+```tsx title="./src/App.tsx" ins={7-11, 17} mark="AddEventListenerOptions"
 import React from 'react';
 import { useEventListenerOnRef } from '@abhushanaj/react-hooks';
 

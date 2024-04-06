@@ -38,6 +38,7 @@ export { useOnMount } from './hooks/useOnMount';
 export { useOnUnmount } from './hooks/useOnUnmount';
 export { useEffectOnlyOnceWhen } from './hooks/useEffectOnlyOnceWhen';
 export { useIsomorphicLayoutEffect } from './hooks/useIsomorphicLayoutEffect';
+export { useOnUpdate } from './hooks/useOnUpdate';
 
 // ============== Timers ========
 export { useInterval } from './hooks/useInterval';

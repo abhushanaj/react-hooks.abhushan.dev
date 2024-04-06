@@ -1,0 +1,48 @@
+---
+title: useOnUpdate
+description: 'Runs a callback on every component update or re-render.'
+subtitle: 'Runs a callback on every component update or re-render.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useOnUpdate';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useOnUpdate` hook is helpful when you want to run a callback each time a component updates or re-renderes. The callback won't be invoked during component mount and unmount.
+
+For mount and unmount you can use the [useOnMount](/hooks/effects-and-lifecycles/useonmount/) and [useOnUnmount](/hooks/effects-and-lifecycles/useonunmount/) hook respectively.
+
+<DemoWrapper title="useOnUpdate">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component;
+
+```tsx title="./src/App.tsx" ins={4-7}
+import { useOnUpdate } from '@abhushanaj/react-hooks';
+
+function App() {
+	useOnUpdate(() => {
+		console.log('I am run on every re-render');
+	}, shouldRun);
+
+	return (
+		<div>
+			<p>Callback is run every time component re-renders/updates.</p>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type       | Description                                                    | Default |
+| --------- | ---------- | -------------------------------------------------------------- | ------- |
+| callback  | `()=>void` | The callback function to run after component update/re-render. | N/A     |

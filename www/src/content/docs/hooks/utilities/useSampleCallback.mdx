@@ -1,7 +1,7 @@
 ---
 title: useSampleCallback
-description: 'Returns a new callback which can only be invoked every sample periods.'
-subtitle: 'Returns a new callback which can only be invoked every sample periods.'
+description: 'Limits the invocation of a callback to every period samples.'
+subtitle: 'Limits the invocation of a callback to every period samples.'
 sidebar:
   badge: 'New'
 ---
@@ -9,7 +9,7 @@ sidebar:
 import Example from '@/components/demo/useSampleCallback';
 import { DemoWrapper } from '@/components/demo/wrapper';
 
-The `useSampleCallback` hook is helpful when you want to limit the invocation of a function to every **period** samples. It can also be considered as a sampling function.
+The `useSampleCallback` hook is helpful when you want to limit the invocation of a function to every **period** samples.
 
 <DemoWrapper title="useSampleCallback">
 	<Example client:load />
@@ -42,10 +42,6 @@ function App() {
 export default App;
 ```
 
-### Properties
-
-1. Negative period values passed are converted to positive values using `Math.abs()` utility.
-
 ## API Reference
 
 ### Parameters
@@ -66,8 +62,8 @@ The return value follow the structure of `[fn, samplingControls]`.
 
 ## Types Reference
 
-1. `SamplingControls`
+## 1. `SamplingControls`
 
-| Parameter | Type       | Description                 | Default |
-| --------- | ---------- | --------------------------- | ------- |
-| reset     | `()=>void` | Resets the sampling period. | N/A     |
+| Parameter | Type       | Description                                                                                                               | Default |
+| --------- | ---------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
+| reset     | `()=>void` | Resets the sampling period. After calling the reset function, the callback can be invoked again for every period samples. | N/A     |

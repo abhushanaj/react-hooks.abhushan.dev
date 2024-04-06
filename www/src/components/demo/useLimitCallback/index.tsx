@@ -1,11 +1,11 @@
-import { useCounter, useSampleCallback } from '@abhushanaj/react-hooks';
+import { useCounter, useLimitCallback } from '@abhushanaj/react-hooks';
 
 import Button from '@/components/docs/button';
 
-function UseSampleCallbackExample() {
+function UseLimitCallbackExample() {
 	const [count, { increment }] = useCounter(0);
 
-	const [sampleByTwo, { reset }] = useSampleCallback(() => {
+	const [limitTwice, { reset }] = useLimitCallback(() => {
 		increment();
 	}, 2);
 
@@ -14,7 +14,7 @@ function UseSampleCallbackExample() {
 			<p>Count : {count}</p>
 
 			<div className="my-4 flex items-center justify-center gap-4">
-				<Button variant="secondary" onClick={sampleByTwo}>
+				<Button variant="secondary" onClick={limitTwice}>
 					Increment by 1
 				</Button>
 
@@ -23,9 +23,9 @@ function UseSampleCallbackExample() {
 				</Button>
 			</div>
 
-			<small>Increment is now sampled by a period of 2.</small>
+			<small>The increment function is limited to only 2 times if no reset is done.</small>
 		</div>
 	);
 }
 
-export default UseSampleCallbackExample;
+export default UseLimitCallbackExample;

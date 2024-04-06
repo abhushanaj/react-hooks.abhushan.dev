@@ -1,10 +1,10 @@
 import React from 'react';
 
 /**
- * useCallbackEvery() - Custom react hook to invoke a callback after every "period" samples.
- * @see - https://react-hooks.abhushan.dev/hooks/bom/usecallbackevery/
+ * useSampleCallback() - Custom react hook to invoke a callback after every "period" samples.
+ * @see - https://react-hooks.abhushan.dev/hooks/bom/usesamplecallback/
  */
-export const useCallbackEvery = (callback: () => void, period: number) => {
+export const useSampleCallback = (callback: () => void, period: number) => {
 	const calledRefCount = React.useRef(0);
 	const callbackRef = React.useRef(callback);
 

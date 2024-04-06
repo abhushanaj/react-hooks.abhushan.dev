@@ -1,18 +1,18 @@
 import { act, renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { useCallbackEvery } from '.';
+import { useSampleCallback } from '.';
 
-describe('useCallbackEvery() hook', () => {
+describe('useSampleCallback() hook', () => {
 	it('should be defined', () => {
 		expect.hasAssertions();
-		expect(useCallbackEvery).toBeDefined();
+		expect(useSampleCallback).toBeDefined();
 	});
 
 	it('should invoke callback after every n period', () => {
 		const callbackMock = vi.fn();
 
-		const { result } = renderHook(({ callback, period }) => useCallbackEvery(callback, period), {
+		const { result } = renderHook(({ callback, period }) => useSampleCallback(callback, period), {
 			initialProps: {
 				callback: callbackMock,
 				period: 2
@@ -31,7 +31,7 @@ describe('useCallbackEvery() hook', () => {
 	it('should reset the invocation back to initial state', () => {
 		const callbackMock = vi.fn();
 
-		const { result } = renderHook(({ callback, period }) => useCallbackEvery(callback, period), {
+		const { result } = renderHook(({ callback, period }) => useSampleCallback(callback, period), {
 			initialProps: {
 				callback: callbackMock,
 				period: 2

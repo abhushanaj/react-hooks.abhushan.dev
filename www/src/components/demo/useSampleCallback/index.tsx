@@ -1,11 +1,11 @@
-import { useCallbackEvery, useCounter } from '@abhushanaj/react-hooks';
+import { useCounter, useSampleCallback } from '@abhushanaj/react-hooks';
 
 import Button from '@/components/docs/button';
 
-function UseCallbackEveryExample() {
+function UseSampleCallbackExample() {
 	const [count, { increment }] = useCounter(0);
 
-	const [sampleByTwo, { reset }] = useCallbackEvery(() => {
+	const [sampleByTwo, { reset }] = useSampleCallback(() => {
 		increment();
 	}, 2);
 
@@ -28,4 +28,4 @@ function UseCallbackEveryExample() {
 	);
 }
 
-export default UseCallbackEveryExample;
+export default UseSampleCallbackExample;

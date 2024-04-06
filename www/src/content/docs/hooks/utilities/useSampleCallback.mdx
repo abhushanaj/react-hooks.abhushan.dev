@@ -1,17 +1,17 @@
 ---
-title: useCallbackEvery
+title: useSampleCallback
 description: 'Returns a new callback which can only be invoked every sample periods.'
 subtitle: 'Returns a new callback which can only be invoked every sample periods.'
 sidebar:
   badge: 'New'
 ---
 
-import Example from '@/components/demo/useCallbackEvery';
+import Example from '@/components/demo/useSampleCallback';
 import { DemoWrapper } from '@/components/demo/wrapper';
 
-The `useCallbackEvery` hook is helpful when you want to limit the invocation of a function to every **period** samples. It can also be considered as a sampling function.
+The `useSampleCallback` hook is helpful when you want to limit the invocation of a function to every **period** samples. It can also be considered as a sampling function.
 
-<DemoWrapper title="useCallbackEvery">
+<DemoWrapper title="useSampleCallback">
 	<Example client:load />
 </DemoWrapper>
 
@@ -19,14 +19,14 @@ The `useCallbackEvery` hook is helpful when you want to limit the invocation of 
 
 Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
-```tsx title="./src/App.tsx" ins={2,7-9} mark="useCallbackEvery"
+```tsx title="./src/App.tsx" ins={2,7-9} mark="useSampleCallback"
 import React from 'react';
-import { useCallbackEvery } from '@abhushanaj/react-hooks';
+import { useSampleCallback } from '@abhushanaj/react-hooks';
 
 function App() {
 	const [count, { increment }] = useCounter(0);
 
-	const [sampleByTwo, { reset }] = useCallbackEvery(() => {
+	const [sampleByTwo, { reset }] = useSampleCallback(() => {
 		increment();
 	}, 2);
 
@@ -59,10 +59,10 @@ export default App;
 
 The return value follow the structure of `[fn, samplingControls]`.
 
-| Parameter        | Type                                      | Description                       | Default |
-| ---------------- | ----------------------------------------- | --------------------------------- | ------- |
-| fn               | `()=>void`                                | New sampled function over period. | N/A     |
-| samplingControls | [`SamplingControls`](#1-samplingcontrols) | New sampled function over period. | N/A     |
+| Parameter        | Type                                      | Description                        | Default |
+| ---------------- | ----------------------------------------- | ---------------------------------- | ------- |
+| fn               | `()=>void`                                | New sampled function over period.  | N/A     |
+| samplingControls | [`SamplingControls`](#1-samplingcontrols) | Controls for the sampled callback. | N/A     |
 
 ## Types Reference
 

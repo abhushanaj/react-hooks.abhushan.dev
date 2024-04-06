@@ -1,8 +1,8 @@
-<img src="./react-hooks-thumbnail.png" />
+# React Hooks
+
+<img src="../react-hooks-thumbnail.png" />
 
 ---
-
-# React Hooks by Abhushan
 
 > The project is under development.
 
@@ -15,7 +15,7 @@ Find useful reusable abstractions for browser API's, custom utilities to manage 
 To get started, you need to install the package. Use one of the following commands based on your package manage
 
 ```bash
-npm install @abhushanaj/react-hooks@latest
+npm install @abhushanaj/react-hooks
 ```
 
 ## Usage
@@ -63,4 +63,4 @@ Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more inf
 
 ## Issues & Improvements
 
-Visit [Github](https://github.com/abhushanaj/react-hooks.abhushan.dev) and feel free to raise an issue.
+Visit [Github Issues](https://github.com/abhushanaj/react-hooks.abhushan.dev/issues) and feel free to raise an issue.

@@ -19,7 +19,7 @@ It can be particularly helpful to prevent stale state in callbacks, ensuring tha
 
 Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
-```tsx title="./src/App.tsx" ins={2,11, 15}
+```tsx title="./src/App.tsx" ins={2,11, 15} mark="useFreshRef"
 import React from 'react';
 import { useFreshRef } from '@abhushanaj/react-hooks';
 
@@ -56,7 +56,7 @@ export default App;
 
 ## API Reference
 
-### Return Value
+### Parameters
 
 | Parameter | Type | Description                                     | Default |
 | --------- | ---- | ----------------------------------------------- | ------- |

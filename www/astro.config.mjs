@@ -34,6 +34,13 @@ export default defineConfig({
 						href: '/favicon.ico',
 						sizes: '32x32'
 					}
+				},
+				{
+					tag: 'meta',
+					attrs: {
+						name: 'robots',
+						content: 'noindex, follow'
+					}
 				}
 			],
 			editLink: {

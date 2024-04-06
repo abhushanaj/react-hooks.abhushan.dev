@@ -1,0 +1,50 @@
+---
+title: useLifecycleLogger
+description: 'Log messages for different lifecycles of a component with additional data.'
+subtitle: 'Log messages for different lifecycles of a component with additional data.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useLifecycleLogger';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useLifecycleLogger` hook is helpful when you want to log a message during component lifecycle like mount, unmount and update with any additioanl data.
+
+<DemoWrapper title="useLifecycleLogger">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/Counter.tsx" ins={1, 6-8} mark="useLifecycleLogger"
+import { useCounter, useLifecycleLogger } from '@abhushanaj/react-hooks';
+
+function Counter(props) {
+	const [count, { increment }] = useCounter(0);
+
+	useLifecycleLogger('Counter', {
+		count
+	});
+
+	return (
+		<div>
+			<p>Count: {count}</p>
+			<button onClick={increment}>Increment by 1</button>
+		</div>
+	);
+}
+
+export default Counter;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type                                           | Description                          | Default |
+| --------- | ---------------------------------------------- | ------------------------------------ | ------- |
+| name      | `string`                                       | Name for the component.              | N/A     |
+| data      | `Record<string \| number, unknown>` (optional) | Any additional data you want to log. | `{}`    |

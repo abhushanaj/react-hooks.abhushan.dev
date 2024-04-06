@@ -1,5 +1,3 @@
-# .github/workflows/development.yml
-
 name: Development
 on:
   pull_request:
@@ -8,28 +6,54 @@ on:
       - edited
       - synchronize
       - reopened
+
+env:
+  NODE_VERSIONS_MATRIX: [latest]
+  PNPM_VERSION: 8
+
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    stratergy:
+    strategy:
       matrix:
-        node-version: [latest] ## Run code against these many node versions
+        node-version: ${{env.NODE_VERSIONS_MATRIX}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: ${{env.PNPM_VERSION}}
       - name: Use Node.js ${{matrix.node-version}}
         uses: actions/setup-node@v4
         with:
           node-version: ${{matrix.node-version}}
           cache: 'pnpm'
-      - name: 'Install dependencies'
+      - name: Install dependencies
         run: pnpm install
-      - name: 'Lint check'
+      - name: Lint check
         run: pnpm lint:check
-      - name: 'Test check'
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ${{env.NODE_VERSIONS_MATRIX}}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: ${{env.PNPM_VERSION}}
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{matrix.node-version}}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Test check
         run: pnpm test:check

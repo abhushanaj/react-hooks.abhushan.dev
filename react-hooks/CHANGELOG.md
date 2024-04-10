@@ -1,5 +1,18 @@
 # @abhushanaj/react-hooks
 
+## 0.4.0
+
+### Minor Changes
+
+- 7101e71: Addition of the useOnUpdate hook
+- fbcc3be: Addition of useSampleCallback hook
+- 806228e: Addition of the useStack hook
+- 3def15e: Addition of set and reset methods on useQueue hook
+- d5c968a: Addition of the useLimitCallback hook
+- f4722e0: Addition of the useCycleOn hook
+- 1747098: Addition of the useIntervalWhen hook
+- 185a18f: Addition of useLifeCycleLogger hook
+
 ## 0.3.0
 
 ### Minor Changes

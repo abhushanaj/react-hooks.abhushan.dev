@@ -95,6 +95,8 @@ Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more inf
 
 1. [useCounter](https://react-hooks.abhushan.dev/hooks/state/usecounter/): Manage a counter value with custom min, max and step properties.
 
+1. [useCycleOn](https://react-hooks.abhushan.dev/hooks/state/usecycleon/): Cycle through a list of values.
+
 1. [useDefault](https://react-hooks.abhushan.dev/hooks/state/usedefault/): Sets a default value to a state when it is null or undefined.
 
 1. [useList](https://react-hooks.abhushan.dev/hooks/state/uselist/): Manage a list of items.
@@ -102,6 +104,8 @@ Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more inf
 1. [usePrevious](https://react-hooks.abhushan.dev/hooks/state/useprevious/): Track the previous value of a variable.
 
 1. [useQueue](https://react-hooks.abhushan.dev/hooks/state/usequeue/): Manage a queue of items.
+
+1. [useStack](https://react-hooks.abhushan.dev/hooks/state/usestack/): Manage a stack of items.
 
 1. [useToggle](https://react-hooks.abhushan.dev/hooks/state/usetoggle/): Toogle a boolean value.
 
@@ -123,9 +127,13 @@ Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more inf
 
 1. [useOnUnmount](https://react-hooks.abhushan.dev/hooks/effects-and-lifecycles/useonunmount/): Run a callback after a component unmounts using the useOnUnmount hook.
 
+1. [useOnUpdate](https://react-hooks.abhushan.dev/hooks/effects-and-lifecycles/useonupdate/): Runs a callback on every component update or re-render.
+
 ## Timers
 
 1. [useInterval](https://react-hooks.abhushan.dev/hooks/timers/useinterval/): Manage intervals conveniently using the useInterval hook.
+
+1. [useIntervalWhen](https://react-hooks.abhushan.dev/hooks/timers/useintervalwhen/): Manage intervals against a flag conveniently using the useIntervalWhen hook.
 
 1. [useTimeout](https://react-hooks.abhushan.dev/hooks/timers/usetimeout/): Manage timeouts conveniently using the useTimeout hook.
 
@@ -138,6 +146,12 @@ Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more inf
 1. [useFreshRef](https://react-hooks.abhushan.dev/hooks/utilities/usefreshref/): Returns a ref with the latest and fresh value passed to it.
 
 1. [useIsClient](https://react-hooks.abhushan.dev/hooks/utilities/useisclient/): Returns a boolean flag to mark if code in running on client side.
+
+1. [useLifecycleLogger](https://react-hooks.abhushan.dev/hooks/utilities/uselifecyclelogger/): Log messages for different lifecycles of a component with additional data.
+
+1. [useLimitCallback](https://react-hooks.abhushan.dev/hooks/utilities/uselimitcallback/): Limit invocations of a callback to at max period count.
+
+1. [useSampleCallback](https://react-hooks.abhushan.dev/hooks/utilities/usesamplecallback/): Limits the invocation of a callback to every period samples.
 
 1. [useWasSSR](https://react-hooks.abhushan.dev/hooks/utilities/usewasssr/): Indicates whether the component was SSR'ed or not.
 

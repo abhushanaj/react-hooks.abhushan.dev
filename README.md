@@ -178,6 +178,8 @@ Learn more about changesets from [official repo](https://github.com/changesets/c
 
 ## Developing Locally
 
-The active branch for development is `main` until a major version is released. All changes to the project are merged to this branch.
+The active branch for development is `develop`. All changes to the project are merged to this branch.
+
+The latest release branch is `main`. All new releases are triggered from this branch and tagged.
 
 You can follow the respective readme file for both workspaces to learn more about working with each project.

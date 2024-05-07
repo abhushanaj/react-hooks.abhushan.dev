@@ -15,6 +15,7 @@ const config = {
 		'plugin:react/jsx-runtime',
 		'prettier'
 	],
+	plugins: ['@typescript-eslint', 'react', 'vitest'],
 	parserOptions: {
 		sourceType: 'module',
 		ecmaVersion: 'latest',
@@ -24,7 +25,6 @@ const config = {
 		project: ['./tsconfig.json'],
 		tsconfigRootDir: __dirname
 	},
-	plugins: ['@typescript-eslint', 'react'],
 	rules: {
 		'no-unused-vars': 'off',
 		'@typescript-eslint/no-unused-vars': [

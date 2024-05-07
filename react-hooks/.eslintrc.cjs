@@ -37,7 +37,9 @@ const config = {
 		],
 		'no-shadow': 'off',
 		'@typescript-eslint/no-shadow': ['error'],
-		'no-console': [2, { allow: ['warn', 'error'] }]
+		'no-console': [2, { allow: ['warn', 'error'] }],
+		// turn it off for time being while figuring why the act from @testing-library/react is typed as any
+		'@typescript-eslint/no-unsafe-call': 'off'
 	},
 	settings: {
 		react: {

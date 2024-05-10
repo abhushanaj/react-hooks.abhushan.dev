@@ -7,6 +7,7 @@ import { useUndoState } from '.';
  */
 describe('useUndoState() hook', () => {
 	it('should be defined', () => {
+		expect.hasAssertions();
 		expect(useUndoState).toBeDefined();
 	});
 });

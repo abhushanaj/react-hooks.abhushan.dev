@@ -8,14 +8,15 @@ export const useUndoState = <T>(initialState: T) => {
 	/**
 	 * Simply a re-export of useStateWithHistory with only undo functionality
 	 */
-	const [state, { canUndo, undo, set }] = useStateWithHistory(initialState);
+	const [state, { canUndo, undo, set, reset }] = useStateWithHistory(initialState);
 
 	return [
 		state,
 		{
 			canUndo,
 			undo,
-			set
+			set,
+			reset
 		}
 	] as const;
 };

@@ -89,10 +89,10 @@ const reducer = <T>(state: State<T>, action: ReducerActions<T>): State<T> => {
  * @see - https://react-hooks.abhushan.dev/hooks/state/usestatewithhistory/
  */
 export const useStateWithHistory = <T>(initialValue: T) => {
-	const [{ present, future, past }, dispatch] = useReducer(reducer, {
+	const [{ present, future, past }, dispatch] = useReducer(reducer as React.Reducer<State<T>, ReducerActions<T>>, {
 		present: initialValue,
-		past: [],
-		future: []
+		past: [] as Array<T>,
+		future: [] as Array<T>
 	});
 
 	const set = React.useCallback((newPresent: T) => {

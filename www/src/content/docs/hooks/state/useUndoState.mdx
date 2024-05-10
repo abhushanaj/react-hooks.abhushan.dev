@@ -1,0 +1,92 @@
+---
+title: useUndoState
+description: 'Manage a state value with ability to undo an update.'
+subtitle: 'Manage a state value with ability to undo an update.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useUndoState';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useUndoState` hook is helpful when you want to manage a state value and undo any updates on it.
+
+The hook returns the latest value of state and provides a handler to perform `undo`, `reset` and `set` actions.
+
+The hook is simply an re-export of the [useStateWithHistory](/hooks/state/usestatewithhistory/) hook, with only undo functionlity enabled.
+
+<DemoWrapper title="useUndoState">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={1,4} mark="useUndoState"
+import { useUndoState } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, { canUndo, undo, set, reset }] = useUndoState(0);
+
+	const addByOne = () => {
+		set(count + 1);
+	};
+
+	const subtractByTwo = () => {
+		set(count - 2);
+	};
+
+	return (
+		<div>
+			<div>
+				<p>Count Value: {count}</p>
+			</div>
+
+			<div>
+				<button onClick={addByOne}>+1</button>
+				<button onClick={subtractByTwo}>-2</button>
+			</div>
+
+			<div>
+				<button onClick={undo} disabled={!canUndo}>
+					Undo
+				</button>
+				<button onClick={reset}>Reset</button>
+			</div>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter    | Type | Description                     | Default |
+| ------------ | ---- | ------------------------------- | ------- |
+| initialValue | `T`  | The initial value of the state. | N/A     |
+
+### Return Value
+
+The hook returns a tuple with `[value, valueUpdateOptions]`.
+
+| Parameter          | Type                                          | Description                              | Default |
+| ------------------ | --------------------------------------------- | ---------------------------------------- | ------- |
+| value              | `T`                                           | The current value of state.              | N/A     |
+| valueUpdateOptions | [`ValueUpdateOptions`](#1-valueupdateoptions) | The controls for the state with history. | N/A     |
+
+## Types Reference
+
+### 1. `ValueUpdateOptions`
+
+The control options for `useStateWithHistory`.
+
+| Parameter | Type                  | Description                                                   | Default |
+| --------- | --------------------- | ------------------------------------------------------------- | ------- |
+| set       | `(newValue: T)=>void` | Function to set the new value for state.                      | N/A     |
+| undo      | `()=>void`            | Function to undo the previous state.                          | N/A     |
+| reset     | `()=>void`            | Function to reset state history and go back to initial state. | N/A     |
+| canUndo   | `boolean`             | Boolean indicating whether `undo` action is available.        | N/A     |

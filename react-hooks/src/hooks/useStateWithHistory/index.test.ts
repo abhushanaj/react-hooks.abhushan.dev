@@ -212,4 +212,66 @@ describe('useStateWithHistory() hook', () => {
 			expect(result.current[1]._future).toEqual([]);
 		});
 	});
+
+	describe('RESET action', () => {
+		it('yields new value correctly', () => {
+			const { result } = renderHook(({ initialValue }) => useStateWithHistory(initialValue), {
+				initialProps: {
+					initialValue: initialTodo
+				}
+			});
+
+			const newTodo = {
+				id: 2,
+				title: 'Todo 2'
+			};
+
+			act(() => {
+				result.current[1].set(newTodo);
+				result.current[1].reset();
+			});
+
+			expect(result.current[0]).toEqual(initialTodo);
+		});
+
+		it('updates the past state correctly', () => {
+			const { result } = renderHook(({ initialValue }) => useStateWithHistory(initialValue), {
+				initialProps: {
+					initialValue: initialTodo
+				}
+			});
+
+			const newTodo = {
+				id: 2,
+				title: 'Todo 2'
+			};
+
+			act(() => {
+				result.current[1].set(newTodo);
+				result.current[1].reset();
+			});
+
+			expect(result.current[1]._past).toEqual([]);
+		});
+
+		it('updates the future state correctly', () => {
+			const { result } = renderHook(({ initialValue }) => useStateWithHistory(initialValue), {
+				initialProps: {
+					initialValue: initialTodo
+				}
+			});
+
+			const newTodo = {
+				id: 2,
+				title: 'Todo 2'
+			};
+
+			act(() => {
+				result.current[1].set(newTodo);
+				result.current[1].reset();
+			});
+
+			expect(result.current[1]._future).toEqual([]);
+		});
+	});
 });

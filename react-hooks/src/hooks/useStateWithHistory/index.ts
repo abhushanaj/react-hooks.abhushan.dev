@@ -18,6 +18,12 @@ type ReducerActions<T> =
 	  }
 	| {
 			type: 'REDO';
+	  }
+	| {
+			type: 'RESET';
+			payload: {
+				initialPresent: T;
+			};
 	  };
 
 const reducer = <T>(state: State<T>, action: ReducerActions<T>): State<T> => {
@@ -62,20 +68,32 @@ const reducer = <T>(state: State<T>, action: ReducerActions<T>): State<T> => {
 			};
 		}
 
+		case 'RESET': {
+			const { initialPresent } = action.payload;
+
+			return {
+				future: [],
+				past: [],
+				present: initialPresent
+			};
+		}
+
 		default: {
 			throw new Error('Unsupported action dispatched on the reducer. Check possible action types');
 		}
 	}
 };
 
+/**
+ * useStack() - Custom react hook to manage a state with it's history.
+ * @see - https://react-hooks.abhushan.dev/hooks/state/usestatewithhistory/
+ */
 export const useStateWithHistory = <T>(initialValue: T) => {
-	const getInitialReducerState = (initial: T): State<T> => ({
-		present: initial,
+	const [{ present, future, past }, dispatch] = useReducer(reducer, {
+		present: initialValue,
 		past: [],
 		future: []
 	});
-
-	const [{ present, future, past }, dispatch] = useReducer(reducer, getInitialReducerState(initialValue));
 
 	const set = React.useCallback((newPresent: T) => {
 		dispatch({
@@ -96,7 +114,14 @@ export const useStateWithHistory = <T>(initialValue: T) => {
 		dispatch({ type: 'REDO' });
 	}, []);
 
-	const reset = React.useCallback(() => {}, []);
+	const reset = React.useCallback(() => {
+		dispatch({
+			type: 'RESET',
+			payload: {
+				initialPresent: initialValue
+			}
+		});
+	}, [initialValue]);
 
 	return [
 		present,

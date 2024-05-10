@@ -27,6 +27,7 @@ export { useList } from './hooks/useList';
 export { useStack } from './hooks/useStack';
 export { useCycleOn } from './hooks/useCycleOn';
 export { useStateWithHistory } from './hooks/useStateWithHistory';
+export { useUndoState } from './hooks/useUndoState';
 
 // ===== Storage ===========
 

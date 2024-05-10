@@ -1,0 +1,71 @@
+---
+title: useDebounce
+description: 'Delay execution of a callback update until a defined wait period.'
+subtitle: 'Delay execution of a callback update until a defined wait period.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useDebounce';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useDebounce` hook is helpful when you want to delay the execution of a callback until a given wait period (ms).
+
+This is helpful in scenarios when you want to make an API requests based on user input like search, or when you find to delayed executing rapid changes like scroll events etc.
+
+<DemoWrapper title="useDebounce">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,5-7} mark="useDebounce"
+import React from 'react';
+import { useDebounce } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [debouncedOnScroll, { cancel }] = useDebounce((e) => {
+		console.log('Scroll Event Triggred', e);
+	}, 200);
+
+	return (
+		<div style={{ minHeight: '400vh' }} onScroll={debouncedOnScroll}>
+			Scrollable content
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. Passing negative wait (ms) value, will throw an error. Only values greater than or equal to zero are allowed.
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type                              | Description                               | Default |
+| --------- | --------------------------------- | ----------------------------------------- | ------- |
+| callback  | `(...args: Array<unknown>)=>void` | The callback which needs to be debounced. | N/A     |
+| wait      | `number`                          | The wait time in milliseconds.            | N/A     |
+
+### Return Value
+
+The return value is of the shape `[debouncedFn, debounceFnControls]`.
+
+| Parameter          | Type                                          | Description                                       | Default |
+| ------------------ | --------------------------------------------- | ------------------------------------------------- | ------- |
+| debouncedFn        | `(...args: Array<unknown>)=>void`             | The debounced callback over wait(ms) time period. | N/A     |
+| debounceFnControls | [`DebounceFnControls`](#1-debouncefncontrols) | Controls for the debounced function.              | N/A     |
+
+## Types Reference
+
+### 1. `DebounceFnControls`
+
+| Parameter | Type       | Description                                                          | Default |
+| --------- | ---------- | -------------------------------------------------------------------- | ------- |
+| cancel    | `()=>void` | Cancels any pending invocations for the debounced callback function. | N/A     |

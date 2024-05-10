@@ -57,3 +57,4 @@ export { useFreshCallback } from './hooks/useFreshCallback';
 export { useLifecycleLogger } from './hooks/useLifecycleLogger';
 export { useSampleCallback } from './hooks/useSampleCallback';
 export { useLimitCallback } from './hooks/useLimitCallback';
+export { useDebounce } from './hooks/useDebounce';

@@ -50,6 +50,13 @@ describe('useDebounce() hook', () => {
 		expect(mockedCb).toBeCalledWith(2, 3);
 	});
 
+	it('should throw an error when wait is negative', () => {
+		expect.hasAssertions();
+		expect(() => {
+			renderHook(() => useDebounce(() => {}, -10));
+		}).toThrowError();
+	});
+
 	describe('cancels the pending invocations correctly', () => {
 		it('when hook unmounts', () => {
 			expect.hasAssertions();

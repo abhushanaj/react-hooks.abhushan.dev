@@ -1,0 +1,105 @@
+---
+title: useStateWithHistory
+description: "Manage a state value with it's entire history of updates."
+subtitle: "Manage a state value with it's entire history of updates."
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useStateWithHistory';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useStateWithHistory` hook is helpful when you want to manage a state value along with it's entire history of updates.
+
+The hook returns the latest value of state and provide handlers to perform `redo`, `undo`, `set` and `reset` operations.
+
+<DemoWrapper title="useStateWithHistory">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={1,4} mark="useStateWithHistory"
+import { useStateWithHistory } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, { canRedo, canUndo, redo, undo, set, reset }] = useStateWithHistory(0);
+
+	const addByOne = () => {
+		set(count + 1);
+	};
+
+	const subtractByTwo = () => {
+		set(count - 2);
+	};
+
+	const multiplyByThree = () => {
+		set(count * 3);
+	};
+
+	const divideByTwo = () => {
+		set(count / 3);
+	};
+
+	return (
+		<div>
+			<div>
+				<p>Count Value: {count}</p>
+			</div>
+
+			<div>
+				<button onClick={addByOne}>+1</button>
+				<button onClick={subtractByTwo}>-2</button>
+				<button onClick={multiplyByThree}>*3</button>
+				<button onClick={divideByTwo}>/2</button>
+			</div>
+
+			<div>
+				<button onClick={undo} disabled={!canUndo}>
+					Undo
+				</button>
+				<button onClick={redo} disabled={!canRedo}>
+					Redo
+				</button>
+				<button onClick={reset}>Reset</button>
+			</div>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter    | Type | Description                     | Default |
+| ------------ | ---- | ------------------------------- | ------- |
+| initialValue | `T`  | The initial value of the state. | N/A     |
+
+### Return Value
+
+The hook returns a tuple with `[value, valueUpdateOptions]`.
+
+| Parameter          | Type                                          | Description                              | Default |
+| ------------------ | --------------------------------------------- | ---------------------------------------- | ------- |
+| value              | `T`                                           | The current value of state.              | N/A     |
+| valueUpdateOptions | [`ValueUpdateOptions`](#1-valueupdateoptions) | The controls for the state with history. | N/A     |
+
+## Types Reference
+
+### 1. `ValueUpdateOptions`
+
+The control options for `useStateWithHistory`.
+
+| Parameter | Type                  | Description                                                   | Default |
+| --------- | --------------------- | ------------------------------------------------------------- | ------- |
+| set       | `(newValue: T)=>void` | Function to set the new value for state.                      | N/A     |
+| redo      | `()=>void`            | Function to redo the next state.                              | N/A     |
+| undo      | `()=>void`            | Function to undo the previous state.                          | N/A     |
+| reset     | `()=>void`            | Function to reset state history and go back to initial state. | N/A     |
+| canUndo   | `boolean`             | Boolean indicating whether `undo` action is available.        | N/A     |
+| canRedo   | `boolean`             | Boolean indicating whether `redo` action is available.        | N/A     |

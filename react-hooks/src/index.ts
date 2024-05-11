@@ -26,6 +26,8 @@ export { useQueue } from './hooks/useQueue';
 export { useList } from './hooks/useList';
 export { useStack } from './hooks/useStack';
 export { useCycleOn } from './hooks/useCycleOn';
+export { useStateWithHistory } from './hooks/useStateWithHistory';
+export { useUndoState } from './hooks/useUndoState';
 
 // ===== Storage ===========
 
@@ -55,3 +57,5 @@ export { useFreshCallback } from './hooks/useFreshCallback';
 export { useLifecycleLogger } from './hooks/useLifecycleLogger';
 export { useSampleCallback } from './hooks/useSampleCallback';
 export { useLimitCallback } from './hooks/useLimitCallback';
+export { useDebounce } from './hooks/useDebounce';
+export { useThrottle } from './hooks/useThrottle';

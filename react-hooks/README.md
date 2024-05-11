@@ -107,7 +107,11 @@ Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more inf
 
 1. [useStack](https://react-hooks.abhushan.dev/hooks/state/usestack/): Manage a stack of items.
 
+1. [useStateWithHistory](https://react-hooks.abhushan.dev/hooks/state/usestack/): Manage a state value with it's entire history of updates.
+
 1. [useToggle](https://react-hooks.abhushan.dev/hooks/state/usetoggle/): Toogle a boolean value.
+
+1. [useUndoState](https://react-hooks.abhushan.dev/hooks/state/usestack/): Manage a state value with ability to undo an update
 
 ### User Interface (UI)
 
@@ -139,6 +143,8 @@ Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more inf
 
 ## Utilities
 
+1. [useDebounce](https://react-hooks.abhushan.dev/hooks/utilities/usewasssr/): Debounce a callback function over a wait (ms) period.
+
 1. [useDebouncedValue](https://react-hooks.abhushan.dev/hooks/utilities/usedebouncedvalue/): Delay execution of a state update until a defined time period.
 
 1. [useFreshCallback](https://react-hooks.abhushan.dev/hooks/utilities/usefreshcallback/): Returns the latest and fresh callback function.
@@ -153,6 +159,8 @@ Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more inf
 
 1. [useSampleCallback](https://react-hooks.abhushan.dev/hooks/utilities/usesamplecallback/): Limits the invocation of a callback to every period samples.
 
+1. [useThrottle](https://react-hooks.abhushan.dev/hooks/utilities/usewasssr/): Throttle a callback function over a duration(ms) period.
+
 1. [useWasSSR](https://react-hooks.abhushan.dev/hooks/utilities/usewasssr/): Indicates whether the component was SSR'ed or not.
 
 ## Project Structure
@@ -162,7 +170,7 @@ The project is a monorepo setup created from the `create-turbo` CLI starter cont
 1. `www`: the documentation site for the `@abhushanaj/react-hooks`.
 2. `react-hooks`: the actual npm package for `@abhushanaj/react-hooks` which is shipped to npm registry.
 
-## Versoning using changeset
+## Versioning using changeset
 
 The versioning for the `@abhushanaj/react-hooks` is managed using changeset CLI and adheres to semver at all times.
 
@@ -178,6 +186,6 @@ Learn more about changesets from [official repo](https://github.com/changesets/c
 
 ## Developing Locally
 
-The active branch for development is `main` until a major version is released. All changes to the project are merged to this branch.
+The active branch for development is `develop`. All changes to the project are merged to this branch.
 
-You can follow the respective readme file for both workspaces to learn more about working with each project.
+The latest release branch is `main`. All new releases are triggered from this branch and tagged.

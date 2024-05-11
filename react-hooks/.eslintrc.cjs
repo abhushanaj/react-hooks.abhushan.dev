@@ -15,6 +15,7 @@ const config = {
 		'plugin:react/jsx-runtime',
 		'prettier'
 	],
+	plugins: ['@typescript-eslint', 'react', 'vitest'],
 	parserOptions: {
 		sourceType: 'module',
 		ecmaVersion: 'latest',
@@ -24,7 +25,6 @@ const config = {
 		project: ['./tsconfig.json'],
 		tsconfigRootDir: __dirname
 	},
-	plugins: ['@typescript-eslint', 'react'],
 	rules: {
 		'no-unused-vars': 'off',
 		'@typescript-eslint/no-unused-vars': [
@@ -37,7 +37,9 @@ const config = {
 		],
 		'no-shadow': 'off',
 		'@typescript-eslint/no-shadow': ['error'],
-		'no-console': [2, { allow: ['warn', 'error'] }]
+		'no-console': [2, { allow: ['warn', 'error'] }],
+		// turn it off for time being while figuring why the act from @testing-library/react is typed as any
+		'@typescript-eslint/no-unsafe-call': 'off'
 	},
 	settings: {
 		react: {

@@ -1,0 +1,82 @@
+---
+title: useThrottle
+description: 'Throttle the execution of a callback for a duration period.'
+subtitle: 'Throttle the execution of a callback for a duration period.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useThrottle';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useThrottle` hook is helpful when you want to throttle a function over a duration period (ms).
+
+This is helpful in scenarios when you want to limit the number of action taken over certain user interaction, or in general invoke a callback only max 1 amount of time within a certain duration period.
+
+<DemoWrapper title="useThrottle">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,7-9} mark="useThrottle"
+import React from 'react';
+import { useThrottle } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [count, setCount] = React.useState(0);
+
+	const [throttledFn, { cancel }] = useThrottle(() => {
+		setCount((prev) => prev + 1);
+	}, 1000);
+
+	return (
+		<div>
+			<div>
+				<p>Counter Value: {count}</p>
+			</div>
+
+			<div>
+				<button onClick={throttledFn} disabled={count >= options.max}>
+					Increment by 2
+				</button>
+			</div>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. Passing negative duration (ms) value, will throw an error. Only values greater than or equal to zero are allowed.
+1. The throttled callback is immediately invoked first and then invoked only at max once within the throttling duration.
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type                              | Description                                                             | Default |
+| --------- | --------------------------------- | ----------------------------------------------------------------------- | ------- |
+| callback  | `(...args: Array<unknown>)=>void` | The callback which needs to be throttled.                               | N/A     |
+| duration  | `number`                          | The duration time in milliseconds over which the callback is throttled. | N/A     |
+
+### Return Value
+
+The return value is of the shape `[throttledFn, throttleFnControls]`.
+
+| Parameter          | Type                                          | Description                                           | Default |
+| ------------------ | --------------------------------------------- | ----------------------------------------------------- | ------- |
+| throttledFn        | `(...args: Array<unknown>)=>void`             | The throttled callback over duration(ms) time period. | N/A     |
+| throttleFnControls | [`ThrottleFnControls`](#1-throttlefncontrols) | Controls for the throttled function.                  | N/A     |
+
+## Types Reference
+
+### 1. `ThrottleFnControls`
+
+| Parameter | Type       | Description                                                                                    | Default |
+| --------- | ---------- | ---------------------------------------------------------------------------------------------- | ------- |
+| cancel    | `()=>void` | Cancels/Resets the current throttling timer and allows the callback to be invoked immediately. | N/A     |

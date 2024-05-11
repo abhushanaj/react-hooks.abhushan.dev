@@ -183,9 +183,3 @@ All changesets are then merged into one release server using the `pnpm changeset
 Learn more about changesets from [official repo](https://github.com/changesets/changesets).
 
 > Automating this through Github Actions, is planned in future after a major release is achieved.
-
-## Developing Locally
-
-The active branch for development is `develop`. All changes to the project are merged to this branch.
-
-The latest release branch is `main`. All new releases are triggered from this branch and tagged.

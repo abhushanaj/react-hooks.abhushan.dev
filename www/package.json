@@ -16,7 +16,7 @@
 	},
 	"dependencies": {
 		"@abhushanaj/react-hooks": "workspace:*",
-		"@astrojs/check": "^0.5.6",
+		"@astrojs/check": "^0.6.0",
 		"@astrojs/react": "^3.0.10",
 		"@astrojs/starlight": "^0.20.1",
 		"@astrojs/starlight-tailwind": "^2.0.1",

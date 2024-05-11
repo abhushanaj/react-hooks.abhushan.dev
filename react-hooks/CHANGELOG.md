@@ -1,5 +1,14 @@
 # @abhushanaj/react-hooks
 
+## 0.5.0
+
+### Minor Changes
+
+- 5b8854f: Addition of the useThrottle() hook
+- 6f90e6c: Addition of useUndoState() hook.
+- 7eca601: Addition of the useDebounce() hook
+- c31e65d: Addition of the useStateWithHistory() hook
+
 ## 0.4.0
 
 ### Minor Changes

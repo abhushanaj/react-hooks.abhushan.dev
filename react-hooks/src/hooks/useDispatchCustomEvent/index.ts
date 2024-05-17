@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * useDefault() - Custom react hook to dispatch a custom events
+ * useDispatchCustomEvent() - Custom react hook to dispatch a custom event with payload
  * @see - https://react-hooks.abhushan.dev/hooks/state/usedispatchcustomevent/
  */
 export const useDispatchCustomEvent = (eventName: string) => {

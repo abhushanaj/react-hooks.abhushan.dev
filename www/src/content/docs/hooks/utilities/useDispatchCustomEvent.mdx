@@ -1,0 +1,63 @@
+---
+title: useDispatchCustomEvent
+description: 'Dispatch a custom event with payload.'
+subtitle: 'Dispatch a custom event with payload.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useDispatchCustomEvent';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useDispatchCustomEvent` hook is helpful when you want to dispatch your own custom events with payloads that can be subscribed by any component in tree.
+
+This is helpful in scenarios like flushing pending actions after auth is completed, clearing pending analytics queue based om user action or sucessful load of analytics scripts.
+
+<DemoWrapper title="useDispatchCustomEvent">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,5,11-15} mark="useDispatchCustomEvent"
+import React from 'react';
+import { useDispatchCustomEvent } from '@abhushanaj/react-hooks';
+
+function App() {
+	const dispatch = useDispatchCustomEvent('queueChange');
+
+	return (
+		<div>
+			<button
+				onClick={() => {
+					// dispatch a custom queueChange event with { type: 'RESET', newQueue: []} as payload.
+					dispatch({
+						type: 'RESET',
+						newQueue: []
+					});
+				}}
+			>
+				Reset Queue
+			</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## API Reference
+
+### Parameters
+
+| Parameter | Type     | Description                                             | Default |
+| --------- | -------- | ------------------------------------------------------- | ------- |
+| eventName | `string` | The name of the custom event name you want to dispatch. | N/A     |
+
+### Return Value
+
+| Parameter | Type                 | Description                                                            | Default |
+| --------- | -------------------- | ---------------------------------------------------------------------- | ------- |
+| dispatch  | `(payload? T)=>void` | The dispatcher for the custom event which takes a payload as argument. | N/A     |

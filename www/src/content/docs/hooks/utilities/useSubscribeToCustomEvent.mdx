@@ -1,0 +1,69 @@
+---
+title: useSubscribeToCustomEvent
+description: 'Subscribe and manage lifecycle for a custom event.'
+subtitle: 'Subscribe and manage lifecycle for a custom event.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useSubscribeToCustomEvent';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useSubscribeToCustomEvent` hook is helpful when you want to subscribe and manage the lifecycle of your own custom events with payloads.
+
+This is helpful in scenarios like flushing pending actions after auth is completed, clearing pending analytics queue based om user action or sucessful load of analytics scripts.
+
+The hook can be used in conjunction with[useDispatchCustomEvent](/hooks/utilities/usedispatchcustomevent/).
+
+<DemoWrapper title="useSubscribeToCustomEvent">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,10-13} mark="useSubscribeToCustomEvent"
+import React from 'react';
+import { useSubscribeToCustomEvent } from '@abhushanaj/react-hooks';
+
+function App() {
+	type Payload = {
+		type: 'RESET';
+		newQueue: Array<unknown>;
+	};
+
+	const unSubscribe = useSubscribeToCustomEvent<Payload>('queueChange', (e) => {
+		console.log('Dispatched payload at', e.detail);
+	});
+
+	return (
+		<div>
+			<button onClick={unSubscribe}>Unsubscribe</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. The `useSubscribeToCustomEvent` automatically unsubscribes from the event on component mount, so you do not need to worry about cleanups. However it does return a `unsubscribe` function back for cases where you want to take control of this. Once unsubscribe the event cannot be subscribed to again.
+
+2. You can use the generic `useSubscribeToCustomEvent<Payload>(eventName, callback)` when you know the payload type. However, I recommend validating the payload first instead of relying on this approach.
+
+## API Reference
+
+### Parameters
+
+| Parameter     | Type                        | Description                                             | Default |
+| ------------- | --------------------------- | ------------------------------------------------------- | ------- |
+| eventName     | `string`                    | The name of the custom event name you want to dispatch. | N/A     |
+| eventCallback | `(e: CustomEvent<T>=>void)` | The callback which gets invoked when event is fired.    | N/A     |
+
+### Return Value
+
+| Parameter   | Type       | Description                           | Default |
+| ----------- | ---------- | ------------------------------------- | ------- |
+| unsubscribe | `()=>void` | The unsubscribe method for the event. | N/A     |

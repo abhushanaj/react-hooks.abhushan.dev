@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * useSubscribeToCustomEvent() - Custom react hook to subscribe and manage lifecycle of custom events.
- * @see - https://react-hooks.abhushan.dev/hooks/state/usesubscrivetocustomevent/
+ * @see - https://react-hooks.abhushan.dev/hooks/state/usesubscribetocustomevent/
  */
 export const useSubscribeToCustomEvent = <T>(eventName: string, callback: (e: CustomEvent<T>) => void) => {
 	/**

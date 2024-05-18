@@ -11,9 +11,11 @@ import { DemoWrapper } from '@/components/demo/wrapper';
 
 The `useDispatchCustomEvent` hook is helpful when you want to dispatch your own custom events with payloads that can be subscribed by any component in tree.
 
-This is helpful in scenarios like flushing pending actions after auth is completed, clearing pending analytics queue based om user action or sucessful load of analytics scripts.
+This is helpful in scenarios like flushing pending actions after auth is completed, clearing pending analytics queue based on user action or sucessful load of analytics scripts.
 
-The hook can be used in conjunction with[useSubscribeToCustomEvent](/hooks/utilities/usesubscribetocustomevent/).
+The hook can be used in conjunction with [useSubscribeToCustomEvent](/hooks/utilities/usesubscribetocustomevent/).
+
+For cases when you want to manage the entire lifecycle from one hook you can simply use [useCustomEvent](/hooks/utilities/usecustomevent/), with uses both `useDispatchCustomEvent` and `useSubscribeToCustomEvent` hooks internally.
 
 <DemoWrapper title="useDispatchCustomEvent">
 	<Example client:load />

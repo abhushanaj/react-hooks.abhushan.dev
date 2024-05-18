@@ -1,0 +1,77 @@
+---
+title: useCustomEvent
+description: 'Manage the entire lifecycle for a custom event.'
+subtitle: 'Manage the entire lifecycle for a custom event.'
+sidebar:
+  badge: 'New'
+---
+
+import Example from '@/components/demo/useCustomEvent';
+import { DemoWrapper } from '@/components/demo/wrapper';
+
+The `useCustomEvent` hook is helpful when you want manage the entire lifecycle for a custom event. From dispatch, to subscribing and cleanup, it's a one off solution.
+
+This is helpful in scenarios like flushing pending actions after auth is completed, clearing pending analytics queue based on user action or sucessful load of analytics scripts.
+
+The hook is composed using the [useDispatchCustomEvent](/hooks/utilities/usedispatchcustomevent/) and [useSubscribeToCustomEvent](/hooks/utilities/usesubscribetocustomevent/) hooks.
+
+<DemoWrapper title="useCustomEvent">
+	<Example client:load />
+</DemoWrapper>
+
+## Usage
+
+Import the hook from `@abhushanaj/react-hooks` and use in required component.
+
+```tsx title="./src/App.tsx" ins={2,7-9} mark="useCustomEvent"
+import React from 'react';
+import { useCustomEvent } from '@abhushanaj/react-hooks';
+
+function App() {
+	const [value, setValue] = React.useState(0);
+
+	const [dispatch, unSub] = useCustomEvent<{ newValue: number }>('valueChanged', (e) => {
+		setCount(e.detail.newValue);
+	});
+
+	return (
+		<div>
+			<p>Value is: {value}</p>
+			<button onClick={unSubscribe}>Unsubscribe</button>
+			<button
+				onClick={() => {
+					dispatch({ newValue: value++ });
+				}}
+			>
+				Unsubscribe
+			</button>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Properties
+
+1. The `useCustomEvent` automatically unsubscribes from the event on component unmount, so you do not need to worry about cleanups. However it does return a `unsubscribe` function back for cases where you want to take control of this. Once unsubscribe the event cannot be subscribed to again.
+
+2. You can use the generic `useCustomEvent<Payload>(eventName, callback)` when you know the payload type. However, I recommend validating the payload first instead of relying on this approach.
+
+## API Reference
+
+### Parameters
+
+| Parameter     | Type                        | Description                                             | Default |
+| ------------- | --------------------------- | ------------------------------------------------------- | ------- |
+| eventName     | `string`                    | The name of the custom event name you want to dispatch. | N/A     |
+| eventCallback | `(e: CustomEvent<T>=>void)` | The callback which gets invoked when event is fired.    | N/A     |
+
+### Return Value
+
+The return value follows the `[dispatch, unsubscribe]` tuple.
+
+| Parameter   | Type                 | Description                                                            | Default |
+| ----------- | -------------------- | ---------------------------------------------------------------------- | ------- |
+| dispatch    | `(payload? T)=>void` | The dispatcher for the custom event which takes a payload as argument. | N/A     |
+| unsubscribe | `()=>void`           | The unsubscribe method for the event.                                  | N/A     |

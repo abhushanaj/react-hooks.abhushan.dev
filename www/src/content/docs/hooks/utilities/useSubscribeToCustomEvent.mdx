@@ -11,9 +11,11 @@ import { DemoWrapper } from '@/components/demo/wrapper';
 
 The `useSubscribeToCustomEvent` hook is helpful when you want to subscribe and manage the lifecycle of your own custom events with payloads.
 
-This is helpful in scenarios like flushing pending actions after auth is completed, clearing pending analytics queue based om user action or sucessful load of analytics scripts.
+This is helpful in scenarios like flushing pending actions after auth is completed, clearing pending analytics queue based on user action or sucessful load of analytics scripts.
 
-The hook can be used in conjunction with[useDispatchCustomEvent](/hooks/utilities/usedispatchcustomevent/).
+The hook can be used in conjunction with [useDispatchCustomEvent](/hooks/utilities/usedispatchcustomevent/).
+
+For cases when you want to manage the entire lifecycle from one hook you can simply use [useCustomEvent](/hooks/utilities/usecustomevent/), with uses both `useDispatchCustomEvent` and `useSubscribeToCustomEvent` hooks internally.
 
 <DemoWrapper title="useSubscribeToCustomEvent">
 	<Example client:load />
@@ -23,7 +25,7 @@ The hook can be used in conjunction with[useDispatchCustomEvent](/hooks/utilitie
 
 Import the hook from `@abhushanaj/react-hooks` and use in required component.
 
-```tsx title="./src/App.tsx" ins={2,10-13} mark="useSubscribeToCustomEvent"
+```tsx title="./src/App.tsx" ins={2,10-12} mark="useSubscribeToCustomEvent"
 import React from 'react';
 import { useSubscribeToCustomEvent } from '@abhushanaj/react-hooks';
 
@@ -49,7 +51,7 @@ export default App;
 
 ## Properties
 
-1. The `useSubscribeToCustomEvent` automatically unsubscribes from the event on component mount, so you do not need to worry about cleanups. However it does return a `unsubscribe` function back for cases where you want to take control of this. Once unsubscribe the event cannot be subscribed to again.
+1. The `useSubscribeToCustomEvent` automatically unsubscribes from the event on component unmount, so you do not need to worry about cleanups. However it does return a `unsubscribe` function back for cases where you want to take control of this. Once unsubscribe the event cannot be subscribed to again.
 
 2. You can use the generic `useSubscribeToCustomEvent<Payload>(eventName, callback)` when you know the payload type. However, I recommend validating the payload first instead of relying on this approach.
 

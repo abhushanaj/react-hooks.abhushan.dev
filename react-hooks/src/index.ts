@@ -60,3 +60,4 @@ export { useLimitCallback } from './hooks/useLimitCallback';
 export { useDebounce } from './hooks/useDebounce';
 export { useThrottle } from './hooks/useThrottle';
 export { useDispatchCustomEvent } from './hooks/useDispatchCustomEvent';
+export { useSubscribeToCustomEvent } from './hooks/useSubscribeToCustomEvent';

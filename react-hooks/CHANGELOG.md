@@ -1,5 +1,13 @@
 # @abhushanaj/react-hooks
 
+## 0.6.0
+
+### Minor Changes
+
+- 40adcaa: Addition of the useCustomEvent() hook
+- fda3342: Addition of the useDispatchCustomEvent
+- 552d3c3: Addition of the useDubscribeToCustomEvent hook
+
 ## 0.5.0
 
 ### Minor Changes

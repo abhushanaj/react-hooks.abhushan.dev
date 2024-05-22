@@ -143,9 +143,13 @@ Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more inf
 
 ## Utilities
 
+1. [useCustomEvent](https://react-hooks.abhushan.dev/hooks/utilities/usecustomevent/): Manage the entire lifecycle for a custom event.
+
 1. [useDebounce](https://react-hooks.abhushan.dev/hooks/utilities/usewasssr/): Debounce a callback function over a wait (ms) period.
 
 1. [useDebouncedValue](https://react-hooks.abhushan.dev/hooks/utilities/usedebouncedvalue/): Delay execution of a state update until a defined time period.
+
+1. [useDispatchCustomEvent](https://react-hooks.abhushan.dev/hooks/utilities/usedispatchcustomevent/): Dispatch a custom event with payload.
 
 1. [useFreshCallback](https://react-hooks.abhushan.dev/hooks/utilities/usefreshcallback/): Returns the latest and fresh callback function.
 
@@ -158,6 +162,8 @@ Visit [react-hooks.abhushan.dev](https://react-hooks.abhushan.dev/) for more inf
 1. [useLimitCallback](https://react-hooks.abhushan.dev/hooks/utilities/uselimitcallback/): Limit invocations of a callback to at max period count.
 
 1. [useSampleCallback](https://react-hooks.abhushan.dev/hooks/utilities/usesamplecallback/): Limits the invocation of a callback to every period samples.
+
+1. [useSubscribeToCustomEvent](https://react-hooks.abhushan.dev/hooks/utilities/usesubscribetocustomevent/): Subscribe and manage lifecycle for a custom event.
 
 1. [useThrottle](https://react-hooks.abhushan.dev/hooks/utilities/usewasssr/): Throttle a callback function over a duration(ms) period.
 

@@ -19,7 +19,7 @@
 		"@astrojs/check": "^0.5.10",
 		"@astrojs/react": "^3.3.4",
 		"@astrojs/starlight": "^0.22.4",
-		"@astrojs/starlight-tailwind": "^2.0.1",
+		"@astrojs/starlight-tailwind": "^2.0.3",
 		"@astrojs/tailwind": "^5.1.0",
 		"astro": "^4.8.7",
 		"lucide-react": "^0.378.0",

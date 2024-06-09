@@ -1,1 +1,1 @@
-pnpm lint:check && pnpm test:check
+pnpm lint:check && pnpm run prettier:check && pnpm test:check

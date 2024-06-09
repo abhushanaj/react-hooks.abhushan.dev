@@ -6,7 +6,7 @@
 		"build": "turbo build",
 		"dev": "turbo dev",
 		"lint": "pnpm run prettier:format && turbo lint",
-		"lint:check": "pnpm run prettier:check && turbo lint:check",
+		"lint:check": "turbo lint:check",
 		"test": "turbo test",
 		"test:check": "turbo test:check",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",

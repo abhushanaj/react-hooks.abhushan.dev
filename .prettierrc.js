@@ -1,8 +1,5 @@
 /** @type {import("prettier").Config} */
 const config = {
-	// we still need to add the `prettier-plugin-astro` in the script, due to upstream pnpm issue as mentioned on astro docs
-	// Reference: https://docs.astro.build/en/editor-setup/#prettier
-
 	plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
 
 	// General

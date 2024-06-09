@@ -3,7 +3,7 @@ import ClientGate from '@/components/docs/client-gate';
 function Box({ isClientOnly }: { isClientOnly: boolean }) {
 	return (
 		<div
-			className={`flex size-20 items-center justify-center rounded-md border-2 border-white  text-white ${isClientOnly ? 'bg-green-500' : 'bg-pink-500'}`}
+			className={`flex size-20 items-center justify-center rounded-md border-2 border-white text-white ${isClientOnly ? 'bg-green-500' : 'bg-pink-500'}`}
 		/>
 	);
 }

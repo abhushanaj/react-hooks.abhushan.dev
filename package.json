@@ -15,8 +15,8 @@
 		"dev:hooks": "turbo dev --filter=@abhushanaj/react-hooks",
 		"build:hooks": "turbo build --filter=@abhushanaj/react-hooks",
 		"test:hooks": "turbo test --filter=@abhushanaj/react-hooks",
-		"prettier:format": "pnpm exec prettier . --write --plugin=prettier-plugin-astro",
-		"prettier:check": "pnpm exec prettier . --check --plugin=prettier-plugin-astro",
+		"prettier:format": "pnpm exec prettier . --write",
+		"prettier:check": "pnpm exec prettier . --check",
 		"prepare": "husky"
 	},
 	"devDependencies": {

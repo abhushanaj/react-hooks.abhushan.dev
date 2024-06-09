@@ -32,7 +32,7 @@ function UseQueueExample() {
 				<div className="my-4 flex min-h-16 max-w-[80%] items-center justify-center gap-4 overflow-x-auto pb-4">
 					{queue.map((i) => (
 						<div
-							className={`flex min-h-[50px] min-w-[50px] items-center justify-center rounded-md  border-2 border-white p-3 ${i === lastItem ? 'bg-yellow-500' : ''} ${i === firstItem ? 'bg-green-500' : ''} ${firstItem === lastItem ? 'bg-pink-500' : ''}`}
+							className={`flex min-h-[50px] min-w-[50px] items-center justify-center rounded-md border-2 border-white p-3 ${i === lastItem ? 'bg-yellow-500' : ''} ${i === firstItem ? 'bg-green-500' : ''} ${firstItem === lastItem ? 'bg-pink-500' : ''}`}
 							key={i}
 						>
 							{i}

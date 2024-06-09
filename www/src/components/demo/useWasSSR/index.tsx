@@ -6,7 +6,7 @@ function Box() {
 	const wasSSRed = useWasSSR();
 	return (
 		<div
-			className={`flex size-20 items-center justify-center rounded-md border-2 border-white  text-white ${wasSSRed ? 'bg-green-500' : 'bg-red-500'}`}
+			className={`flex size-20 items-center justify-center rounded-md border-2 border-white text-white ${wasSSRed ? 'bg-green-500' : 'bg-red-500'}`}
 		/>
 	);
 }
